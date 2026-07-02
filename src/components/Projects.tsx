@@ -73,7 +73,7 @@ function ProjectCard({
                 </span>
               ))}
             </div>
-            <h3 className="text-2xl font-bold tracking-[-0.04em] text-foreground sm:text-3xl">{project.title}</h3>
+            <h3 className="font-display text-2xl font-bold tracking-[-0.04em] text-foreground sm:text-3xl">{project.title}</h3>
             <p className="text-pretty text-sm leading-relaxed text-muted sm:text-base">
               {copy.description}
             </p>

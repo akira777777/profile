@@ -18,6 +18,7 @@ export const ru = {
     name: "Артём Михайлов",
     role: "Frontend-разработчик",
     roleSuffix: "Next.js · React · TypeScript",
+    descriptor: "разработка.интерфейсы.продукт",
     tagline:
       "Создаю быстрые, доступные и продуманные веб-приложения. Живу в Праге и работаю с современным фронтендом на Next.js.",
     ctaProjects: "Смотреть проекты",

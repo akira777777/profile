@@ -4,11 +4,12 @@ import { ArrowDownIcon, MapPinIcon } from "./icons";
 type Hero = Messages["hero"];
 
 export default function Hero({ hero }: { hero: Hero }) {
+  const initial = hero.name.charAt(0);
   return (
     <section id="hero" className="relative overflow-hidden px-5 pb-20 pt-16 sm:px-8 sm:pb-28 sm:pt-24">
-      {/* Backdrop large letter decoration */}
-      <div className="outline-text absolute -left-12 -top-12 opacity-15 dark:opacity-10 pointer-events-none select-none z-0">
-        AM
+      {/* Backdrop large ghost initial (Gleamy 454px editorial device) */}
+      <div className="outline-text absolute -left-10 -top-16 opacity-70 dark:opacity-60 pointer-events-none select-none z-0">
+        {initial}
       </div>
 
       {/* Decorative background */}
@@ -41,7 +42,7 @@ export default function Hero({ hero }: { hero: Hero }) {
 
         <p className="text-xs font-bold uppercase tracking-[0.25em] text-accent">{hero.greeting}</p>
 
-        <h1 className="text-balance text-6xl font-normal leading-[0.95] tracking-[-0.06em] sm:text-8xl">
+        <h1 className="font-display text-balance text-6xl font-bold leading-[0.92] tracking-[-0.04em] sm:text-8xl lg:text-[7.5rem]">
           <span className="gleamy-highlight text-foreground">{hero.name}</span>
         </h1>
 
@@ -50,6 +51,16 @@ export default function Hero({ hero }: { hero: Hero }) {
           <span className="hidden h-4 w-px bg-border sm:block" />
           <span className="font-mono text-xs text-muted sm:text-sm">{hero.roleSuffix}</span>
         </div>
+
+        {/* Gleamy period-separated capability descriptor */}
+        <p className="font-display text-sm font-semibold uppercase tracking-[0.22em] text-muted sm:text-base">
+          {hero.descriptor.split(".").map((word, i) => (
+            <span key={i}>
+              {i > 0 && <span className="mx-1 text-accent">.</span>}
+              {word}
+            </span>
+          ))}
+        </p>
 
         <p className="max-w-2xl text-pretty text-base leading-relaxed text-muted sm:text-lg">
           {hero.tagline}

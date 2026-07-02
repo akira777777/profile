@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { locales, defaultLocale, isLocale, type Locale } from "@/i18n/config";
@@ -8,15 +8,16 @@ import { site } from "@/lib/site";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin", "cyrillic"],
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const montserrat = Montserrat({
+  variable: "--font-display",
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
@@ -87,13 +88,13 @@ export async function generateMetadata({
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0b" },
   ],
   colorScheme: "light dark",
 };
 
-// Prevent theme flash: apply the stored/system theme before first paint.
-const themeScript = `(function(){try{var t=localStorage.getItem('theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;var d=t==='dark'||(!t&&m)||t==null&&m;var e=t? t==='dark' : m; if(e){document.documentElement.classList.add('dark');}}catch(e){}})();`;
+// Prevent theme flash: Gleamy is dark-first — default to dark unless explicitly 'light'.
+const themeScript = `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'){document.documentElement.classList.add('dark');}}catch(e){}})();`;
 
 export default async function LocaleLayout({ children, params }: LayoutProps) {
   const { lang } = await params;
@@ -106,7 +107,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
     <html
       lang={locale}
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${montserrat.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

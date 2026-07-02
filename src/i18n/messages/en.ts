@@ -20,6 +20,7 @@ export const en: Messages = {
     name: "Artem Mikhailov",
     role: "Frontend Developer",
     roleSuffix: "Next.js · React · TypeScript",
+    descriptor: "development.interfaces.product",
     tagline:
       "I build fast, accessible and thoughtful web applications. Based in Prague, working with modern frontend on Next.js.",
     ctaProjects: "View projects",
