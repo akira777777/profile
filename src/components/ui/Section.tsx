@@ -41,8 +41,8 @@ export function SectionHeading({
   return (
     <div className={isCenter ? "mx-auto max-w-2xl text-center" : "max-w-2xl"}>
       {eyebrow ? (
-        <span className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase text-accent">
-          <span className="h-px w-6 bg-accent/60" />
+        <span className="mb-3 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-accent">
+          <span className="h-px w-7 bg-gradient-to-r from-accent to-accent-secondary" />
           {eyebrow}
         </span>
       ) : null}
