@@ -40,7 +40,7 @@ export default function Languages({ languages }: { languages: Languages }) {
               className="flex flex-col gap-4 rounded-2xl border border-border bg-card/40 p-6 transition-all duration-300 hover:border-accent/40 hover:bg-card/70 hover:shadow-md"
             >
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-bold tracking-tight text-foreground">{item.name}</h3>
+                <h3 className="font-display text-lg font-bold tracking-tight text-foreground">{item.name}</h3>
                 <span
                   className={`rounded-full px-2.5 py-1 text-xs font-semibold ${
                     isNative

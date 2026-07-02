@@ -24,7 +24,7 @@ export default function Education({ education }: { education: Education }) {
                 </span>
               </div>
 
-              <h3 className="text-xl font-bold tracking-[-0.03em] text-foreground sm:text-2xl">
+              <h3 className="font-display text-xl font-bold tracking-[-0.03em] text-foreground sm:text-2xl">
                 {education.degree}
               </h3>
 
