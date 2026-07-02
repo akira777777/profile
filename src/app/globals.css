@@ -68,6 +68,7 @@
     font-family: var(--font-sans), Arial, Helvetica, sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   /* Subtle editorial grain overlay fixed over everything. */
@@ -144,6 +145,38 @@
   animation: spin-slow 8s linear infinite;
 }
 
+/* Floating blur orbs background styles */
+.floating-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+  33% {
+    transform: translateY(-25px) translateX(15px) scale(1.05);
+  }
+  66% {
+    transform: translateY(12px) translateX(-12px) scale(0.95);
+  }
+}
+
+.animate-float {
+  animation: float-slow 15s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: float-slow 18s ease-in-out infinite reverse;
+}
+
+
 .fade-in {
   opacity: 0;
   transform: translate3d(var(--fade-x, 0), var(--fade-y, 24px), 0);
@@ -208,6 +241,38 @@
 .hover-slash-draw:hover::after {
   transform: skewX(-20deg) scaleX(1);
 }
+
+/* CRT/Retro Screen Terminal Styles */
+.crt-screen {
+  position: relative;
+  overflow: hidden;
+}
+
+.crt-screen::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 20;
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+}
+
+@keyframes crt-flicker {
+  0% { opacity: 0.982; }
+  50% { opacity: 0.995; }
+  100% { opacity: 0.982; }
+}
+
+.crt-flicker-anim {
+  animation: crt-flicker 0.15s infinite;
+}
+
+.crt-phosphor-text {
+  text-shadow: 0 0 6px rgba(52, 211, 153, 0.65);
+}
+
 
 @media (prefers-reduced-motion: reduce) {
   html {

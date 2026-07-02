@@ -31,12 +31,45 @@ export default function Navbar({
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [scrollPercent, setScrollPercent] = useState(0);
+  const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => {
+      const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (windowHeight > 0) {
+        const percent = (window.scrollY / windowHeight) * 100;
+        setScrollPercent(percent);
+      }
+      setScrolled(window.scrollY > 8);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Active section tracking via IntersectionObserver
+  useEffect(() => {
+    const sections = NAV_IDS.map((id) => document.getElementById(id)).filter(
+      Boolean,
+    ) as HTMLElement[];
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        // Find the most visible section
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible.length > 0 && visible[0].target.id) {
+          setActiveSection(visible[0].target.id);
+        }
+      },
+      { rootMargin: "-20% 0px -60% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -58,6 +91,12 @@ export default function Navbar({
           : "border-b border-transparent bg-transparent"
       }`}
     >
+      {/* Scroll Progress Bar */}
+      <div
+        className="absolute top-0 left-0 h-[3px] bg-gradient-to-r from-accent to-accent-secondary z-50 transition-all duration-75 ease-out"
+        style={{ width: `${scrollPercent}%` }}
+      />
+
       <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:h-[4.5rem] sm:px-8">
         <Link
           href={locale === "ru" ? "/" : "/en"}
@@ -79,10 +118,20 @@ export default function Navbar({
             <a
               key={item.id}
               href={`#${item.id}`}
-              className="group relative px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-foreground"
+              className={`group relative px-3 py-2 text-sm font-medium transition-colors ${
+                activeSection === item.id
+                  ? "text-accent"
+                  : "text-muted hover:text-foreground"
+              }`}
             >
               {item.label}
-              <span className="absolute inset-x-3 bottom-1 h-px origin-left scale-x-0 bg-accent transition-transform duration-200 group-hover:scale-x-100" />
+              <span
+                className={`absolute inset-x-3 bottom-1 h-px bg-accent transition-transform duration-200 ${
+                  activeSection === item.id
+                    ? "scale-x-100 origin-left"
+                    : "origin-left scale-x-0 group-hover:scale-x-100"
+                }`}
+              />
             </a>
           ))}
         </div>
@@ -127,8 +176,15 @@ export default function Navbar({
                 <a
                   href={`#${item.id}`}
                   onClick={() => setOpen(false)}
-                  className="block px-4 py-3 text-base font-medium text-foreground transition-colors hover:bg-card"
+                  className={`block px-4 py-3 text-base font-medium transition-colors ${
+                    activeSection === item.id
+                      ? "text-accent bg-accent-soft/50"
+                      : "text-foreground hover:bg-card"
+                  }`}
                 >
+                  {activeSection === item.id && (
+                    <span className="mr-2 inline-block h-1.5 w-1.5 bg-accent rounded-full" />
+                  )}
                   {item.label}
                 </a>
               </li>

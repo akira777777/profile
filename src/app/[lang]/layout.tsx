@@ -114,10 +114,14 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
     <html
       lang={locale}
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
       className={`${inter.variable} ${montserrat.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <script
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: themeScript }}
+        />
       </head>
       <body className="flex min-h-full flex-col bg-background text-foreground">
         <a

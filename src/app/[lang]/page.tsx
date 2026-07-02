@@ -8,6 +8,8 @@ import Hero from "@/components/Hero";
 import Languages from "@/components/Languages";
 import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
+import Testimonials from "@/components/Testimonials";
+import Terminal from "@/components/Terminal";
 
 type PageProps = {
   params: Promise<{ lang: string }>;
@@ -26,9 +28,11 @@ export default async function HomePage({ params }: PageProps) {
       <About about={t.about} />
       <Skills skills={t.skills} />
       <Projects projects={t.projects} />
-      <Education education={t.education} />
+      <Education education={t.education} locale={locale} />
+      <Testimonials testimonials={t.testimonials} />
       <Languages languages={t.languages} />
-      <Contact contact={t.contact} />
+      <Terminal messages={t} locale={locale} />
+      <Contact contact={t.contact} locale={locale} />
     </>
   );
 }

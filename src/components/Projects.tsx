@@ -1,8 +1,12 @@
+"use client";
+
+import React, { useState } from "react";
 import type { Messages } from "@/i18n/dictionaries";
-import { projects as projectData, type Project } from "@/lib/projects";
+import { projects as projectData, type Project, type ProjectCategoryKey } from "@/lib/projects";
 import Image from "next/image";
 import { ArrowUpRightIcon, StarIcon } from "./icons";
 import { Section, SectionHeading } from "./ui/Section";
+import GlowCard from "./ui/GlowCard";
 import FadeIn from "./ui/FadeIn";
 
 type ProjectsMessages = Messages["projects"];
@@ -83,8 +87,8 @@ function ProjectCard({
   const isFeatured = Boolean(project.featured);
 
   return (
-    <article
-      className={`group relative flex flex-col overflow-hidden border border-border bg-card/55 p-3 transition-all duration-300 hover:border-accent/45 hover:bg-card/85 hover:shadow-xl hover:shadow-black/10 ${
+    <GlowCard
+      className={`group relative flex flex-col overflow-hidden p-3 transition-all duration-300 hover:border-accent/45 hover:bg-card/85 hover:shadow-xl hover:shadow-black/10 ${
         isFeatured ? "sm:p-6" : ""
       }`}
     >
@@ -155,34 +159,81 @@ function ProjectCard({
           </div>
         </>
       )}
-    </article>
+    </GlowCard>
   );
 }
 
 export default function Projects({ projects }: { projects: ProjectsMessages }) {
-  const featured = projectData.find((p) => p.featured);
-  const rest = projectData.filter((p) => !p.featured);
+  const [activeCategory, setActiveCategory] = useState<"all" | ProjectCategoryKey>("all");
+
+  const categories = Object.entries(projects.categories) as [ProjectCategoryKey, string][];
+
+  const filteredProjects = activeCategory === "all"
+    ? projectData
+    : projectData.filter((p) => p.categoryKey === activeCategory);
+
+  // Split into featured (if still matching filter) and other matching ones
+  const featured = filteredProjects.find((p) => p.featured);
+  const rest = filteredProjects.filter((p) => !p.featured);
 
   return (
     <Section bgLetter="P" id="projects">
       <SectionHeading eyebrow="03" title={projects.title} subtitle={projects.subtitle} />
+
+      {/* Category Filter Bar */}
+      <div className="mt-8 flex flex-wrap gap-2">
+        <button
+          type="button"
+          onClick={() => setActiveCategory("all")}
+          className={`px-4 py-2 text-xs font-semibold border transition-all duration-300 ${
+            activeCategory === "all"
+              ? "bg-accent border-accent text-accent-foreground shadow-lg shadow-accent/10"
+              : "border-border bg-card/65 text-muted hover:border-accent/40 hover:text-foreground"
+          }`}
+        >
+          {projects.allCategories}
+        </button>
+        {categories.map(([key, label]) => (
+          <button
+            key={key}
+            type="button"
+            onClick={() => setActiveCategory(key)}
+            className={`px-4 py-2 text-xs font-semibold border transition-all duration-300 ${
+              activeCategory === key
+                ? "bg-accent border-accent text-accent-foreground shadow-lg shadow-accent/10"
+                : "border-border bg-card/65 text-muted hover:border-accent/40 hover:text-foreground"
+            }`}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+
+      {/* Projects Grid/List */}
       <div className="mt-8 flex flex-col gap-5">
         {featured ? (
-          <FadeIn>
+          <FadeIn key={featured.id}>
             <div className="transition-transform duration-300 hover:-translate-y-0.5">
               <ProjectCard project={featured} messages={projects} />
             </div>
           </FadeIn>
         ) : null}
-        <div className="grid gap-5 sm:grid-cols-2">
-          {rest.map((project, i) => (
-            <FadeIn key={project.id} delay={0.1 + i * 0.1}>
-              <div className="transition-transform duration-300 hover:-translate-y-0.5">
-                <ProjectCard project={project} messages={projects} />
-              </div>
-            </FadeIn>
-          ))}
-        </div>
+        
+        {rest.length > 0 ? (
+          <div className="grid gap-5 sm:grid-cols-2">
+            {rest.map((project, i) => (
+              <FadeIn key={project.id} delay={0.05 + i * 0.05}>
+                <div className="transition-transform duration-300 hover:-translate-y-0.5">
+                  <ProjectCard project={project} messages={projects} />
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        ) : !featured ? (
+          <div className="text-center py-10 border border-border border-dashed text-muted text-sm">
+            {projects.noProjects}
+          </div>
+        ) : null}
       </div>
     </Section>
   );

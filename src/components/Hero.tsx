@@ -1,16 +1,27 @@
+"use client";
+
+import Image from "next/image";
 import type { Messages } from "@/i18n/dictionaries";
 import { ArrowDownIcon, MapPinIcon } from "./icons";
 import FadeIn from "./ui/FadeIn";
 
-type Hero = Messages["hero"];
+type HeroProps = {
+  hero: Messages["hero"];
+};
 
-export default function Hero({ hero }: { hero: Hero }) {
+export default function Hero({ hero }: HeroProps) {
   const initial = hero.name.charAt(0);
+
   return (
     <section id="hero" className="relative overflow-hidden border-b border-border px-5 pb-6 pt-8 sm:px-8 sm:pb-12 sm:pt-14">
-      <div className="outline-text pointer-events-none absolute -left-10 -top-12 z-0 select-none opacity-45 dark:opacity-55">
+      {/* Editorial background initials */}
+      <div className="outline-text pointer-events-none absolute -left-10 -top-12 z-0 select-none opacity-40 dark:opacity-55">
         {initial}
       </div>
+
+      {/* Floating blur background orbs */}
+      <div className="floating-orb bg-accent/20 w-80 h-80 -top-20 -right-20 animate-float" />
+      <div className="floating-orb bg-accent-secondary/15 w-[360px] h-[360px] top-[40%] -left-40 animate-float-reverse" />
 
       <div
         aria-hidden="true"
@@ -102,51 +113,49 @@ export default function Hero({ hero }: { hero: Hero }) {
           </FadeIn>
         </div>
 
-        <FadeIn delay={0.3} direction="left">
-          <div className="relative hidden overflow-hidden border border-border bg-card/70 p-4 shadow-2xl shadow-black/10 backdrop-blur lg:block">
-            <div
-              aria-hidden="true"
-              className="absolute -right-16 -top-16 h-40 w-40 border border-accent/25"
+        <FadeIn delay={0.3} direction="left" className="hidden lg:block h-full relative">
+          <div className="relative w-full h-[600px] select-none border border-border/50 bg-card/20 overflow-hidden group">
+            {/* Portrait Image */}
+            <Image
+              src="/hero-portrait.jpg"
+              alt="Artem Mikhailov Portrait"
+              fill
+              priority
+              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="relative mb-4 flex items-center justify-between border-b border-border pb-3">
-              <span className="font-mono text-[11px] uppercase text-muted">{hero.profileLabel}</span>
-              <span className="inline-flex items-center gap-1.5 font-mono text-[10px] uppercase text-accent">
-                <span className="h-2 w-2 bg-accent" />
-                2026
-              </span>
-            </div>
-            <div className="relative space-y-4">
-              <div>
-                <p className="text-xs font-semibold uppercase text-muted">{hero.focusLabel}</p>
-                <p className="mt-1 text-2xl font-bold text-foreground">{hero.focusValue}</p>
+            {/* Gradient Overlay for blending */}
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80" />
+            <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent opacity-40" />
+
+            {/* Profile Info Overlay */}
+            <div className="absolute bottom-6 left-6 right-6 border border-border/50 bg-background/80 backdrop-blur-md p-5 shadow-2xl transition-all duration-300 hover:border-accent/50">
+              <div className="flex items-center justify-between mb-4">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-muted font-semibold">
+                  {hero.profileLabel}
+                </span>
+                <div className="flex items-center gap-1.5 font-mono text-[10px] font-bold text-accent">
+                  <span className="h-2 w-2 bg-accent" />
+                </div>
               </div>
-              <div className="grid grid-cols-3 gap-2">
-                {hero.focusTags.map((item) => (
-                  <span key={item} className="border border-border bg-background/60 px-3 py-2 text-center font-mono text-xs text-muted">
-                    {item}
-                  </span>
+              
+              <h3 className="text-xl font-bold text-foreground mb-4 leading-tight">
+                {hero.focusValue}
+              </h3>
+              
+              <div className="flex gap-2 mb-5 text-[10px] font-mono text-muted uppercase">
+                {hero.focusTags.map((tag) => (
+                  <span key={tag} className="border border-border px-2 py-1 bg-background/50">{tag}</span>
                 ))}
               </div>
-              <div className="border border-border bg-background/70 p-3">
-                <div className="mb-3 h-2 w-1/2 bg-accent/70" />
-                <div className="space-y-2">
-                  <div className="h-2 w-full bg-border" />
-                  <div className="h-2 w-4/5 bg-border" />
-                  <div className="h-2 w-2/3 bg-border" />
+              
+              <div className="pt-4 border-t border-border grid grid-cols-2 gap-3 text-xs">
+                <div>
+                  <span className="text-[10px] uppercase text-muted font-bold block">{hero.stackLabel}</span>
+                  <span className="font-semibold text-foreground mt-0.5 block">Next.js / React</span>
                 </div>
-                <div className="mt-5 flex gap-2">
-                  <div className="h-8 flex-1 bg-accent-soft" />
-                  <div className="h-8 flex-1 bg-[var(--accent-secondary-soft)]" />
-                </div>
-              </div>
-              <div className="grid grid-cols-2 border border-border bg-card/80">
-                <div className="border-r border-border p-3">
-                  <p className="font-mono text-[10px] uppercase text-muted">{hero.stackLabel}</p>
-                  <p className="mt-1 text-sm font-semibold text-foreground">Next.js / React</p>
-                </div>
-                <div className="p-3">
-                  <p className="font-mono text-[10px] uppercase text-muted">{hero.baseLabel}</p>
-                  <p className="mt-1 text-sm font-semibold text-foreground">{hero.location}</p>
+                <div>
+                  <span className="text-[10px] uppercase text-muted font-bold block">{hero.baseLabel}</span>
+                  <span className="font-semibold text-foreground mt-0.5 block">{hero.location}</span>
                 </div>
               </div>
             </div>
@@ -156,6 +165,8 @@ export default function Hero({ hero }: { hero: Hero }) {
 
       <div className="hover-pause relative left-[calc(-50vw+50%)] my-4 w-screen overflow-hidden border-y border-border bg-card/50 py-2 backdrop-blur select-none sm:my-6 sm:py-3">
         <div className="flex animate-marquee whitespace-nowrap text-[11px] font-bold uppercase text-accent/85">
+          <span className="px-4">{hero.ticker} •</span>
+          <span className="px-4">{hero.ticker} •</span>
           <span className="px-4">{hero.ticker} •</span>
           <span className="px-4">{hero.ticker} •</span>
           <span className="px-4">{hero.ticker} •</span>

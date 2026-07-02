@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  "use cache";
   const lastModified = new Date();
   return [
     {

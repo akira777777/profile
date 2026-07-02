@@ -1,6 +1,10 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import type { Messages } from "@/i18n/dictionaries";
 import { Section, SectionHeading } from "./ui/Section";
 import FadeIn from "./ui/FadeIn";
+import GlowCard from "./ui/GlowCard";
 
 type Languages = Messages["languages"];
 
@@ -22,6 +26,54 @@ function levelToPercent(level: string): number {
 
 const ORDER = ["ru", "cs", "en"] as const;
 
+function AnimatedProgressBar({
+  percent,
+  isNative,
+  label,
+}: {
+  percent: number;
+  isNative: boolean;
+  label: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        // Small delay for visual effect
+        const timer = setTimeout(() => setWidth(percent), 150);
+        observer.disconnect();
+        return () => clearTimeout(timer);
+      },
+      { threshold: 0.3 },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [percent]);
+
+  return (
+    <div ref={ref} className="h-2 w-full overflow-hidden bg-border rounded-full">
+      <div
+        role="progressbar"
+        aria-label={label}
+        aria-valuenow={percent}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        className={`h-full transition-all duration-1000 ease-out ${
+          isNative ? "bg-emerald-500" : "bg-accent"
+        }`}
+        style={{ width: `${width}%` }}
+      />
+    </div>
+  );
+}
+
 export default function Languages({ languages }: { languages: Languages }) {
   const items = ORDER.map((key) => ({
     key,
@@ -30,15 +82,15 @@ export default function Languages({ languages }: { languages: Languages }) {
 
   return (
     <Section bgLetter="L" id="languages">
-      <SectionHeading eyebrow="05" title={languages.title} subtitle={languages.subtitle} />
+      <SectionHeading eyebrow="06" title={languages.title} subtitle={languages.subtitle} />
       <div className="mt-8 grid gap-4 sm:grid-cols-3">
         {items.map((item, i) => {
           const pct = levelToPercent(item.level);
           const isNative = pct === 100;
           return (
             <FadeIn key={item.key} delay={i * 0.1}>
-              <div
-                className="flex h-full flex-col gap-4 border border-border bg-card/55 p-5 transition-all duration-300 hover:border-accent/45 hover:bg-card/85"
+              <GlowCard
+                className="flex h-full flex-col gap-4 p-5"
               >
                 <div className="flex items-center justify-between">
                   <h3 className="font-display text-lg font-bold text-foreground">{item.name}</h3>
@@ -52,21 +104,13 @@ export default function Languages({ languages }: { languages: Languages }) {
                     {item.level}
                   </span>
                 </div>
-                <div className="h-2 w-full overflow-hidden bg-border">
-                  <div
-                    role="progressbar"
-                    aria-label={`${item.name}: ${item.level}`}
-                    aria-valuenow={pct}
-                    aria-valuemin={0}
-                    aria-valuemax={100}
-                    className={`h-full ${
-                      isNative ? "bg-emerald-500" : "bg-accent"
-                    }`}
-                    style={{ width: `${pct}%` }}
-                  />
-                </div>
+                <AnimatedProgressBar
+                  percent={pct}
+                  isNative={isNative}
+                  label={`${item.name}: ${item.level}`}
+                />
                 <p className="text-sm leading-relaxed text-muted">{item.note}</p>
-              </div>
+              </GlowCard>
             </FadeIn>
           );
         })}
