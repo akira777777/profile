@@ -7,6 +7,7 @@ import { getDictionary } from "@/i18n/dictionaries";
 import { site } from "@/lib/site";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ThemeSync from "@/components/ThemeSync";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -124,6 +125,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
         />
       </head>
       <body className="flex min-h-full flex-col bg-background text-foreground">
+        <ThemeSync />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-accent-foreground"

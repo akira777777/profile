@@ -3,37 +3,37 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f6f8fb;
-  --foreground: #10151b;
-  --muted: #596873;
-  --card: #ffffff;
-  --card-strong: #eaf0f4;
-  --border: #d7e0e7;
-  --accent: #0891b2;
-  --accent-foreground: #f7fdff;
-  --accent-secondary: #d97706;
-  --accent-soft: rgba(8, 145, 178, 0.11);
-  --accent-secondary-soft: rgba(217, 119, 6, 0.11);
-  --ring: rgba(8, 145, 178, 0.34);
-  --glow: rgba(8, 145, 178, 0.11);
-  --surface-line: rgba(16, 21, 27, 0.08);
+  --background: #f8faff;
+  --foreground: #111827;
+  --muted: #657084;
+  --card: rgba(255, 255, 255, 0.78);
+  --card-strong: rgba(255, 255, 255, 0.94);
+  --border: rgba(96, 103, 255, 0.18);
+  --accent: #645cff;
+  --accent-foreground: #ffffff;
+  --accent-secondary: #ff7a45;
+  --accent-soft: rgba(100, 92, 255, 0.12);
+  --accent-secondary-soft: rgba(255, 122, 69, 0.13);
+  --ring: rgba(100, 92, 255, 0.34);
+  --glow: rgba(100, 92, 255, 0.16);
+  --surface-line: rgba(17, 24, 39, 0.07);
 }
 
 .dark {
-  --background: #070a0d;
-  --foreground: #edf7f8;
-  --muted: #96a7af;
-  --card: #0f161a;
-  --card-strong: #142229;
-  --border: #22343d;
-  --accent: #22d3ee;
-  --accent-foreground: #041014;
-  --accent-secondary: #f59e0b;
-  --accent-soft: rgba(34, 211, 238, 0.12);
-  --accent-secondary-soft: rgba(245, 158, 11, 0.12);
-  --ring: rgba(34, 211, 238, 0.38);
-  --glow: rgba(34, 211, 238, 0.14);
-  --surface-line: rgba(237, 247, 248, 0.08);
+  --background: #1c1c1f;
+  --foreground: #f7f7fb;
+  --muted: #a7a8b8;
+  --card: rgba(34, 34, 40, 0.72);
+  --card-strong: rgba(48, 48, 58, 0.9);
+  --border: rgba(255, 255, 255, 0.11);
+  --accent: #8a7cff;
+  --accent-foreground: #ffffff;
+  --accent-secondary: #ff8a3d;
+  --accent-soft: rgba(138, 124, 255, 0.18);
+  --accent-secondary-soft: rgba(255, 138, 61, 0.16);
+  --ring: rgba(138, 124, 255, 0.42);
+  --glow: rgba(110, 86, 255, 0.26);
+  --surface-line: rgba(255, 255, 255, 0.08);
 }
 
 @theme inline {
@@ -61,8 +61,10 @@
   body {
     background-color: var(--background);
     background-image:
-      linear-gradient(135deg, var(--glow), transparent 38%),
-      linear-gradient(to bottom, transparent, color-mix(in oklab, var(--background) 92%, var(--accent) 8%));
+      radial-gradient(circle at 18% 18%, color-mix(in oklab, var(--accent) 40%, transparent), transparent 24rem),
+      radial-gradient(circle at 84% 12%, color-mix(in oklab, #00c2ff 28%, transparent), transparent 22rem),
+      radial-gradient(circle at 76% 72%, color-mix(in oklab, var(--accent-secondary) 28%, transparent), transparent 24rem),
+      linear-gradient(135deg, color-mix(in oklab, var(--background) 94%, #ffffff 6%), var(--background));
     background-attachment: fixed;
     color: var(--foreground);
     font-family: var(--font-sans), Arial, Helvetica, sans-serif;

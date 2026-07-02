@@ -34,9 +34,8 @@ export default function GlowCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden border border-border bg-card/55 transition-colors hover:border-accent/40 ${className}`}
+      className={`relative overflow-hidden rounded-[28px] border border-border bg-card/70 shadow-[0_24px_80px_rgba(20,20,35,0.14)] backdrop-blur-xl transition-colors hover:border-accent/40 dark:shadow-[0_24px_80px_rgba(0,0,0,0.28)] ${className}`}
       style={{
-        // Define Custom CSS variables inline
         "--mouse-x": `${coords.x}px`,
         "--mouse-y": `${coords.y}px`,
       } as React.CSSProperties}

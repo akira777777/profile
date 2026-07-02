@@ -13,7 +13,7 @@ export default function Hero({ hero }: HeroProps) {
   const initial = hero.name.charAt(0);
 
   return (
-    <section id="hero" className="relative overflow-hidden border-b border-border px-5 pb-6 pt-8 sm:px-8 sm:pb-12 sm:pt-14">
+    <section id="hero" className="relative -mt-20 overflow-hidden border-b border-border px-5 pb-6 pt-28 sm:px-8 sm:pb-12 sm:pt-36">
       {/* Editorial background initials */}
       <div className="outline-text pointer-events-none absolute -left-10 -top-12 z-0 select-none opacity-40 dark:opacity-55">
         {initial}
@@ -44,7 +44,7 @@ export default function Hero({ hero }: HeroProps) {
       <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-6 sm:gap-8 lg:grid-cols-[1fr_360px] lg:items-end">
         <div className="flex flex-col items-start gap-3 sm:gap-4">
           <FadeIn delay={0.1}>
-            <span className="inline-flex items-center gap-2 border border-border bg-card/80 px-3 py-1.5 text-xs font-medium text-muted shadow-sm backdrop-blur">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3 py-1.5 text-xs font-medium text-muted shadow-sm backdrop-blur">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
@@ -92,13 +92,13 @@ export default function Hero({ hero }: HeroProps) {
             <div className="mt-1 flex flex-wrap items-center gap-3">
               <a
                 href="#projects"
-                className="inline-flex h-10 items-center justify-center bg-accent px-4 text-sm font-semibold text-accent-foreground transition-transform hover:scale-[1.015] active:scale-[0.99] sm:h-11 sm:px-5"
+                className="inline-flex h-10 items-center justify-center rounded-full bg-accent px-4 text-sm font-semibold text-accent-foreground shadow-[0_12px_35px_rgba(100,92,255,0.28)] transition-transform hover:scale-[1.015] active:scale-[0.99] sm:h-11 sm:px-5"
               >
                 {hero.ctaProjects}
               </a>
               <a
                 href="#contact"
-                className="hover-slash-draw inline-flex h-10 items-center justify-center border border-border bg-card/80 px-4 text-sm font-semibold text-foreground transition-colors hover:bg-card-strong sm:h-11 sm:px-5"
+                className="hover-slash-draw inline-flex h-10 items-center justify-center rounded-full border border-border bg-card/80 px-4 text-sm font-semibold text-foreground shadow-sm backdrop-blur transition-colors hover:bg-card-strong sm:h-11 sm:px-5"
               >
                 {hero.ctaContact}
               </a>
@@ -114,7 +114,7 @@ export default function Hero({ hero }: HeroProps) {
         </div>
 
         <FadeIn delay={0.3} direction="left" className="hidden lg:block h-full relative">
-          <div className="relative w-full h-[600px] select-none border border-border/50 bg-card/20 overflow-hidden group">
+          <div className="group relative h-[600px] w-full select-none overflow-hidden rounded-[34px] border border-border/50 bg-card/30 shadow-[0_28px_90px_rgba(20,20,35,0.18)] backdrop-blur-xl dark:shadow-[0_28px_90px_rgba(0,0,0,0.34)]">
             {/* Portrait Image */}
             <Image
               src="/hero-portrait.jpg"

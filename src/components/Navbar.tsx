@@ -84,20 +84,25 @@ export default function Navbar({
   const role = locale === "ru" ? "Frontend" : "Frontend";
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-colors duration-300 ${
-        scrolled
-          ? "border-b border-border bg-background/85 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
-      }`}
-    >
-      {/* Scroll Progress Bar */}
+    <header className="sticky top-3 z-50 px-3 sm:px-5">
       <div
-        className="absolute top-0 left-0 h-[3px] bg-gradient-to-r from-accent to-accent-secondary z-50 transition-all duration-75 ease-out"
-        style={{ width: `${scrollPercent}%` }}
-      />
+        className={`relative mx-auto max-w-6xl rounded-[24px] border transition-all duration-300 ${
+          scrolled
+            ? "border-border bg-card/85 shadow-[0_18px_50px_rgba(20,20,35,0.12)] backdrop-blur-xl dark:shadow-[0_18px_50px_rgba(0,0,0,0.28)]"
+            : "border-border/60 bg-card/45 backdrop-blur-lg"
+        }`}
+      >
+      {/* Scroll Progress Bar */}
+        <div
+          className="absolute left-4 right-4 top-0 h-[3px] overflow-hidden rounded-full"
+        >
+          <div
+            className="h-full bg-gradient-to-r from-accent via-fuchsia-400 to-accent-secondary transition-all duration-75 ease-out"
+            style={{ width: `${scrollPercent}%` }}
+          />
+        </div>
 
-      <nav className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:h-[4.5rem] sm:px-8">
+      <nav className="relative flex h-16 w-full items-center justify-between px-4 sm:h-[4.5rem] sm:px-6">
         <Link
           href={locale === "ru" ? "/" : "/en"}
           className="group flex min-w-0 items-center gap-2.5"
@@ -140,7 +145,7 @@ export default function Navbar({
           <a
             href="/cv.pdf"
             download
-            className="hidden h-9 items-center gap-1.5 border border-accent/25 bg-accent-soft px-3.5 text-xs font-semibold text-accent transition-colors hover:bg-accent/20 sm:inline-flex"
+            className="hidden h-9 items-center gap-1.5 rounded-full border border-accent/25 bg-accent-soft px-3.5 text-xs font-semibold text-accent shadow-sm backdrop-blur transition-colors hover:bg-accent/20 sm:inline-flex"
           >
             <DownloadIcon className="h-3.5 w-3.5" />
             {nav.downloadCv}
@@ -152,7 +157,7 @@ export default function Navbar({
             onClick={() => setOpen((v) => !v)}
             aria-label={nav.menu}
             aria-expanded={open}
-            className="inline-flex h-9 w-9 items-center justify-center border border-border bg-card text-foreground transition-colors hover:bg-card-strong md:hidden"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card/80 text-foreground shadow-sm backdrop-blur transition-colors hover:bg-card-strong md:hidden"
           >
             {open ? <CloseIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
           </button>
@@ -198,6 +203,7 @@ export default function Navbar({
             aria-hidden="true"
           />
         ) : null}
+      </div>
       </div>
     </header>
   );

@@ -1,0 +1,145 @@
+- generic [ref=f1e5]:
+  - generic [ref=f1e6]:
+    - generic [ref=f1e7]:
+      - generic [ref=f1e10]:
+        - application "Figma Design" [active] [ref=f1e18]
+        - status [ref=f1e19]: Screenreader support for the board is currently disabled. To enable it via Accessibility settings, press Ctrl+K, type Accessibility Settings, and press Enter. To see available keyboard shortcuts, enter Ctrl+Shift+Question mark .
+        - generic:
+          - generic:
+            - generic:
+              - region "Comments on canvas":
+                - button "Create new comment"
+        - generic:
+          - region "Left sidebar":
+            - generic [ref=f1e20]:
+              - button "Main menu" [ref=f1e21]:
+                - img
+              - button "Expand UI for file named DesignCode UI - Figma Design UI Kit & Design System (Community)" [ref=f1e22]:
+                - generic:
+                  - generic:
+                    - generic:
+                      - button "DesignCode UI - Figma Design UI Kit & Design System (Community), file name": DesignCode UI - Figma Design UI Kit & Design System (Community)
+                      - generic: File name
+                - generic:
+                  - generic:
+                    - status
+                - generic:
+                  - img
+        - generic [ref=f1e25]:
+          - button "Multiplayer tools" [ref=f1e29]:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - img
+                    - generic:
+                      - generic:
+                        - img
+            - img [ref=f1e32]
+          - button "5%, zoom and view options" [ref=f1e36]:
+            - generic [ref=f1e37]:
+              - generic [ref=f1e38]: 5%
+              - img [ref=f1e40]
+          - generic [ref=f1e43]:
+            - generic [ref=f1e44]:
+              - button "Present" [ref=f1e45]:
+                - generic:
+                  - img
+              - button "Prototype view" [ref=f1e46]:
+                - generic:
+                  - img
+            - button "Share" [ref=f1e48]:
+              - generic:
+                - generic:
+                  - generic: Share
+      - generic:
+        - generic:
+          - generic:
+            - region "Application toolbar":
+              - generic [ref=f1e49]:
+                - toolbar "Editor" [ref=f1e51]:
+                  - generic [ref=f1e53]:
+                    - generic:
+                      - generic [ref=f1e56]:
+                        - generic [ref=f1e57]:
+                          - button "Move" [ref=f1e58]:
+                            - img
+                          - button "Hand tool" [pressed] [ref=f1e59]:
+                            - img
+                          - button "Comment" [ref=f1e60]:
+                            - img
+                        - group "Frame" [ref=f1e62]:
+                          - button "Frame" [ref=f1e63]:
+                            - img
+                          - button "Region tools" [ref=f1e64]:
+                            - generic:
+                              - img
+                        - group "Rectangle" [ref=f1e65]:
+                          - button "Rectangle" [ref=f1e66]:
+                            - img
+                          - button "Shape tools" [ref=f1e67]:
+                            - generic:
+                              - img
+                        - group "Pen" [ref=f1e68]:
+                          - button "Pen" [ref=f1e69]:
+                            - img
+                          - button "Creation tools" [ref=f1e70]:
+                            - generic:
+                              - img
+                        - button "Text" [ref=f1e71]:
+                          - img
+                        - button "Actions" [ref=f1e72]:
+                          - img
+                      - text: Request sent
+                  - radiogroup "Toolbelt Mode" [ref=f1e76]:
+                    - generic [ref=f1e77]: Toolbelt Mode
+                    - generic [ref=f1e78]:
+                      - generic [ref=f1e80]:
+                        - radio "Design" [checked] [ref=f1e81]
+                        - img [ref=f1e83]
+                        - generic [ref=f1e85]: Design
+                      - generic [ref=f1e86]:
+                        - radio "Motion" [ref=f1e87]
+                        - img [ref=f1e89]
+                        - generic [ref=f1e91]: Motion
+                      - generic [ref=f1e92]:
+                        - radio "Dev Mode" [ref=f1e93]
+                        - img [ref=f1e95]
+                        - generic [ref=f1e97]: Dev Mode
+                - generic [ref=f1e98]:
+                  - generic [ref=f1e99]: Sign up to comment, edit, inspect and more.
+                  - generic [ref=f1e100]:
+                    - button "Sign up" [ref=f1e101]:
+                      - generic:
+                        - generic:
+                          - generic: Sign up
+                    - button "Continue with Google" [ref=f1e104]:
+                      - generic:
+                        - generic:
+                          - img
+                        - generic: Continue
+    - region "Help/zoom toolbar" [ref=f1e107]:
+      - toolbar "Help/zoom toolbar" [ref=f1e109]:
+        - button "Help" [ref=f1e111]:
+          - img
+  - generic:
+    - status
+    - group [ref=f1e113]:
+      - alert [ref=f1e115]
+      - alert [ref=f1e117]
+    - region "Consent Manager" [ref=f1e119]:
+      - generic [ref=f1e120]:
+        - text: This website uses cookies, pixel tags, and local storage for performance, personalization, and marketing purposes. We use our own cookies and some from third parties. Only essential cookies are turned on by default.
+        - link "Cookies settings" [ref=f1e121]:
+          - /url: /consent-preferences/
+      - generic [ref=f1e122]:
+        - button "Do not allow cookies" [ref=f1e123]:
+          - generic:
+            - generic:
+              - generic: Do not allow cookies
+        - button "Allow all cookies" [ref=f1e124]:
+          - generic:
+            - generic:
+              - generic: Allow all cookies
+      - button [ref=f1e126]:
+        - img [ref=f1e128]

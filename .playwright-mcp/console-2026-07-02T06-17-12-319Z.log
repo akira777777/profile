@@ -1,0 +1,40 @@
+[    1904ms] [LOG] Running frontend commit 0d2b0756b04dbf6b451e0af7275021c486b81c05 @ https://www.figma.com/embed/interstitial?embed_host=share&embed_path=%2Fdesign%2FqZmNXPgK0dLoFo537c47DH%2FDesignCode-UI---Figma-Design-UI-Kit---Design-System--Community-%3Fembed-host%3Dshare%26kind%3Dfile%26node-id%3D228-24510%26page-selector%3D1%26theme%3Dlight%26version%3D2%26viewer%3D1&theme=light&version=2:491
+[    3151ms] [LOG] Running frontend commit 0d2b0756b04dbf6b451e0af7275021c486b81c05 @ https://www.figma.com/design/qZmNXPgK0dLoFo537c47DH/DesignCode-UI---Figma-Design-UI-Kit---Design-System--Community-?kind=file&node-id=228-24510:647
+[    4576ms] [WARNING] Statsig is not ready to log exposures, will retry in 1 seconds @ https://www.figma.com/webpack-artifacts/assets/vendor-core-291869c698410869.min.js.br:53
+[    4576ms] [ERROR] Failed to load resource: the server responded with a status of 403 (Forbidden) @ https://browser-intake-datadoghq.com/api/v2/rum:0
+[    4852ms] [LOG] [import] git: 0d2b0756b04dbf6b451e0af7275021c486b81c05, stamp: 4E5EA24B35F486A8 @ https://www.figma.com/webpack-artifacts/assets/vendor-core-291869c698410869.min.js.br:53
+[    4880ms] [LOG] Loaded 212 scripts (12360358b), 80 from cache (2781380b) @ https://www.figma.com/webpack-artifacts/assets/vendor-core-291869c698410869.min.js.br:53
+[    5198ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://www.figma.com/api/statsig/v1_ruleset:0
+[    5199ms] [ERROR] Failed to fetch v1 ruleset: w: XHR for "/api/statsig/v1_ruleset" failed with status 401
+    at P (https://www.figma.com/webpack-artifacts/assets/9321-3627543800429b59.min.js.br:1359:11332)
+    at async Object.O [as get] (https://www.figma.com/webpack-artifacts/assets/9321-3627543800429b59.min.js.br:1359:11714)
+    at async https://www.figma.com/webpack-artifacts/assets/9321-3627543800429b59.min.js.br:993:248271
+    at async p.validate (https://www.figma.com/webpack-artifacts/assets/9321-3627543800429b59.min.js.br:1339:5041)
+    at async v (https://www.figma.com/webpack-artifacts/assets/7804-43e9b9ac9485c2ce.min.js.br:64:279943)
+    at async b (https://www.figma.com/webpack-artifacts/assets/7804-43e9b9ac9485c2ce.min.js.br:64:279147)
+    at async Object.write (https://www.figma.com/webpack-artifacts/assets/7804-43e9b9ac9485c2ce.min.js.br:64:278766) @ https://www.figma.com/webpack-artifacts/assets/vendor-core-291869c698410869.min.js.br:53
+[    5433ms] [INFO] [Fullscreen] Booting... (emscripten version 4.0.21) @ https://www.figma.com/webpack-artifacts/assets/vendor-core-291869c698410869.min.js.br:53
+[    5564ms] [INFO] [GPU] graphicsAPI:"WebGL 2", vendor:"Google Inc. (NVIDIA)", renderer:"ANGLE (NVIDIA, NVIDIA GeForce RTX 4070 Ti (0x00002782) Direct3D11 vs_5_0 ps_5_0, D3D11)" version:"OpenGL ES 3.0 (WebGL 2.0 (OpenGL ES 3.0 Chromium))" @ https://www.figma.com/webpack-artifacts/assets/vendor-core-291869c698410869.min.js.br:53
+[    5569ms] [LOG] [Fullscreen] Ready in 743.8ms @ https://www.figma.com/webpack-artifacts/assets/vendor-core-291869c698410869.min.js.br:53
+[    5574ms] [WARNING] The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127 @ https://www.figma.com/webpack-artifacts/assets/4985-2fc9c95b39b3894c.min.js.br:6
+[    5574ms] [WARNING] The powerPreference option is currently ignored when calling requestAdapter() on Windows. See https://crbug.com/369219127 @ https://www.figma.com/webpack-artifacts/assets/4985-2fc9c95b39b3894c.min.js.br:6
+[    5778ms] [INFO] [FullscreenApp] calling setEditorTheme and setting preference light @ https://www.figma.com/webpack-artifacts/assets/vendor-core-291869c698410869.min.js.br:53
+[    5863ms] [INFO] [MultiplayerSession] connecting to wss://www.figma.com/api/multiplayer/qZmNXPgK0dLoFo537c47DH?role=editor&tracking_session_id=HZKm2GZ4PPh3dMQS&version=175&recentReload=0&file-load-streaming-compression&scenegraph-queries-initial-nodes=228:24510&client_release=0d2b0756b04dbf6b451e0af7275021c486b81c05 @ https://www.figma.com/webpack-artifacts/assets/vendor-core-291869c698410869.min.js.br:53
+[    5885ms] [INFO] [FullscreenApp] calling setEditorTheme and setting preference light @ https://www.figma.com/webpack-artifacts/assets/vendor-core-291869c698410869.min.js.br:53
+[    6160ms] [INFO] [MultiplayerSession] Joining file version 106 (initial load) @ https://www.figma.com/webpack-artifacts/assets/vendor-core-291869c698410869.min.js.br:53
+[    7078ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ https://static.figma.com/fullscreen/0d2b0756b04dbf6b451e0af7275021c486b81c05/fullscreen-wasm/compiled_wasm.js.br:1
+[    7107ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ https://static.figma.com/fullscreen/0d2b0756b04dbf6b451e0af7275021c486b81c05/fullscreen-wasm/compiled_wasm.js.br:1
+[    7208ms] [INFO] afterJoinEnd PageSyncing: Loaded incrementally {loaded_pages: 228:24510} @ https://www.figma.com/webpack-artifacts/assets/vendor-core-291869c698410869.min.js.br:53
+[    7808ms] [LOG] [Fullscreen] loadtime=5.09s maxmem=28967248 @ https://www.figma.com/webpack-artifacts/assets/vendor-core-291869c698410869.min.js.br:53
+[    7967ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://www.figma.com/api/folders/193688334:0
+[    8026ms] w: XHR for "/api/folders/193688334" failed with status 401
+    at P (https://www.figma.com/webpack-artifacts/assets/9321-3627543800429b59.min.js.br:1359:11332)
+    at async Object.O [as get] (https://www.figma.com/webpack-artifacts/assets/9321-3627543800429b59.min.js.br:1359:11714)
+    at async https://www.figma.com/webpack-artifacts/assets/9321-3627543800429b59.min.js.br:993:180510
+    at async p.validate (https://www.figma.com/webpack-artifacts/assets/9321-3627543800429b59.min.js.br:1339:5041)
+    at async h.fetchObject (https://www.figma.com/webpack-artifacts/assets/9321-3627543800429b59.min.js.br:200:177868)
+    at async f (https://www.figma.com/webpack-artifacts/assets/9321-3627543800429b59.min.js.br:200:157232)
+[    8336ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://www.figma.com/api/design_systems/libraries_by_library_keys:0
+[  271249ms] [INFO] [MultiplayerSession] connecting to wss://www.figma.com/api/multiplayer/qZmNXPgK0dLoFo537c47DH?role=editor&tracking_session_id=HZKm2GZ4PPh3dMQS&version=175&recentReload=0&file-load-streaming-compression=&scenegraph-queries-initial-nodes=228%3A24510&client_release=0d2b0756b04dbf6b451e0af7275021c486b81c05&reconnect-key=fc1b5fa99341c4501e90a7a969dfd549207f4e81&reconnect-sequence-number=1&initialFileVersion=106&previousLoadMode=incremental&incremental-loading-validation=0 @ https://www.figma.com/webpack-artifacts/assets/vendor-core-291869c698410869.min.js.br:53
+[  272431ms] [INFO] [MultiplayerSession] Joining file version 106 (skip_reload reconnect) @ https://www.figma.com/webpack-artifacts/assets/vendor-core-291869c698410869.min.js.br:53
+[  272436ms] [INFO] afterJoinEnd PageSyncing: Loaded incrementally {loaded_pages: 228:24510} @ https://www.figma.com/webpack-artifacts/assets/vendor-core-291869c698410869.min.js.br:53
