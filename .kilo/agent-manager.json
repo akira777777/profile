@@ -1,4 +1,33 @@
 {
-  "worktrees": {},
-  "sessions": {}
+  "worktrees": {
+    "wt-1782974058155-1": {
+      "branch": "five-pear",
+      "path": "c:\\Users\\novra\\Desktop\\profile\\.kilo\\worktrees\\five-pear",
+      "parentBranch": "main",
+      "createdAt": "2026-07-02T06:34:18.155Z",
+      "remote": "origin"
+    }
+  },
+  "sessions": {
+    "ses_0de76f12fffeSKcPT7TYcgN1bY": {
+      "worktreeId": "wt-1782974058155-1",
+      "createdAt": "2026-07-02T06:34:18.467Z"
+    },
+    "ses_0de76e62affeyVzLivdVB4jmJR": {
+      "worktreeId": "wt-1782974058155-1",
+      "createdAt": "2026-07-02T06:34:21.021Z"
+    }
+  },
+  "tabOrder": {
+    "local": [
+      "pending:1"
+    ],
+    "wt-1782974058155-1": [
+      "ses_0de76f12fffeSKcPT7TYcgN1bY",
+      "ses_0de76e62affeyVzLivdVB4jmJR"
+    ]
+  },
+  "worktreeOrder": [
+    "wt-1782974058155-1"
+  ]
 }
