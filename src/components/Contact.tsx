@@ -13,6 +13,7 @@ import {
   TelegramIcon,
 } from "./icons";
 import { Section, SectionHeading } from "./ui/Section";
+import FadeIn from "./ui/FadeIn";
 
 type ContactMessages = Messages["contact"];
 
@@ -90,6 +91,7 @@ export default function Contact({ contact }: { contact: ContactMessages }) {
       <SectionHeading eyebrow="06" title={contact.title} subtitle={contact.subtitle} align="center" />
       <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         {/* Form */}
+        <FadeIn>
         <form
           onSubmit={onSubmit}
           className="rounded-3xl border border-border bg-card/40 p-6 sm:p-8 transition-colors hover:border-accent/30"
@@ -173,8 +175,10 @@ export default function Contact({ contact }: { contact: ContactMessages }) {
             ) : null}
           </div>
         </form>
+        </FadeIn>
 
         {/* Direct contact */}
+        <FadeIn delay={0.15}>
         <div className="flex flex-col gap-4 rounded-3xl border border-border bg-card/15 p-6 sm:p-8">
           <p className="text-sm font-medium text-muted">{contact.direct}</p>
 
@@ -218,6 +222,7 @@ export default function Contact({ contact }: { contact: ContactMessages }) {
             ))}
           </ul>
         </div>
+        </FadeIn>
       </div>
     </Section>
   );

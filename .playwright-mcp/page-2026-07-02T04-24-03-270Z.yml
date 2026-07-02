@@ -1,0 +1,317 @@
+- generic [active] [ref=e1]:
+  - link "Перейти к содержимому" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e3]:
+    - navigation [ref=e4]:
+      - link "АМ Артём Михайлов" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e6]: АМ
+        - generic [ref=e7]: Артём Михайлов
+      - generic [ref=e8]:
+        - link "О себе" [ref=e9] [cursor=pointer]:
+          - /url: "#about"
+        - link "Навыки" [ref=e10] [cursor=pointer]:
+          - /url: "#skills"
+        - link "Проекты" [ref=e11] [cursor=pointer]:
+          - /url: "#projects"
+        - link "Образование" [ref=e12] [cursor=pointer]:
+          - /url: "#education"
+        - link "Языки" [ref=e13] [cursor=pointer]:
+          - /url: "#languages"
+        - link "Контакты" [ref=e14] [cursor=pointer]:
+          - /url: "#contact"
+      - generic [ref=e15]:
+        - link "English version" [ref=e16] [cursor=pointer]:
+          - /url: /en
+          - generic [ref=e17]: RU
+          - generic [ref=e18]: /
+          - generic [ref=e19]: EN
+        - button "Переключить тему" [ref=e20]:
+          - img [ref=e21]
+  - main [ref=e24]:
+    - generic [ref=e25]:
+      - generic: А
+      - generic [ref=e26]:
+        - generic [ref=e27]: Открыт к предложениям
+        - paragraph [ref=e31]: Привет, я
+        - heading "Артём Михайлов" [level=1] [ref=e32]:
+          - generic [ref=e33]: Артём Михайлов
+        - generic [ref=e34]:
+          - generic [ref=e35]: Frontend-разработчик
+          - generic [ref=e37]: Next.js · React · TypeScript
+        - paragraph [ref=e38]:
+          - text: разработка
+          - generic [ref=e39]: .интерфейсы
+          - generic [ref=e40]: .продукт
+        - paragraph [ref=e41]: Создаю быстрые, доступные и продуманные веб-приложения. Живу в Праге и работаю с современным фронтендом на Next.js.
+        - generic [ref=e43]:
+          - generic [ref=e44]: NEXT.JS • REACT • TYPESCRIPT • FRONTEND-РАЗРАБОТЧИК • UI/UX ДИЗАЙН • ВЕБ-СТАНДАРТЫ • ОПТИМИЗАЦИЯ •
+          - generic [ref=e45]: NEXT.JS • REACT • TYPESCRIPT • FRONTEND-РАЗРАБОТЧИК • UI/UX ДИЗАЙН • ВЕБ-СТАНДАРТЫ • ОПТИМИЗАЦИЯ •
+          - generic [ref=e46]: NEXT.JS • REACT • TYPESCRIPT • FRONTEND-РАЗРАБОТЧИК • UI/UX ДИЗАЙН • ВЕБ-СТАНДАРТЫ • ОПТИМИЗАЦИЯ •
+          - generic [ref=e47]: NEXT.JS • REACT • TYPESCRIPT • FRONTEND-РАЗРАБОТЧИК • UI/UX ДИЗАЙН • ВЕБ-СТАНДАРТЫ • ОПТИМИЗАЦИЯ •
+        - generic [ref=e48]:
+          - link "Смотреть проекты" [ref=e49] [cursor=pointer]:
+            - /url: "#projects"
+          - link "Связаться" [ref=e50] [cursor=pointer]:
+            - /url: "#contact"
+        - generic [ref=e51]:
+          - img [ref=e52]
+          - text: Прага, Чехия
+      - link "Листайте вниз" [ref=e55] [cursor=pointer]:
+        - /url: "#about"
+        - text: Листайте вниз
+        - img [ref=e56]
+    - generic [ref=e58]:
+      - generic: A
+      - generic [ref=e59]:
+        - generic [ref=e60]:
+          - generic [ref=e61]: "01"
+          - heading "О себе" [level=2] [ref=e63]
+        - generic [ref=e64]:
+          - generic [ref=e65]:
+            - paragraph [ref=e66]: Frontend-разработчик с IT-образованием и опытом работы над реальными проектами на Next.js.
+            - paragraph [ref=e67]: "Фокусируюсь на фронтенде: интерфейсах, производительности, SEO и доступности. Большинство проектов построены на Next.js с TypeScript и Tailwind CSS."
+            - paragraph [ref=e68]: Окончил среднюю IT-школу в Праге по программе «Softwarové aplikace a programování», где получил прочную базу в программировании, базах данных и веб-разработке.
+            - paragraph [ref=e69]: Свободно владею русским, чешским и английским — это помогает работать в международных командах и с заказчиками из разных стран.
+          - generic [ref=e70]:
+            - generic [ref=e71]:
+              - term [ref=e72]: Проектов на Next.js
+              - definition [ref=e73]: "5"
+            - generic [ref=e74]:
+              - term [ref=e75]: Лет в разработке
+              - definition [ref=e76]: "5"
+            - generic [ref=e77]:
+              - term [ref=e78]: Языка
+              - definition [ref=e79]: "3"
+    - generic [ref=e80]:
+      - generic: S
+      - generic [ref=e81]:
+        - generic [ref=e82]:
+          - generic [ref=e83]: "02"
+          - heading "Навыки" [level=2] [ref=e85]
+          - paragraph [ref=e86]: Технологии и инструменты, с которыми я работаю
+        - generic [ref=e87]:
+          - generic [ref=e88]:
+            - generic [ref=e89]:
+              - img [ref=e91]
+              - heading "Фронтенд" [level=3] [ref=e93]
+            - list [ref=e94]:
+              - listitem [ref=e95]: Next.js
+              - listitem [ref=e96]: React
+              - listitem [ref=e97]: TypeScript
+              - listitem [ref=e98]: JavaScript
+              - listitem [ref=e99]: Tailwind CSS
+              - listitem [ref=e100]: HTML5
+              - listitem [ref=e101]: CSS3
+          - generic [ref=e102]:
+            - generic [ref=e103]:
+              - img [ref=e105]
+              - heading "Бэкенд и данные" [level=3] [ref=e109]
+            - list [ref=e110]:
+              - listitem [ref=e111]: Node.js
+              - listitem [ref=e112]: REST API
+              - listitem [ref=e113]: SQL
+              - listitem [ref=e114]: Базы данных
+          - generic [ref=e115]:
+            - generic [ref=e116]:
+              - img [ref=e118]
+              - heading "Инструменты и практики" [level=3] [ref=e120]
+            - list [ref=e121]:
+              - listitem [ref=e122]: Git
+              - listitem [ref=e123]: SEO
+              - listitem [ref=e124]: Адаптивная вёрстка
+              - listitem [ref=e125]: Доступность
+              - listitem [ref=e126]: UI / UX
+    - generic [ref=e127]:
+      - generic: P
+      - generic [ref=e128]:
+        - generic [ref=e129]:
+          - generic [ref=e130]: "03"
+          - heading "Проекты" [level=2] [ref=e132]
+          - paragraph [ref=e133]: Подборка реализованных проектов — все на Next.js
+        - generic [ref=e134]:
+          - article [ref=e136]:
+            - generic [ref=e137]:
+              - generic [ref=e138]:
+                - generic [ref=e140]: ТЖ
+                - generic [ref=e141]: Туры и туризм
+                - generic [ref=e142]:
+                  - img [ref=e143]
+                  - text: Избранный проект
+              - generic [ref=e145]:
+                - generic [ref=e146]:
+                  - generic [ref=e147]: Next.js
+                  - generic [ref=e148]: TypeScript
+                  - generic [ref=e149]: SEO
+                  - generic [ref=e150]: Routing
+                  - generic [ref=e151]: Tailwind
+                - heading "Reabilitation Center in Almaty" [level=3] [ref=e152]
+                - paragraph [ref=e153]: "Многостраничный сайт туристической компании: маршруты, отзывы, документы, FAQ и SEO-оптимизация. Реализована сложная маршрутизация и продуманная структура страниц."
+                - link "Открыть сайт" [ref=e155] [cursor=pointer]:
+                  - /url: "#"
+                  - text: Открыть сайт
+                  - img [ref=e156]
+          - generic [ref=e158]:
+            - article [ref=e160]:
+              - generic [ref=e161]:
+                - generic [ref=e163]: ST
+                - generic [ref=e164]: Путешествия
+              - generic [ref=e165]:
+                - heading "SecretTravel" [level=3] [ref=e166]
+                - paragraph [ref=e167]: Современный лендинг туристического агентства с насыщенной структурой секций и плавными анимациями.
+                - generic [ref=e168]:
+                  - generic [ref=e169]: Next.js
+                  - generic [ref=e170]: TypeScript
+                  - generic [ref=e171]: Tailwind
+                  - generic [ref=e172]: Animation
+                - link "Открыть сайт" [ref=e174] [cursor=pointer]:
+                  - /url: "#"
+                  - text: Открыть сайт
+                  - img [ref=e175]
+            - article [ref=e178]:
+              - generic [ref=e179]:
+                - generic [ref=e181]: IS
+                - generic [ref=e182]: Барбершоп
+              - generic [ref=e183]:
+                - heading "Barbershop Iron & Steel" [level=3] [ref=e184]
+                - paragraph [ref=e185]: "Сайт барбершопа: услуги, мастера, цены и запись. Лаконичный брутальный дизайн в фирменном стиле."
+                - generic [ref=e186]:
+                  - generic [ref=e187]: Next.js
+                  - generic [ref=e188]: React
+                  - generic [ref=e189]: Tailwind
+                - link "Открыть сайт" [ref=e191] [cursor=pointer]:
+                  - /url: "#"
+                  - text: Открыть сайт
+                  - img [ref=e192]
+            - article [ref=e195]:
+              - generic [ref=e196]:
+                - generic [ref=e198]: BZ
+                - generic [ref=e199]: Спортивные ставки
+              - generic [ref=e200]:
+                - heading "BETZ Sportsbook" [level=3] [ref=e201]
+                - paragraph [ref=e202]: "Платформа спортивных ставок: live-коэффициенты, матчи и события в реальном времени."
+                - generic [ref=e203]:
+                  - generic [ref=e204]: Next.js
+                  - generic [ref=e205]: React
+                  - generic [ref=e206]: Real-time
+                - link "Открыть сайт" [ref=e208] [cursor=pointer]:
+                  - /url: "#"
+                  - text: Открыть сайт
+                  - img [ref=e209]
+            - article [ref=e212]:
+              - generic [ref=e213]:
+                - generic [ref=e215]: VD
+                - generic [ref=e216]: Стоматология
+              - generic [ref=e217]:
+                - heading "Vakalova Dental" [level=3] [ref=e218]
+                - paragraph [ref=e219]: "Сайт стоматологической клиники: услуги, команда и запись на приём. Чистый и вызывающий доверие интерфейс."
+                - generic [ref=e220]:
+                  - generic [ref=e221]: Next.js
+                  - generic [ref=e222]: TypeScript
+                  - generic [ref=e223]: UI/UX
+                - link "Открыть сайт" [ref=e225] [cursor=pointer]:
+                  - /url: "#"
+                  - text: Открыть сайт
+                  - img [ref=e226]
+    - generic [ref=e228]:
+      - generic: E
+      - generic [ref=e229]:
+        - generic [ref=e230]:
+          - generic [ref=e231]: "04"
+          - heading "Образование" [level=2] [ref=e233]
+        - generic [ref=e236]:
+          - img [ref=e238]
+          - generic [ref=e241]:
+            - generic [ref=e242]:
+              - generic [ref=e243]: Успешно окончено
+              - generic [ref=e244]: 2019 — 2023
+            - heading "Аттестат зрелости (Maturita) · Информационные технологии" [level=3] [ref=e245]
+            - generic [ref=e246]:
+              - paragraph [ref=e247]: VOŠIS a SŠEMI
+              - paragraph [ref=e248]: Vyšší odborná škola informačních studií a Střední škola elektrotechniky, multimédií a informatiky
+            - generic [ref=e249]:
+              - generic [ref=e250]:
+                - term [ref=e251]: Программа
+                - definition [ref=e252]: Softwarové aplikace a programování
+              - generic [ref=e253]:
+                - term [ref=e254]: Место
+                - definition [ref=e255]: Прага 9, Чехия
+            - paragraph [ref=e256]: Среднее образование с аттестатом зрелости (EQF 4). Специализация — программирование, базы данных и веб-разработка.
+    - generic [ref=e257]:
+      - generic: L
+      - generic [ref=e258]:
+        - generic [ref=e259]:
+          - generic [ref=e260]: "05"
+          - heading "Языки" [level=2] [ref=e262]
+          - paragraph [ref=e263]: Работаю и общаюсь на трёх языках
+        - generic [ref=e264]:
+          - generic [ref=e265]:
+            - generic [ref=e266]:
+              - heading "Русский" [level=3] [ref=e267]
+              - generic [ref=e268]: Родной
+            - paragraph [ref=e271]: Любое общение и документация
+          - generic [ref=e272]:
+            - generic [ref=e273]:
+              - heading "Чешский" [level=3] [ref=e274]
+              - generic [ref=e275]: B2
+            - paragraph [ref=e278]: 4 года учёбы в Праге, сдан экзамен maturita
+          - generic [ref=e279]:
+            - generic [ref=e280]:
+              - heading "Английский" [level=3] [ref=e281]
+              - generic [ref=e282]: B2
+            - paragraph [ref=e285]: 90,5 % на государственном экзамене maturita
+    - generic [ref=e286]:
+      - generic: C
+      - generic [ref=e287]:
+        - generic [ref=e288]:
+          - generic [ref=e289]: "06"
+          - heading "Свяжитесь со мной" [level=2] [ref=e291]
+          - paragraph [ref=e292]: Открыт для работы и сотрудничества. Напишите — отвечаю быстро.
+        - generic [ref=e293]:
+          - generic [ref=e294]:
+            - generic [ref=e295]:
+              - generic [ref=e296]:
+                - generic [ref=e297]: Имя
+                - textbox "Имя" [ref=e298]:
+                  - /placeholder: Как вас зовут?
+              - generic [ref=e299]:
+                - generic [ref=e300]: Email
+                - textbox "Email" [ref=e301]:
+                  - /placeholder: you@example.com
+            - generic [ref=e302]:
+              - generic [ref=e303]: Сообщение
+              - textbox "Сообщение" [ref=e304]:
+                - /placeholder: Расскажите о проекте или вакансии…
+            - button "Отправить" [ref=e305]:
+              - img [ref=e306]
+              - text: Отправить
+          - generic [ref=e309]:
+            - paragraph [ref=e310]: Или напрямую
+            - button "Email fear75412@gmail.com" [ref=e311]:
+              - generic [ref=e312]:
+                - img [ref=e314]
+                - generic [ref=e317]:
+                  - generic [ref=e318]: Email
+                  - generic [ref=e319]: fear75412@gmail.com
+              - img [ref=e321]
+            - list [ref=e324]:
+              - listitem [ref=e325]:
+                - link "Telegram @liltrafficRUS" [ref=e326] [cursor=pointer]:
+                  - /url: https://t.me/liltrafficRUS
+                  - img [ref=e328]
+                  - generic [ref=e330]:
+                    - generic [ref=e331]: Telegram
+                    - generic [ref=e332]: "@liltrafficRUS"
+  - contentinfo [ref=e333]:
+    - generic [ref=e334]:
+      - generic [ref=e335]:
+        - paragraph [ref=e336]: Артём Михайлов
+        - paragraph [ref=e337]: © 2026 Артём Михайлов. Все права защищены.
+        - paragraph [ref=e338]: Сделано на Next.js, React и Tailwind CSS.
+      - generic [ref=e339]:
+        - link "fear75412@gmail.com" [ref=e340] [cursor=pointer]:
+          - /url: mailto:fear75412@gmail.com
+        - link "Наверх" [ref=e341] [cursor=pointer]:
+          - /url: "#main"
+          - img [ref=e342]
+          - text: Наверх

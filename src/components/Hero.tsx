@@ -1,5 +1,6 @@
 import type { Messages } from "@/i18n/dictionaries";
 import { ArrowDownIcon, MapPinIcon } from "./icons";
+import FadeIn from "./ui/FadeIn";
 
 type Hero = Messages["hero"];
 
@@ -32,39 +33,51 @@ export default function Hero({ hero }: { hero: Hero }) {
       />
 
       <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-start gap-6">
-        <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium text-muted">
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+        <FadeIn delay={0.1}>
+          <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-medium text-muted">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            </span>
+            {hero.availability}
           </span>
-          {hero.availability}
-        </span>
+        </FadeIn>
 
-        <p className="text-xs font-bold uppercase tracking-[0.25em] text-accent">{hero.greeting}</p>
+        <FadeIn delay={0.15}>
+          <p className="text-xs font-bold uppercase tracking-[0.25em] text-accent">{hero.greeting}</p>
+        </FadeIn>
 
-        <h1 className="font-display text-balance text-6xl font-bold leading-[0.92] tracking-[-0.04em] sm:text-8xl lg:text-[7.5rem]">
-          <span className="gleamy-highlight text-foreground">{hero.name}</span>
-        </h1>
+        <FadeIn delay={0.2}>
+          <h1 className="font-display text-balance text-6xl font-bold leading-[0.92] tracking-[-0.04em] sm:text-8xl lg:text-[7.5rem]">
+            <span className="gleamy-highlight text-foreground">{hero.name}</span>
+          </h1>
+        </FadeIn>
 
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-lg font-semibold text-muted sm:text-xl">
-          <span className="tracking-tight text-foreground">{hero.role}</span>
-          <span className="hidden h-4 w-px bg-border sm:block" />
-          <span className="font-mono text-xs text-muted sm:text-sm">{hero.roleSuffix}</span>
-        </div>
+        <FadeIn delay={0.25}>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-lg font-semibold text-muted sm:text-xl">
+            <span className="tracking-tight text-foreground">{hero.role}</span>
+            <span className="hidden h-4 w-px bg-border sm:block" />
+            <span className="font-mono text-xs text-muted sm:text-sm">{hero.roleSuffix}</span>
+          </div>
+        </FadeIn>
 
         {/* Gleamy period-separated capability descriptor */}
-        <p className="font-display text-sm font-semibold uppercase tracking-[0.22em] text-muted sm:text-base">
-          {hero.descriptor.split(".").map((word, i) => (
-            <span key={i}>
-              {i > 0 && <span className="mx-1 text-accent">.</span>}
-              {word}
-            </span>
-          ))}
-        </p>
+        <FadeIn delay={0.3}>
+          <p className="font-display text-sm font-semibold uppercase tracking-[0.22em] text-muted sm:text-base">
+            {hero.descriptor.split(".").map((word, i) => (
+              <span key={i}>
+                {i > 0 && <span className="mx-1 text-accent">.</span>}
+                {word}
+              </span>
+            ))}
+          </p>
+        </FadeIn>
 
-        <p className="max-w-2xl text-pretty text-base leading-relaxed text-muted sm:text-lg">
-          {hero.tagline}
-        </p>
+        <FadeIn delay={0.35}>
+          <p className="max-w-2xl text-pretty text-base leading-relaxed text-muted sm:text-lg">
+            {hero.tagline}
+          </p>
+        </FadeIn>
 
         {/* Gleamy tilted infinite ticker marquee */}
         <div className="relative w-screen left-[calc(-50vw+50%)] overflow-hidden py-5 bg-card/60 backdrop-blur-md border-y border-border/80 rotate-[-1.2deg] my-10 select-none">
@@ -76,25 +89,29 @@ export default function Hero({ hero }: { hero: Hero }) {
           </div>
         </div>
 
-        <div className="mt-2 flex flex-wrap items-center gap-3">
-          <a
-            href="#projects"
-            className="inline-flex h-12 items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-accent-foreground transition-transform hover:scale-[1.02] active:scale-[0.99]"
-          >
-            {hero.ctaProjects}
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex h-12 items-center justify-center rounded-full border border-border bg-card px-6 text-sm font-semibold text-foreground transition-colors hover:bg-card-strong hover-slash-draw"
-          >
-            {hero.ctaContact}
-          </a>
-        </div>
+        <FadeIn delay={0.4}>
+          <div className="mt-2 flex flex-wrap items-center gap-3">
+            <a
+              href="#projects"
+              className="inline-flex h-12 items-center justify-center rounded-full bg-accent px-6 text-sm font-semibold text-accent-foreground transition-transform hover:scale-[1.02] active:scale-[0.99]"
+            >
+              {hero.ctaProjects}
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex h-12 items-center justify-center rounded-full border border-border bg-card px-6 text-sm font-semibold text-foreground transition-colors hover:bg-card-strong hover-slash-draw"
+            >
+              {hero.ctaContact}
+            </a>
+          </div>
+        </FadeIn>
 
-        <div className="mt-6 flex items-center gap-2 text-sm text-muted">
-          <MapPinIcon className="h-4 w-4 text-accent animate-pulse" />
-          {hero.location}
-        </div>
+        <FadeIn delay={0.45}>
+          <div className="mt-6 flex items-center gap-2 text-sm text-muted">
+            <MapPinIcon className="h-4 w-4 text-accent animate-pulse" />
+            {hero.location}
+          </div>
+        </FadeIn>
       </div>
 
       <a

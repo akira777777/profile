@@ -1,5 +1,6 @@
 import type { Messages } from "@/i18n/dictionaries";
 import { Section, SectionHeading } from "./ui/Section";
+import FadeIn from "./ui/FadeIn";
 
 type Languages = Messages["languages"];
 
@@ -31,14 +32,14 @@ export default function Languages({ languages }: { languages: Languages }) {
     <Section bgLetter="L" id="languages">
       <SectionHeading eyebrow="05" title={languages.title} subtitle={languages.subtitle} />
       <div className="mt-10 grid gap-5 sm:grid-cols-3">
-        {items.map((item) => {
+        {items.map((item, i) => {
           const pct = levelToPercent(item.level);
           const isNative = pct === 100;
           return (
-            <div
-              key={item.key}
-              className="flex flex-col gap-4 rounded-2xl border border-border bg-card/40 p-6 transition-all duration-300 hover:border-accent/40 hover:bg-card/70 hover:shadow-md"
-            >
+            <FadeIn key={item.key} delay={i * 0.1}>
+              <div
+                className="flex flex-col gap-4 rounded-2xl border border-border bg-card/40 p-6 transition-all duration-300 hover:border-accent/40 hover:bg-card/70 hover:shadow-md"
+              >
               <div className="flex items-center justify-between">
                 <h3 className="font-display text-lg font-bold tracking-tight text-foreground">{item.name}</h3>
                 <span
@@ -61,6 +62,7 @@ export default function Languages({ languages }: { languages: Languages }) {
               </div>
               <p className="text-sm leading-relaxed text-muted">{item.note}</p>
             </div>
+            </FadeIn>
           );
         })}
       </div>

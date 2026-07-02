@@ -14,6 +14,7 @@ export const en: Messages = {
     languages: "Languages",
     contact: "Contact",
     menu: "Menu",
+    downloadCv: "Download CV",
   },
   hero: {
     greeting: "Hi, I'm",
@@ -68,7 +69,7 @@ export const en: Messages = {
     live: "Visit site",
     featured: "Featured project",
     categories: {
-      tours: "Tours & travel",
+      tours: "Healthcare",
       travel: "Travel",
       barber: "Barbershop",
       betting: "Sports betting",
@@ -77,22 +78,22 @@ export const en: Messages = {
     items: {
       "tauly-zholy": {
         description:
-          "A multi-page website for a tour company: routes, reviews, documents, FAQ and SEO optimization. Features complex routing and a well-structured page architecture.",
+          "A multi-page rehab center website: treatment programs, medical team, gallery, documents, reviews, FAQ, pricing and contact form. Complex routing, SEO and well-structured page architecture.",
       },
       "secrettravel": {
         description:
-          "A modern landing page for a travel agency with a rich section structure and smooth animations.",
+          "Concierge booking service for hotels, flights and tours. Multilingual RU/EN, crypto payments, request form, pricing and FAQ.",
       },
       "iron-steel": {
         description:
-          "A barbershop website: services, barbers, pricing and booking. A clean, bold design in the brand's style.",
+          "A premium barbershop landing: services, barbers, pricing and online booking. Clean, bold design in the brand's style.",
       },
       "betz": {
         description: "A sports betting platform: live odds, matches and events in real time.",
       },
       "vakalova": {
         description:
-          "A dental clinic website: services, team and appointment booking. A clean, trustworthy interface.",
+          "A dental clinic website: services, team and appointment booking. Clean, trustworthy interface.",
       },
     },
   },

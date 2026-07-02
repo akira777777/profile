@@ -2,6 +2,7 @@ import type { Messages } from "@/i18n/dictionaries";
 import { projects as projectData, type Project } from "@/lib/projects";
 import { ArrowUpRightIcon, StarIcon } from "./icons";
 import { Section, SectionHeading } from "./ui/Section";
+import FadeIn from "./ui/FadeIn";
 
 type ProjectsMessages = Messages["projects"];
 
@@ -139,15 +140,19 @@ export default function Projects({ projects }: { projects: ProjectsMessages }) {
       <SectionHeading eyebrow="03" title={projects.title} subtitle={projects.subtitle} />
       <div className="mt-10 flex flex-col gap-6">
         {featured ? (
-          <div className="transition-transform duration-300 hover:-translate-y-0.5">
-            <ProjectCard project={featured} messages={projects} />
-          </div>
+          <FadeIn>
+            <div className="transition-transform duration-300 hover:-translate-y-0.5">
+              <ProjectCard project={featured} messages={projects} />
+            </div>
+          </FadeIn>
         ) : null}
         <div className="grid gap-6 sm:grid-cols-2">
-          {rest.map((project) => (
-            <div key={project.id} className="transition-transform duration-300 hover:-translate-y-0.5">
-              <ProjectCard project={project} messages={projects} />
-            </div>
+          {rest.map((project, i) => (
+            <FadeIn key={project.id} delay={0.1 + i * 0.1}>
+              <div className="transition-transform duration-300 hover:-translate-y-0.5">
+                <ProjectCard project={project} messages={projects} />
+              </div>
+            </FadeIn>
           ))}
         </div>
       </div>

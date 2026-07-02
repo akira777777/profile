@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Locale } from "@/i18n/config";
-import { CloseIcon, MenuIcon } from "./icons";
+import { CloseIcon, MenuIcon, DownloadIcon } from "./icons";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeToggle from "./ThemeToggle";
 
@@ -15,6 +15,7 @@ type NavText = {
   languages: string;
   contact: string;
   menu: string;
+  downloadCv: string;
 };
 
 const NAV_IDS = ["about", "skills", "projects", "education", "languages", "contact"] as const;
@@ -83,6 +84,14 @@ export default function Navbar({
         </div>
 
         <div className="flex items-center gap-2">
+          <a
+            href="/cv.pdf"
+            download
+            className="hidden items-center gap-1.5 rounded-full border border-accent/20 bg-accent-soft px-3.5 py-1.5 text-xs font-semibold text-accent transition-colors hover:bg-accent/20 sm:inline-flex"
+          >
+            <DownloadIcon className="h-3.5 w-3.5" />
+            {nav.downloadCv}
+          </a>
           <LanguageSwitcher locale={locale} />
           <ThemeToggle label={themeToggle} />
           <button

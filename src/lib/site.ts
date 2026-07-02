@@ -6,7 +6,7 @@ export const site = {
   telegramHandle: "liltrafficRUS",
   telegramUrl: "https://t.me/liltrafficRUS",
   // TODO: fill these in when available. Left empty => the buttons are hidden.
-  githubUrl: "",
+  githubUrl: "https://github.com/akira777777",
   phone: "",
   // Used for metadata canonical / OG. Replace with the production domain.
   url: "https://artem-mikhailov.dev",
