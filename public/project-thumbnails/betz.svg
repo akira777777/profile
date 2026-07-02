@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" role="img" aria-label="BETZ sportsbook project thumbnail">
+  <rect width="960" height="640" fill="#15120a"/>
+  <rect x="54" y="54" width="852" height="532" rx="18" fill="#211a0b"/>
+  <rect x="96" y="104" width="768" height="74" fill="#f59e0b"/>
+  <text x="132" y="153" font-family="Arial, sans-serif" font-size="44" font-weight="900" fill="#171717">BETZ</text>
+  <rect x="96" y="220" width="220" height="256" fill="#312508"/>
+  <rect x="370" y="220" width="220" height="256" fill="#312508"/>
+  <rect x="644" y="220" width="220" height="256" fill="#312508"/>
+  <circle cx="206" cy="292" r="42" fill="#fef3c7"/>
+  <circle cx="480" cy="292" r="42" fill="#fef3c7"/>
+  <circle cx="754" cy="292" r="42" fill="#fef3c7"/>
+  <rect x="132" y="374" width="148" height="24" fill="#f59e0b"/>
+  <rect x="406" y="374" width="148" height="24" fill="#f59e0b"/>
+  <rect x="680" y="374" width="148" height="24" fill="#f59e0b"/>
+  <rect x="132" y="422" width="148" height="34" fill="#4d7c0f"/>
+  <rect x="406" y="422" width="148" height="34" fill="#4d7c0f"/>
+  <rect x="680" y="422" width="148" height="34" fill="#4d7c0f"/>
+</svg>

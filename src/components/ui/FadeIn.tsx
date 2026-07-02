@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 
 type FadeInProps = {
   children: React.ReactNode;
@@ -18,6 +17,13 @@ const offsets: Record<string, { x: number; y: number }> = {
   right: { x: -24, y: 0 },
 };
 
+type FadeInStyle = CSSProperties & {
+  "--fade-delay": string;
+  "--fade-duration": string;
+  "--fade-x": string;
+  "--fade-y": string;
+};
+
 export default function FadeIn({
   children,
   className = "",
@@ -26,22 +32,46 @@ export default function FadeIn({
   duration = 0.5,
 }: FadeInProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const [isInView, setIsInView] = useState(false);
   const offset = offsets[direction];
 
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    if (typeof IntersectionObserver === "undefined") {
+      const frame = window.requestAnimationFrame(() => setIsInView(true));
+      return () => window.cancelAnimationFrame(frame);
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        setIsInView(true);
+        observer.disconnect();
+      },
+      { rootMargin: "0px 0px -60px 0px", threshold: 0.01 },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  const style: FadeInStyle = {
+    "--fade-delay": `${delay}s`,
+    "--fade-duration": `${duration}s`,
+    "--fade-x": `${offset.x}px`,
+    "--fade-y": `${offset.y}px`,
+  };
+
   return (
-    <motion.div
+    <div
       ref={ref}
-      initial={{ opacity: 0, x: offset.x, y: offset.y }}
-      animate={isInView ? { opacity: 1, x: 0, y: 0 } : {}}
-      transition={{
-        duration,
-        delay,
-        ease: [0.16, 1, 0.3, 1],
-      }}
-      className={className}
+      data-in-view={isInView}
+      className={`fade-in ${className}`}
+      style={style}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

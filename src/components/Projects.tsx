@@ -1,5 +1,6 @@
 import type { Messages } from "@/i18n/dictionaries";
 import { projects as projectData, type Project } from "@/lib/projects";
+import Image from "next/image";
 import { ArrowUpRightIcon, StarIcon } from "./icons";
 import { Section, SectionHeading } from "./ui/Section";
 import FadeIn from "./ui/FadeIn";
@@ -17,25 +18,52 @@ function CardVisual({
 }) {
   return (
     <div
-      className={`relative flex min-h-[160px] items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br ${project.accent} p-6 transition-transform duration-500 group-hover:scale-[1.02]`}
+      className="relative min-h-[190px] overflow-hidden border border-border bg-background p-3 transition-transform duration-500 group-hover:scale-[1.01]"
     >
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-30"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 30% 20%, rgba(255,255,255,0.5) 0%, transparent 40%)",
-        }}
+        className={`absolute inset-0 bg-gradient-to-br ${project.accent} opacity-[0.18] dark:opacity-[0.22]`}
       />
-      <span className="text-5xl font-black tracking-tight text-white/95 drop-shadow-sm select-none">
-        {project.monogram}
-      </span>
-      <span className="absolute left-4 top-4 rounded-full bg-black/25 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-white backdrop-blur-sm">
-        {category}
-      </span>
+      <div className="relative z-10 flex h-full min-h-[166px] flex-col border border-border bg-card/90 shadow-xl shadow-black/10 backdrop-blur">
+        <div className="flex h-9 items-center justify-between border-b border-border px-3">
+          <div className="flex items-center gap-1.5">
+            <span className="h-2 w-2 rounded-full bg-red-400/80" />
+            <span className="h-2 w-2 rounded-full bg-amber-400/80" />
+            <span className="h-2 w-2 rounded-full bg-emerald-400/80" />
+          </div>
+          <span className="font-mono text-[10px] uppercase text-muted">{category}</span>
+        </div>
+        <div className="grid flex-1 grid-cols-[0.8fr_1.2fr] gap-3 p-3">
+          <div className="relative overflow-hidden bg-card-strong">
+            <Image
+              src={project.thumbnail}
+              alt={`${project.title} thumbnail`}
+              fill
+              sizes="(min-width: 768px) 260px, 45vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              unoptimized
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0 bg-gradient-to-br from-black/0 via-black/0 to-black/20"
+            />
+          </div>
+          <div className="flex flex-col justify-between">
+            <div className="space-y-2">
+              <div className="h-2.5 w-3/4 bg-foreground/80" />
+              <div className="h-2 w-full bg-border" />
+              <div className="h-2 w-5/6 bg-border" />
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="h-9 bg-accent-soft" />
+              <div className="h-9 bg-[var(--accent-secondary-soft)]" />
+            </div>
+          </div>
+        </div>
+      </div>
       {featuredLabel ? (
-        <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 text-[11px] font-semibold text-foreground">
-          <StarIcon className="h-3 w-3 text-amber-500 animate-spin-slow" />
+        <span className="absolute right-5 top-5 z-20 inline-flex items-center gap-1 bg-card px-2.5 py-1 text-[11px] font-semibold text-foreground shadow-sm">
+          <StarIcon className="h-3 w-3 text-accent-secondary" />
           {featuredLabel}
         </span>
       ) : null}
@@ -56,7 +84,7 @@ function ProjectCard({
 
   return (
     <article
-      className={`group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card/40 p-4 transition-all duration-300 hover:border-accent/40 hover:bg-card/75 hover:shadow-lg hover:shadow-black/5 ${
+      className={`group relative flex flex-col overflow-hidden border border-border bg-card/55 p-3 transition-all duration-300 hover:border-accent/45 hover:bg-card/85 hover:shadow-xl hover:shadow-black/10 ${
         isFeatured ? "sm:p-6" : ""
       }`}
     >
@@ -68,13 +96,13 @@ function ProjectCard({
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-accent/15 bg-accent-soft px-2.5 py-1 text-xs font-semibold text-accent"
+                  className="border border-accent/20 bg-accent-soft px-2.5 py-1 text-xs font-semibold text-accent"
                 >
                   {tag}
                 </span>
               ))}
             </div>
-            <h3 className="font-display text-2xl font-bold tracking-[-0.04em] text-foreground sm:text-3xl">{project.title}</h3>
+            <h3 className="font-display text-2xl font-bold text-foreground sm:text-3xl">{project.title}</h3>
             <p className="text-pretty text-sm leading-relaxed text-muted sm:text-base">
               {copy.description}
             </p>
@@ -97,7 +125,7 @@ function ProjectCard({
         <>
           <CardVisual project={project} category={category} />
           <div className="flex flex-1 flex-col gap-3 p-3 pt-5">
-            <h3 className="font-display text-lg font-bold tracking-[-0.03em] text-foreground">{project.title}</h3>
+            <h3 className="font-display text-lg font-bold text-foreground">{project.title}</h3>
             <p className="flex-1 text-pretty text-sm leading-relaxed text-muted">
               {copy.description}
             </p>
@@ -105,7 +133,7 @@ function ProjectCard({
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-accent/15 bg-accent-soft px-2 py-0.5 text-[11px] font-semibold text-accent"
+                  className="border border-accent/15 bg-accent-soft px-2 py-0.5 text-[11px] font-semibold text-accent"
                 >
                   {tag}
                 </span>
@@ -138,7 +166,7 @@ export default function Projects({ projects }: { projects: ProjectsMessages }) {
   return (
     <Section bgLetter="P" id="projects">
       <SectionHeading eyebrow="03" title={projects.title} subtitle={projects.subtitle} />
-      <div className="mt-10 flex flex-col gap-6">
+      <div className="mt-8 flex flex-col gap-5">
         {featured ? (
           <FadeIn>
             <div className="transition-transform duration-300 hover:-translate-y-0.5">
@@ -146,7 +174,7 @@ export default function Projects({ projects }: { projects: ProjectsMessages }) {
             </div>
           </FadeIn>
         ) : null}
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="grid gap-5 sm:grid-cols-2">
           {rest.map((project, i) => (
             <FadeIn key={project.id} delay={0.1 + i * 0.1}>
               <div className="transition-transform duration-300 hover:-translate-y-0.5">

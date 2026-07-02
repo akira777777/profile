@@ -3,33 +3,37 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* Light theme — clean inverse of the cinematic dark identity */
-  --background: #fbfaf8;
-  --foreground: #0a0a0b;
-  --muted: #56565f;
-  --card: #f4f2ef;
-  --card-strong: #ece9e4;
-  --border: #e2ded7;
-  --accent: #ff6a00;
-  --accent-foreground: #1a0d00;
-  --accent-soft: rgba(255, 106, 0, 0.1);
-  --ring: rgba(255, 106, 0, 0.45);
-  --glow: rgba(255, 106, 0, 0.1);
+  --background: #f6f8fb;
+  --foreground: #10151b;
+  --muted: #596873;
+  --card: #ffffff;
+  --card-strong: #eaf0f4;
+  --border: #d7e0e7;
+  --accent: #0891b2;
+  --accent-foreground: #f7fdff;
+  --accent-secondary: #d97706;
+  --accent-soft: rgba(8, 145, 178, 0.11);
+  --accent-secondary-soft: rgba(217, 119, 6, 0.11);
+  --ring: rgba(8, 145, 178, 0.34);
+  --glow: rgba(8, 145, 178, 0.11);
+  --surface-line: rgba(16, 21, 27, 0.08);
 }
 
 .dark {
-  /* Cinematic dark-first editorial identity */
-  --background: #08080a;
-  --foreground: #f5f4f2;
-  --muted: #a8a8b2;
-  --card: #111114;
-  --card-strong: #1a1a1f;
-  --border: #232328;
-  --accent: #ff6a00;
-  --accent-foreground: #1a0d00;
-  --accent-soft: rgba(255, 106, 0, 0.13);
-  --ring: rgba(255, 106, 0, 0.5);
-  --glow: rgba(255, 106, 0, 0.16);
+  --background: #070a0d;
+  --foreground: #edf7f8;
+  --muted: #96a7af;
+  --card: #0f161a;
+  --card-strong: #142229;
+  --border: #22343d;
+  --accent: #22d3ee;
+  --accent-foreground: #041014;
+  --accent-secondary: #f59e0b;
+  --accent-soft: rgba(34, 211, 238, 0.12);
+  --accent-secondary-soft: rgba(245, 158, 11, 0.12);
+  --ring: rgba(34, 211, 238, 0.38);
+  --glow: rgba(34, 211, 238, 0.14);
+  --surface-line: rgba(237, 247, 248, 0.08);
 }
 
 @theme inline {
@@ -41,6 +45,7 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-secondary: var(--accent-secondary);
   --color-accent-soft: var(--accent-soft);
   --font-sans: var(--font-inter);
   --font-display: var(--font-display);
@@ -55,11 +60,9 @@
 
   body {
     background-color: var(--background);
-    background-image: radial-gradient(
-      90% 50% at 50% -10%,
-      var(--glow),
-      transparent 70%
-    );
+    background-image:
+      linear-gradient(135deg, var(--glow), transparent 38%),
+      linear-gradient(to bottom, transparent, color-mix(in oklab, var(--background) 92%, var(--accent) 8%));
     background-attachment: fixed;
     color: var(--foreground);
     font-family: var(--font-sans), Arial, Helvetica, sans-serif;
@@ -67,14 +70,14 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Authentic film grain — subtle noise overlay fixed over everything */
+  /* Subtle editorial grain overlay fixed over everything. */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: 1;
     pointer-events: none;
-    opacity: 0.035;
+    opacity: 0.028;
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
@@ -98,17 +101,17 @@
   }
 }
 
-/* Custom Backdrop outline text — editorial ghost initial */
+/* Custom backdrop outline text for editorial ghost initials. */
 .outline-text {
-  font-size: clamp(11rem, 30vw, 34rem);
+  font-size: clamp(9rem, 26vw, 28rem);
   font-weight: 800;
-  line-height: 0.8;
+  line-height: 0.78;
   color: transparent;
-  -webkit-text-stroke: 1.5px color-mix(in oklab, var(--accent) 22%, transparent);
+  -webkit-text-stroke: 1px color-mix(in oklab, var(--accent) 18%, transparent);
   user-select: none;
   pointer-events: none;
   font-family: var(--font-display), var(--font-sans), sans-serif;
-  letter-spacing: -0.04em;
+  letter-spacing: 0;
 }
 
 /* Infinite loop horizontal marquee */
@@ -141,7 +144,22 @@
   animation: spin-slow 8s linear infinite;
 }
 
-/* Signature orange highlight brush/slash effect */
+.fade-in {
+  opacity: 0;
+  transform: translate3d(var(--fade-x, 0), var(--fade-y, 24px), 0);
+  transition:
+    opacity var(--fade-duration, 0.5s) cubic-bezier(0.16, 1, 0.3, 1) var(--fade-delay, 0s),
+    transform var(--fade-duration, 0.5s) cubic-bezier(0.16, 1, 0.3, 1) var(--fade-delay, 0s);
+  will-change: opacity, transform;
+}
+
+.fade-in[data-in-view="true"] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
+}
+
+/* Editorial inline highlight. */
 .gleamy-highlight {
   position: relative;
   z-index: 1;
@@ -153,17 +171,17 @@
   position: absolute;
   left: -2px;
   right: -2px;
-  bottom: 4px;
-  height: 30%;
-  background: linear-gradient(90deg, var(--accent), color-mix(in oklab, var(--accent) 70%, #ffb347));
+  bottom: 0.08em;
+  height: 18%;
+  background: linear-gradient(90deg, var(--accent), color-mix(in oklab, var(--accent) 55%, var(--accent-secondary)));
   z-index: -1;
-  transform: skewX(-12deg);
-  opacity: 0.9;
+  transform: skewX(-10deg);
+  opacity: 0.72;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .gleamy-highlight:hover::after {
-  transform: skewX(-12deg) scaleX(1.04);
+  transform: skewX(-10deg) scaleX(1.025);
 }
 
 /* Hover highlight draw-in effect for link text */
@@ -178,8 +196,8 @@
   left: -4px;
   right: -4px;
   bottom: 0px;
-  height: 4px;
-  background-color: var(--accent);
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
   z-index: -1;
   transform: skewX(-20deg) scaleX(0);
   transform-origin: left;
@@ -200,5 +218,10 @@
   *::after {
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
+  }
+
+  .fade-in {
+    opacity: 1;
+    transform: none;
   }
 }

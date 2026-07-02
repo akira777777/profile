@@ -2,9 +2,9 @@ import type { Messages } from "./ru";
 
 export const en: Messages = {
   meta: {
-    title: "Artem Mikhailov — Frontend Developer",
+    title: "Artem Mikhailov — Frontend Developer you can trust with the interface",
     description:
-      "Portfolio of Artem Mikhailov: frontend developer working with Next.js, React and TypeScript. Projects, skills, education and contact.",
+      "Portfolio of Artem Mikhailov: frontend developer working with Next.js, React and TypeScript. I help build fast, clear and polished web interfaces for business.",
   },
   nav: {
     about: "About",
@@ -17,57 +17,63 @@ export const en: Messages = {
     downloadCv: "Download CV",
   },
   hero: {
-    greeting: "Hi, I'm",
+    greeting: "Frontend developer who thinks about the product",
     name: "Artem Mikhailov",
-    role: "Frontend Developer",
-    roleSuffix: "Next.js · React · TypeScript",
-    descriptor: "development.interfaces.product",
+    role: "Next.js · React · TypeScript",
+    roleSuffix: "clean implementation · clear communication · attention to detail",
+    descriptor: "speed.trust.result",
     tagline:
-      "I build fast, accessible and thoughtful web applications. Based in Prague, working with modern frontend on Next.js.",
-    ctaProjects: "View projects",
-    ctaContact: "Get in touch",
+      "I turn a design, idea or business task into a polished, fast and usable interface. I work with Next.js and keep SEO, responsiveness, accessibility and visual trust in focus.",
+    ctaProjects: "See what I have built",
+    ctaContact: "Discuss work",
     location: "Prague, Czechia",
-    availability: "Open to opportunities",
+    availability: "Open to work and internships",
     scroll: "Scroll down",
-    ticker: "NEXT.JS • REACT • TYPESCRIPT • FRONTEND DEVELOPER • UI/UX DESIGN • WEB STANDARDS • OPTIMIZATION",
+    profileLabel: "Candidate / 2026",
+    focusLabel: "What you get",
+    focusValue: "Responsible frontend without chaos",
+    focusTags: ["Quality", "Timing", "Team"],
+    stackLabel: "Stack",
+    baseLabel: "Base",
+    ticker: "NEXT.JS • REACT • TYPESCRIPT • RELIABLE FRONTEND • SEO • ACCESSIBILITY • RESPONSIVE UI • CLEAN UI",
   },
   about: {
-    title: "About",
-    lead: "Frontend developer with an IT education and hands-on experience building real projects on Next.js.",
+    title: "Why you can trust me with frontend",
+    lead: "I do not just assemble pages from components — I try to understand the task, the user and the result the business needs.",
     paragraphs: [
-      "I focus on the frontend: interfaces, performance, SEO and accessibility. Most of my projects are built with Next.js, TypeScript and Tailwind CSS.",
-      "I graduated from an IT secondary school in Prague under the “Softwarové aplikace a programování” program, where I built a solid foundation in programming, databases and web development.",
-      "I speak Russian, Czech and English fluently, which helps me work in international teams and with clients from different countries.",
+      "My focus is on interfaces that load quickly, guide the user clearly and look professional on every device. I work with Next.js, React, TypeScript and Tailwind CSS.",
+      "I pay attention to page structure, form states, responsive behavior, basic SEO, accessibility and code clarity. That reduces rework and makes the project easier to support.",
+      "I graduated from an IT school in Prague in the “Softwarové aplikace a programování” program. I communicate in Russian, Czech and English, so I can work smoothly with international teams, clients and users.",
     ],
     stats: {
-      projects: "Next.js projects",
-      years: "Years in development",
-      languages: "Languages",
+      projects: "Delivered projects",
+      years: "Years in IT environment",
+      languages: "Working languages",
     },
   },
   skills: {
-    title: "Skills",
-    subtitle: "Technologies and tools I work with",
+    title: "What I bring to a team",
+    subtitle: "A practical skill set for building, improving and maintaining web interfaces",
     groups: {
       frontend: {
-        label: "Frontend",
+        label: "Quality frontend",
         items: ["Next.js", "React", "TypeScript", "JavaScript", "Tailwind CSS", "HTML5", "CSS3"],
       },
       backend: {
-        label: "Backend & data",
+        label: "Integrations & data",
         items: ["Node.js", "REST API", "SQL", "Databases"],
       },
       tools: {
-        label: "Tools & practices",
+        label: "Engineering approach",
         items: ["Git", "SEO", "Responsive design", "Accessibility", "UI / UX"],
       },
     },
   },
   projects: {
-    title: "Projects",
-    subtitle: "A selection of delivered projects — all built on Next.js",
-    live: "Visit site",
-    featured: "Featured project",
+    title: "Projects that show my approach",
+    subtitle: "Different industries, one goal: clear interfaces, solid structure and trust from the first screen",
+    live: "View result",
+    featured: "Key project",
     categories: {
       tours: "Healthcare",
       travel: "Travel",
@@ -78,28 +84,28 @@ export const en: Messages = {
     items: {
       "tauly-zholy": {
         description:
-          "A multi-page rehab center website: treatment programs, medical team, gallery, documents, reviews, FAQ, pricing and contact form. Complex routing, SEO and well-structured page architecture.",
+          "A multi-page rehabilitation center website where trust matters: treatment programs, doctors, documents, reviews, FAQ, pricing and a request form. I built clear navigation, a careful page structure and an SEO foundation so visitors can quickly find the information they need.",
       },
       "secrettravel": {
         description:
-          "Concierge booking service for hotels, flights and tours. Multilingual RU/EN, crypto payments, request form, pricing and FAQ.",
+          "A concierge service for booking hotels, flights and tours. I created RU/EN content flow, a clear request path, pricing blocks, FAQ and crypto payment support so the service feels premium and transparent.",
       },
       "iron-steel": {
         description:
-          "A premium barbershop landing: services, barbers, pricing and online booking. Clean, bold design in the brand's style.",
+          "A premium barbershop landing page with services, barbers, pricing and online booking. The goal was to communicate the brand quickly, remove friction and lead the user toward a reservation.",
       },
       "betz": {
-        description: "A sports betting platform: live odds, matches and events in real time.",
+        description: "A sports platform interface with matches, events and live odds. This type of product needs dense data presentation, clear hierarchy and fast access to key actions.",
       },
       "vakalova": {
         description:
-          "A dental clinic website: services, team and appointment booking. Clean, trustworthy interface.",
+          "A dental clinic website where the interface needs to feel calm and reliable. I structured services, doctor profiles and appointment booking so a patient can make a decision easily.",
       },
     },
   },
   education: {
-    title: "Education",
-    degree: "Maturita Certificate · Information Technology",
+    title: "Education that gave me a practical foundation",
+    degree: "Maturita · Information Technology and Software Development",
     school: "VOŠIS a SŠEMI",
     schoolFull:
       "Vyšší odborná škola informačních studií a Střední škola elektrotechniky, multimédií a informatiky",
@@ -110,39 +116,39 @@ export const en: Messages = {
     locationLabel: "Location",
     status: "Graduated",
     details:
-      "Secondary education completed with a maturita certificate (EQF 4). Specialization in programming, databases and web development.",
+      "A practical IT program focused on programming, databases, web development and software product structure. It gave me more than theory: it trained me to approach tasks systematically, from data structure and application logic to interfaces people can actually use.",
   },
   languages: {
-    title: "Languages",
-    subtitle: "I work and communicate in three languages",
+    title: "Communication",
+    subtitle: "I can work with Russian-speaking, Czech-speaking and English-speaking teams or clients",
     items: {
-      ru: { name: "Russian", level: "Native", note: "Any communication and documentation" },
+      ru: { name: "Russian", level: "Native", note: "Fluent communication, task discussion and documentation" },
       cs: { name: "Czech", level: "B2", note: "4 years studying in Prague, passed the maturita exam" },
-      en: { name: "English", level: "B2", note: "90.5% on the state maturita exam" },
+      en: { name: "English", level: "B2", note: "Working communication, reading docs and discussing projects" },
     },
   },
   contact: {
-    title: "Get in touch",
-    subtitle: "Open to work and collaboration. Drop me a line — I reply quickly.",
+    title: "Let’s discuss how I can help",
+    subtitle: "Open to frontend roles, internships and project work. I reply quickly and clearly.",
     form: {
       name: "Name",
-      namePlaceholder: "What's your name?",
+      namePlaceholder: "Your name",
       email: "Email",
       emailPlaceholder: "you@example.com",
       message: "Message",
-      messagePlaceholder: "Tell me about your project or role…",
-      send: "Send",
+      messagePlaceholder: "Tell me about the role, project or task…",
+      send: "Send message",
       sending: "Sending…",
       success: "Thank you! Your message has been sent.",
       error: "Could not send. Please try again or email me directly.",
       configHint: "Add the Web3Forms key to enable sending (see README).",
     },
-    direct: "Or directly",
+    direct: "Convenient contact channels",
     copy: "Copied",
   },
   footer: {
     rights: "All rights reserved.",
-    builtWith: "Built with Next.js, React and Tailwind CSS.",
+    builtWith: "Portfolio built with Next.js, React and Tailwind CSS.",
     backToTop: "Back to top",
   },
   theme: {

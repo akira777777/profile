@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" role="img" aria-label="Iron and Steel barbershop project thumbnail">
+  <rect width="960" height="640" fill="#111111"/>
+  <rect x="58" y="58" width="844" height="524" rx="18" fill="#191919" stroke="#d6b36a" stroke-width="4"/>
+  <rect x="112" y="110" width="736" height="92" fill="#0d0d0d"/>
+  <text x="480" y="170" text-anchor="middle" font-family="Arial, sans-serif" font-size="54" font-weight="800" fill="#f4e3bd">IRON &amp; STEEL</text>
+  <rect x="122" y="254" width="332" height="230" fill="#2b2b2b"/>
+  <rect x="506" y="254" width="332" height="230" fill="#121212"/>
+  <path d="M216 386c58-88 130-88 188 0" stroke="#d6b36a" stroke-width="18" fill="none"/>
+  <path d="M594 320l154 120M748 320L594 440" stroke="#f4e3bd" stroke-width="16" stroke-linecap="round"/>
+  <rect x="122" y="516" width="176" height="34" fill="#d6b36a"/>
+  <rect x="326" y="516" width="512" height="34" fill="#373737"/>
+</svg>

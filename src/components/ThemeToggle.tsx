@@ -20,7 +20,7 @@ export default function ThemeToggle({ label }: { label: string }) {
       onClick={toggle}
       aria-label={label}
       title={label}
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-card-strong"
+      className="inline-flex h-9 w-9 items-center justify-center border border-border bg-card text-foreground transition-colors hover:bg-card-strong"
     >
       <MoonIcon className="h-[18px] w-[18px] dark:hidden" />
       <SunIcon className="hidden h-[18px] w-[18px] dark:block" />

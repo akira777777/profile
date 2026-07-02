@@ -12,6 +12,8 @@ export type Project = {
   url: string;
   tags: string[];
   featured?: boolean;
+  /** Local thumbnail stored under public/. */
+  thumbnail: string;
   /** Tailwind gradient used for the card visual. */
   accent: string;
   /** Short monogram shown on the card visual. */
@@ -26,9 +28,9 @@ export const projects: Project[] = [
     id: "tauly-zholy",
     title: "Rehabilitation Center in Almaty",
     categoryKey: "tours",
-    featured: true,
     url: "https://reba-eight.vercel.app/",
     tags: ["Next.js", "TypeScript", "SEO", "Routing", "Tailwind"],
+    thumbnail: "/project-thumbnails/tauly-zholy.svg",
     accent: "from-emerald-400 to-teal-600",
     monogram: "ТЖ",
   },
@@ -38,6 +40,7 @@ export const projects: Project[] = [
     categoryKey: "travel",
     url: "https://secrettravel.vercel.app/",
     tags: ["Next.js", "TypeScript", "Tailwind", "Animation"],
+    thumbnail: "/project-thumbnails/secrettravel.svg",
     accent: "from-sky-400 to-indigo-600",
     monogram: "ST",
   },
@@ -45,8 +48,10 @@ export const projects: Project[] = [
     id: "iron-steel",
     title: "Barbershop Iron & Steel",
     categoryKey: "barber",
+    featured: true,
     url: "https://barber-am.vercel.app/",
     tags: ["Next.js", "React", "Tailwind"],
+    thumbnail: "/project-thumbnails/iron-steel.svg",
     accent: "from-zinc-500 to-zinc-900",
     monogram: "IS",
   },
@@ -56,7 +61,8 @@ export const projects: Project[] = [
     categoryKey: "betting",
     url: "https://bwin-1x.vercel.app/",
     tags: ["Next.js", "React", "Real-time"],
-    accent: "from-amber-400 to-orange-600",
+    thumbnail: "/project-thumbnails/betz.svg",
+    accent: "from-amber-400 to-yellow-700",
     monogram: "BZ",
   },
   {
@@ -65,6 +71,7 @@ export const projects: Project[] = [
     categoryKey: "dental",
     url: "https://dental-clinic-vakalova.vercel.app/",
     tags: ["Next.js", "TypeScript", "UI/UX"],
+    thumbnail: "/project-thumbnails/vakalova.svg",
     accent: "from-cyan-400 to-blue-600",
     monogram: "VD",
   },
