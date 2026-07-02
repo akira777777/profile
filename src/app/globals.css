@@ -3,33 +3,33 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* Light theme — clean inverse of the Gleamy dark identity */
-  --background: #ffffff;
+  /* Light theme — clean inverse of the cinematic dark identity */
+  --background: #fbfaf8;
   --foreground: #0a0a0b;
   --muted: #56565f;
-  --card: #f6f6f7;
-  --card-strong: #ededf0;
-  --border: #e6e6ea;
-  --accent: #ff7e21;
+  --card: #f4f2ef;
+  --card-strong: #ece9e4;
+  --border: #e2ded7;
+  --accent: #ff6a00;
   --accent-foreground: #1a0d00;
-  --accent-soft: rgba(255, 126, 33, 0.1);
-  --ring: rgba(255, 126, 33, 0.45);
-  --glow: rgba(255, 126, 33, 0.12);
+  --accent-soft: rgba(255, 106, 0, 0.1);
+  --ring: rgba(255, 106, 0, 0.45);
+  --glow: rgba(255, 106, 0, 0.1);
 }
 
 .dark {
-  /* Gleamy dark-first cinematic identity */
-  --background: #0a0a0b;
-  --foreground: #ffffff;
-  --muted: #b1b1bb;
-  --card: #141416;
-  --card-strong: #1d1d20;
-  --border: #242428;
-  --accent: #ff7e21;
+  /* Cinematic dark-first editorial identity */
+  --background: #08080a;
+  --foreground: #f5f4f2;
+  --muted: #a8a8b2;
+  --card: #111114;
+  --card-strong: #1a1a1f;
+  --border: #232328;
+  --accent: #ff6a00;
   --accent-foreground: #1a0d00;
-  --accent-soft: rgba(255, 126, 33, 0.14);
-  --ring: rgba(255, 126, 33, 0.5);
-  --glow: rgba(255, 126, 33, 0.16);
+  --accent-soft: rgba(255, 106, 0, 0.13);
+  --ring: rgba(255, 106, 0, 0.5);
+  --glow: rgba(255, 106, 0, 0.16);
 }
 
 @theme inline {
@@ -44,7 +44,7 @@
   --color-accent-soft: var(--accent-soft);
   --font-sans: var(--font-inter);
   --font-display: var(--font-display);
-  --font-mono: var(--font-inter);
+  --font-mono: var(--font-mono);
 }
 
 @layer base {
@@ -67,8 +67,21 @@
     text-rendering: optimizeLegibility;
   }
 
+  /* Authentic film grain — subtle noise overlay fixed over everything */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
   ::selection {
     background: color-mix(in oklab, var(--accent) 28%, transparent);
+    color: var(--foreground);
   }
 
   :focus-visible {
@@ -85,13 +98,13 @@
   }
 }
 
-/* Custom Backdrop outline text — Gleamy ghost initial (454px editorial device) */
+/* Custom Backdrop outline text — editorial ghost initial */
 .outline-text {
   font-size: clamp(11rem, 30vw, 34rem);
   font-weight: 800;
   line-height: 0.8;
   color: transparent;
-  -webkit-text-stroke: 1.5px color-mix(in oklab, var(--accent) 24%, transparent);
+  -webkit-text-stroke: 1.5px color-mix(in oklab, var(--accent) 22%, transparent);
   user-select: none;
   pointer-events: none;
   font-family: var(--font-display), var(--font-sans), sans-serif;
@@ -110,7 +123,7 @@
 
 .animate-marquee {
   display: inline-flex;
-  animation: marquee 30s linear infinite;
+  animation: marquee 32s linear infinite;
   will-change: transform;
 }
 
@@ -119,7 +132,16 @@
   animation-play-state: paused;
 }
 
-/* Gleamy Orange Highlight brush/slash effect */
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* Signature orange highlight brush/slash effect */
 .gleamy-highlight {
   position: relative;
   z-index: 1;
@@ -131,13 +153,17 @@
   position: absolute;
   left: -2px;
   right: -2px;
-  bottom: 1px;
-  height: 38%;
-  background-color: #ff7e21; /* Gleamy signature orange */
+  bottom: 4px;
+  height: 30%;
+  background: linear-gradient(90deg, var(--accent), color-mix(in oklab, var(--accent) 70%, #ffb347));
   z-index: -1;
-  transform: skewX(-15deg);
-  opacity: 0.85;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transform: skewX(-12deg);
+  opacity: 0.9;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.gleamy-highlight:hover::after {
+  transform: skewX(-12deg) scaleX(1.04);
 }
 
 /* Hover highlight draw-in effect for link text */
@@ -153,7 +179,7 @@
   right: -4px;
   bottom: 0px;
   height: 4px;
-  background-color: #ff7e21;
+  background-color: var(--accent);
   z-index: -1;
   transform: skewX(-20deg) scaleX(0);
   transform-origin: left;
