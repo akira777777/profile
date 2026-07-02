@@ -54,7 +54,7 @@ export default function Hero({ hero }: HeroProps) {
           </FadeIn>
 
           <FadeIn delay={0.15}>
-            <p className="text-xs font-bold uppercase text-accent">{hero.greeting}</p>
+            <p className="text-gradient text-xs font-bold uppercase tracking-wide">{hero.greeting}</p>
           </FadeIn>
 
           <FadeIn delay={0.2}>
@@ -92,7 +92,7 @@ export default function Hero({ hero }: HeroProps) {
             <div className="mt-1 flex flex-wrap items-center gap-3">
               <a
                 href="#projects"
-                className="inline-flex h-10 items-center justify-center rounded-full bg-accent px-4 text-sm font-semibold text-accent-foreground shadow-[0_12px_35px_rgba(100,92,255,0.28)] transition-transform hover:scale-[1.015] active:scale-[0.99] sm:h-11 sm:px-5"
+                className="inline-flex h-10 items-center justify-center rounded-full bg-gradient-to-r from-accent to-accent-secondary px-4 text-sm font-semibold text-accent-foreground shadow-[0_12px_35px_rgba(100,92,255,0.32)] transition-all hover:scale-[1.015] hover:shadow-[0_16px_45px_rgba(100,92,255,0.42)] active:scale-[0.99] sm:h-11 sm:px-5"
               >
                 {hero.ctaProjects}
               </a>
