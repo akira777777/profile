@@ -16,16 +16,16 @@
 }
 
 .dark {
-  --background: #09090b;
-  --foreground: #ededf0;
-  --muted: #9aa0aa;
-  --card: #131316;
-  --card-strong: #1b1b1f;
-  --border: #232329;
-  --accent: #818cf8;
-  --accent-foreground: #0b0b12;
-  --accent-soft: #1c1b33;
-  --ring: rgba(129, 140, 248, 0.5);
+  --background: #050508;
+  --foreground: #f8fafc;
+  --muted: #8e95a2;
+  --card: #0c0c0f;
+  --card-strong: #121217;
+  --border: #181822;
+  --accent: #b7acfc;
+  --accent-foreground: #09090b;
+  --accent-soft: rgba(183, 172, 252, 0.1);
+  --ring: rgba(183, 172, 252, 0.45);
 }
 
 @theme inline {
@@ -72,6 +72,93 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* Custom Backdrop outline text (Gleamy style) */
+.outline-text {
+  font-size: clamp(10rem, 24vw, 28rem);
+  font-weight: 900;
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(79, 70, 229, 0.06);
+  user-select: none;
+  pointer-events: none;
+  font-family: var(--font-sans);
+}
+
+.dark .outline-text {
+  -webkit-text-stroke: 1px rgba(183, 172, 252, 0.04);
+}
+
+/* Infinite loop horizontal marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: inline-flex;
+  animation: marquee 30s linear infinite;
+  will-change: transform;
+}
+
+/* Pause marquee animation on hover */
+.hover-pause:hover .animate-marquee {
+  animation-play-state: paused;
+}
+
+/* Gleamy Orange Highlight brush/slash effect */
+.gleamy-highlight {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+}
+
+.gleamy-highlight::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  bottom: 1px;
+  height: 38%;
+  background-color: #ff6b35; /* Gleamy signature orange */
+  z-index: -1;
+  transform: skewX(-15deg);
+  opacity: 0.85;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.dark .gleamy-highlight::after {
+  background-color: #ff723b;
+}
+
+/* Hover highlight draw-in effect for link text */
+.hover-slash-draw {
+  position: relative;
+  z-index: 1;
+}
+
+.hover-slash-draw::after {
+  content: "";
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  bottom: 0px;
+  height: 4px;
+  background-color: #ff6b35;
+  z-index: -1;
+  transform: skewX(-20deg) scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.9;
+}
+
+.hover-slash-draw:hover::after {
+  transform: skewX(-20deg) scaleX(1);
 }
 
 @media (prefers-reduced-motion: reduce) {

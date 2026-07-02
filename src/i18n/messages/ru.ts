@@ -25,6 +25,7 @@ export const ru = {
     location: "Прага, Чехия",
     availability: "Открыт к предложениям",
     scroll: "Листайте вниз",
+    ticker: "NEXT.JS • REACT • TYPESCRIPT • FRONTEND-РАЗРАБОТЧИК • UI/UX ДИЗАЙН • ВЕБ-СТАНДАРТЫ • ОПТИМИЗАЦИЯ",
   },
   about: {
     title: "О себе",

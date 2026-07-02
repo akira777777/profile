@@ -28,7 +28,7 @@ export default function Languages({ languages }: { languages: Languages }) {
   }));
 
   return (
-    <Section id="languages">
+    <Section bgLetter="L" id="languages">
       <SectionHeading eyebrow="05" title={languages.title} subtitle={languages.subtitle} />
       <div className="mt-10 grid gap-5 sm:grid-cols-3">
         {items.map((item) => {
@@ -37,10 +37,10 @@ export default function Languages({ languages }: { languages: Languages }) {
           return (
             <div
               key={item.key}
-              className="flex flex-col gap-4 rounded-2xl border border-border bg-card p-6"
+              className="flex flex-col gap-4 rounded-2xl border border-border bg-card/40 p-6 transition-all duration-300 hover:border-accent/40 hover:bg-card/70 hover:shadow-md"
             >
               <div className="flex items-center justify-between">
-                <h3 className="text-lg font-bold">{item.name}</h3>
+                <h3 className="text-lg font-bold tracking-tight text-foreground">{item.name}</h3>
                 <span
                   className={`rounded-full px-2.5 py-1 text-xs font-semibold ${
                     isNative

@@ -3,18 +3,25 @@ import type { ReactNode } from "react";
 export function Section({
   id,
   children,
+  bgLetter,
   className = "",
 }: {
   id?: string;
   children: ReactNode;
+  bgLetter?: string;
   className?: string;
 }) {
   return (
     <section
       id={id}
-      className={`relative scroll-mt-24 px-5 py-20 sm:px-8 sm:py-28 ${className}`}
+      className={`relative overflow-hidden scroll-mt-24 px-5 py-20 sm:px-8 sm:py-28 ${className}`}
     >
-      <div className="mx-auto w-full max-w-5xl">{children}</div>
+      {bgLetter && (
+        <div className="outline-text absolute -left-8 -top-8 z-0 select-none">
+          {bgLetter}
+        </div>
+      )}
+      <div className="relative z-10 mx-auto w-full max-w-5xl">{children}</div>
     </section>
   );
 }

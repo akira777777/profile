@@ -86,13 +86,13 @@ export default function Contact({ contact }: { contact: ContactMessages }) {
   ];
 
   return (
-    <Section id="contact">
+    <Section bgLetter="C" id="contact">
       <SectionHeading eyebrow="06" title={contact.title} subtitle={contact.subtitle} align="center" />
       <div className="mt-10 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         {/* Form */}
         <form
           onSubmit={onSubmit}
-          className="rounded-3xl border border-border bg-card p-6 sm:p-8"
+          className="rounded-3xl border border-border bg-card/40 p-6 sm:p-8 transition-colors hover:border-accent/30"
           noValidate
         >
           {!hasKey ? (
@@ -103,7 +103,7 @@ export default function Contact({ contact }: { contact: ContactMessages }) {
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="name" className="text-sm font-medium">
+              <label htmlFor="name" className="text-sm font-medium text-foreground">
                 {f.name}
               </label>
               <input
@@ -113,11 +113,11 @@ export default function Contact({ contact }: { contact: ContactMessages }) {
                 required
                 autoComplete="name"
                 placeholder={f.namePlaceholder}
-                className="h-11 rounded-xl border border-border bg-background px-3.5 text-sm outline-none transition-colors placeholder:text-muted/70 focus:border-accent"
+                className="h-11 rounded-xl border border-border bg-background px-3.5 text-sm outline-none transition-all placeholder:text-muted/70 focus:border-accent focus:ring-2 focus:ring-accent/15 text-foreground"
               />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="email" className="text-sm font-medium">
+              <label htmlFor="email" className="text-sm font-medium text-foreground">
                 {f.email}
               </label>
               <input
@@ -127,13 +127,13 @@ export default function Contact({ contact }: { contact: ContactMessages }) {
                 required
                 autoComplete="email"
                 placeholder={f.emailPlaceholder}
-                className="h-11 rounded-xl border border-border bg-background px-3.5 text-sm outline-none transition-colors placeholder:text-muted/70 focus:border-accent"
+                className="h-11 rounded-xl border border-border bg-background px-3.5 text-sm outline-none transition-all placeholder:text-muted/70 focus:border-accent focus:ring-2 focus:ring-accent/15 text-foreground"
               />
             </div>
           </div>
 
           <div className="mt-4 flex flex-col gap-1.5">
-            <label htmlFor="message" className="text-sm font-medium">
+            <label htmlFor="message" className="text-sm font-medium text-foreground">
               {f.message}
             </label>
             <textarea
@@ -142,14 +142,14 @@ export default function Contact({ contact }: { contact: ContactMessages }) {
               required
               rows={5}
               placeholder={f.messagePlaceholder}
-              className="resize-y rounded-xl border border-border bg-background px-3.5 py-3 text-sm outline-none transition-colors placeholder:text-muted/70 focus:border-accent"
+              className="resize-y rounded-xl border border-border bg-background px-3.5 py-3 text-sm outline-none transition-all placeholder:text-muted/70 focus:border-accent focus:ring-2 focus:ring-accent/15 text-foreground"
             />
           </div>
 
           <button
             type="submit"
             disabled={status === "submitting" || !hasKey}
-            className="mt-5 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-6 text-sm font-semibold text-accent-foreground transition-transform hover:scale-[1.01] active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
+            className="mt-5 inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-6 text-sm font-semibold text-accent-foreground transition-all hover:scale-[1.01] hover:bg-accent/90 active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
           >
             {status === "submitting" ? (
               f.sending
@@ -175,13 +175,13 @@ export default function Contact({ contact }: { contact: ContactMessages }) {
         </form>
 
         {/* Direct contact */}
-        <div className="flex flex-col gap-4 rounded-3xl border border-border bg-background p-6 sm:p-8">
+        <div className="flex flex-col gap-4 rounded-3xl border border-border bg-card/15 p-6 sm:p-8">
           <p className="text-sm font-medium text-muted">{contact.direct}</p>
 
           <button
             type="button"
             onClick={copyEmail}
-            className="group flex items-center justify-between gap-3 rounded-2xl border border-border bg-card p-4 text-left transition-colors hover:border-accent/40"
+            className="group flex items-center justify-between gap-3 rounded-2xl border border-border bg-card/30 p-4 text-left transition-all hover:border-accent/40 hover:bg-card/50"
           >
             <span className="flex items-center gap-3">
               <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent">
@@ -189,7 +189,7 @@ export default function Contact({ contact }: { contact: ContactMessages }) {
               </span>
               <span className="flex flex-col">
                 <span className="text-xs text-muted">Email</span>
-                <span className="text-sm font-semibold">{site.email}</span>
+                <span className="hover-slash-draw text-sm font-semibold text-foreground">{site.email}</span>
               </span>
             </span>
             <span className="text-muted transition-colors group-hover:text-foreground">
@@ -204,14 +204,14 @@ export default function Contact({ contact }: { contact: ContactMessages }) {
                   href={link.href}
                   target={link.external ? "_blank" : undefined}
                   rel={link.external ? "noopener noreferrer" : undefined}
-                  className="flex items-center gap-3 rounded-2xl border border-border bg-card p-4 transition-colors hover:border-accent/40"
+                  className="group flex items-center gap-3 rounded-2xl border border-border bg-card/30 p-4 transition-all hover:border-accent/40 hover:bg-card/50"
                 >
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent">
                     {link.icon}
                   </span>
                   <span className="flex flex-col">
                     <span className="text-xs text-muted">{link.type}</span>
-                    <span className="text-sm font-semibold">{link.label}</span>
+                    <span className="hover-slash-draw text-sm font-semibold text-foreground">{link.label}</span>
                   </span>
                 </a>
               </li>

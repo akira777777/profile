@@ -27,6 +27,7 @@ export const en: Messages = {
     location: "Prague, Czechia",
     availability: "Open to opportunities",
     scroll: "Scroll down",
+    ticker: "NEXT.JS • REACT • TYPESCRIPT • FRONTEND DEVELOPER • UI/UX DESIGN • WEB STANDARDS • OPTIMIZATION",
   },
   about: {
     title: "About",
