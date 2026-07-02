@@ -1,0 +1,73 @@
+export type ProjectCategoryKey =
+  | "tours"
+  | "travel"
+  | "barber"
+  | "betting"
+  | "dental";
+
+export type Project = {
+  id: string;
+  title: string;
+  categoryKey: ProjectCategoryKey;
+  url: string;
+  tags: string[];
+  featured?: boolean;
+  /** Tailwind gradient used for the card visual. */
+  accent: string;
+  /** Short monogram shown on the card visual. */
+  monogram: string;
+};
+
+// Language-neutral project data. Localized copy lives in the message files
+// (messages/ru.ts, messages/en.ts) keyed by `id`.
+// Set each `url` to the live site once confirmed.
+export const projects: Project[] = [
+  {
+    id: "tauly-zholy",
+    title: "Reabilitation Center in Almaty",
+    categoryKey: "tours",
+    featured: true,
+    url: "",
+    tags: ["Next.js", "TypeScript", "SEO", "Routing", "Tailwind"],
+    accent: "from-emerald-400 to-teal-600",
+    monogram: "ТЖ",
+  },
+  {
+    id: "secrettravel",
+    title: "SecretTravel",
+    categoryKey: "travel",
+    url: "",
+    tags: ["Next.js", "TypeScript", "Tailwind", "Animation"],
+    accent: "from-sky-400 to-indigo-600",
+    monogram: "ST",
+  },
+  {
+    id: "iron-steel",
+    title: "Barbershop Iron & Steel",
+    categoryKey: "barber",
+    url: "",
+    tags: ["Next.js", "React", "Tailwind"],
+    accent: "from-zinc-500 to-zinc-900",
+    monogram: "IS",
+  },
+  {
+    id: "betz",
+    title: "BETZ Sportsbook",
+    categoryKey: "betting",
+    url: "",
+    tags: ["Next.js", "React", "Real-time"],
+    accent: "from-amber-400 to-orange-600",
+    monogram: "BZ",
+  },
+  {
+    id: "vakalova",
+    title: "Vakalova Dental",
+    categoryKey: "dental",
+    url: "",
+    tags: ["Next.js", "TypeScript", "UI/UX"],
+    accent: "from-cyan-400 to-blue-600",
+    monogram: "VD",
+  },
+];
+
+export const featuredProject = projects.find((p) => p.featured) ?? projects[0];
