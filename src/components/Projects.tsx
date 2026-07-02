@@ -96,7 +96,7 @@ function ProjectCard({
         <>
           <CardVisual project={project} category={category} />
           <div className="flex flex-1 flex-col gap-3 p-3 pt-5">
-            <h3 className="text-lg font-bold tracking-[-0.03em] text-foreground">{project.title}</h3>
+            <h3 className="font-display text-lg font-bold tracking-[-0.03em] text-foreground">{project.title}</h3>
             <p className="flex-1 text-pretty text-sm leading-relaxed text-muted">
               {copy.description}
             </p>

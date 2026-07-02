@@ -28,7 +28,7 @@ export default function Skills({ skills }: { skills: Skills }) {
                 <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-accent">
                   {groupIcons[key] ?? <CodeIcon className="h-5 w-5" />}
                 </span>
-                <h3 className="text-base font-bold tracking-tight text-foreground">{group.label}</h3>
+                <h3 className="font-display text-base font-bold tracking-tight text-foreground">{group.label}</h3>
               </div>
               <ul className="flex flex-wrap gap-2">
                 {group.items.map((item) => (
