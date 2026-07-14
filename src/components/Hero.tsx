@@ -176,3 +176,5 @@ export default function Hero({ hero }: HeroProps) {
     </section>
   );
 }
+ 
+ 
