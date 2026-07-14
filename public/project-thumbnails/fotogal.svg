@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" fill="#faf8f5"/>
+  <rect x="30" y="30" width="340" height="240" rx="0" fill="#f5f0ea" stroke="#e8e0d4" stroke-width="1"/>
+  <text x="200" y="110" text-anchor="middle" font-family="Georgia, serif" font-weight="300" font-size="52" fill="#2a2520" letter-spacing="2" font-style="italic" opacity="0.85">Markéta</text>
+  <line x1="140" y1="130" x2="260" y2="130" stroke="#c5b9a8" stroke-width="0.5"/>
+  <text x="200" y="155" text-anchor="middle" font-family="system-ui" font-weight="400" font-size="9" fill="#8a7e70" letter-spacing="4">PHOTOGRAPHY PORTFOLIO</text>
+  <rect x="80" y="180" width="60" height="60" fill="#e0d8cc"/>
+  <rect x="155" y="180" width="90" height="60" fill="#d8cfc0"/>
+  <rect x="260" y="180" width="60" height="60" fill="#e8e0d4"/>
+  <text x="200" y="265" text-anchor="middle" font-family="system-ui" font-weight="400" font-size="8" fill="#aaa195" letter-spacing="3">DIGITAL MEMORY ARCHIVE / 2026</text>
+</svg>

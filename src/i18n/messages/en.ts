@@ -46,7 +46,7 @@ export const en: Messages = {
       "I graduated from an IT school in Prague in the “Softwarové aplikace a programování” program. I communicate in Russian, Czech and English, so I can work smoothly with international teams, clients and users.",
     ],
     stats: {
-      projects: "Delivered projects",
+      projects: "Shipped projects",
       years: "Years in IT environment",
       languages: "Working languages",
     },
@@ -82,6 +82,8 @@ export const en: Messages = {
       barber: "Barbershop",
       betting: "Sports betting",
       dental: "Dental clinic",
+      creative: "Creative & Artist",
+      photography: "Photography",
     },
     items: {
       "tauly-zholy": {
@@ -134,6 +136,48 @@ export const en: Messages = {
         ],
         performance: "95",
         seo: "96",
+      },
+      "vision-kraft": {
+        description:
+          "A premium multidisciplinary portfolio for VK — a photographer, techno DJ, fashion designer and model based in Berlin and Prague. Full-screen parallax hero, scroll-triggered animations, photo gallery with lightbox, career timeline, music section with SoundCloud integration, and booking form. Built with Next.js and Framer Motion.",
+        challenge: "Build a high-end creative portfolio that conveys the raw energy of underground culture — photography, techno music and fashion — in a single immersive digital experience with smooth parallax and cinematic transitions.",
+        solution: "Architected a single-page multi-section Next.js app with Framer Motion scroll animations, IntersectionObserver-driven reveals, full-bleed imagery, and a bilingual RU/EN language switcher. Optimized lazy loading for 50+ high-res images.",
+        achievements: [
+          "Scroll-driven parallax hero with 8+ animated sections",
+          "Photo gallery with category filters and full-screen lightbox",
+          "Bilingual content system (English / Russian)",
+          "Career timeline with 10+ milestones and animated entries"
+        ],
+        performance: "96",
+        seo: "98",
+      },
+      "nova-koval": {
+        description:
+          "A bold creative portfolio for Nova Koval — a Prague-based photographer, DJ, producer and model director. Features a photography gallery with category filtering, music releases with audio previews, a model roster with stats, and a comprehensive booking form. Built with vanilla JS and advanced CSS.",
+        challenge: "Create a rave-inspired portfolio that feels like stepping into an underground club — dark, electric, immersive — while keeping navigation fast and intuitive across photography, music and model direction sections.",
+        solution: "Built a performance-first static site with vanilla JS for zero framework overhead. Implemented masonry gallery with category filters, lightbox with keyboard navigation, audio player integration, and form validation — all under 50KB total JS.",
+        achievements: [
+          "Masonry photo gallery with 6 filter categories and lightbox",
+          "Music section with release cards and SoundCloud embeds",
+          "Model roster with filterable cards and booking integration",
+          "Sub-50KB JavaScript bundle for instant loading"
+        ],
+        performance: "100",
+        seo: "97",
+      },
+      "fotogal": {
+        description:
+          "An editorial photography portfolio for Markéta, designed as a digital memory archive. Features curated photo series displayed as magazine spreads rather than grid tiles, parallax scrolling frames, custom cursor interactions, and bilingual support. Warm cream aesthetic with serif typography.",
+        challenge: "Present a photography portfolio in a magazine-spread format that feels like turning the pages of a printed editorial, with generous whitespace and frame-by-frame pacing instead of the typical thumbnail grid.",
+        solution: "Designed a spread-based layout with CSS Grid for asymmetric compositions, IntersectionObserver for scroll-triggered reveals, custom cursor follower, and an i18n system for EN/CZ content. Optimized with srcset for responsive images.",
+        achievements: [
+          "Magazine-spread layout replacing conventional grid galleries",
+          "Custom cursor with contextual 'View' label on hover",
+          "Responsive srcset images for optimal loading",
+          "Bilingual content system (English / Czech)"
+        ],
+        performance: "99",
+        seo: "100",
       },
       "vakalova": {
         description:

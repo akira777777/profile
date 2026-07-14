@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" fill="#0a0a0a"/>
+  <rect x="20" y="20" width="360" height="260" rx="2" fill="#111" stroke="#222" stroke-width="1"/>
+  <text x="200" y="130" text-anchor="middle" font-family="system-ui" font-weight="200" font-size="72" fill="#fff" letter-spacing="16" opacity="0.9">VK</text>
+  <text x="200" y="165" text-anchor="middle" font-family="system-ui" font-weight="300" font-size="10" fill="#00f0ff" letter-spacing="8" opacity="0.6">VISION KRAFT</text>
+  <line x1="120" y1="180" x2="280" y2="180" stroke="url(#g1)" stroke-width="1"/>
+  <text x="200" y="200" text-anchor="middle" font-family="system-ui" font-weight="300" font-size="8" fill="#666" letter-spacing="4">PHOTOGRAPHER • DJ • FASHION</text>
+  <circle cx="80" cy="250" r="3" fill="#00f0ff" opacity="0.3"/>
+  <circle cx="320" cy="50" r="3" fill="#ff0066" opacity="0.3"/>
+  <circle cx="350" cy="240" r="2" fill="#39ff14" opacity="0.2"/>
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.4"/>
+      <stop offset="50%" stop-color="#fff" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#ff0066" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+</svg>
