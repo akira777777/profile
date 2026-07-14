@@ -3,39 +3,39 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f8fafc;
+  --background: #f4f6f9;
   --foreground: #0f172a;
   --muted: #475569;
-  --card: rgba(255, 255, 255, 0.7);
-  --card-strong: rgba(255, 255, 255, 0.95);
-  --border: rgba(148, 163, 184, 0.2);
+  --card: rgba(255, 255, 255, 0.85);
+  --card-strong: rgba(255, 255, 255, 0.98);
+  --border: rgba(148, 163, 184, 0.15);
   --accent: #2563eb;
   --accent-foreground: #ffffff;
-  --accent-secondary: #0f172a;
+  --accent-secondary: #1e3a8a;
   --accent-tertiary: #475569;
-  --accent-soft: rgba(37, 99, 235, 0.08);
-  --accent-secondary-soft: rgba(15, 23, 42, 0.06);
-  --ring: rgba(37, 99, 235, 0.25);
-  --glow: rgba(37, 99, 235, 0.08);
-  --surface-line: rgba(15, 23, 42, 0.06);
+  --accent-soft: rgba(37, 99, 235, 0.05);
+  --accent-secondary-soft: rgba(30, 58, 138, 0.04);
+  --ring: rgba(37, 99, 235, 0.2);
+  --glow: rgba(37, 99, 235, 0.04);
+  --surface-line: rgba(148, 163, 184, 0.1);
 }
 
 .dark {
-  --background: #0b0f19;
+  --background: #0b0d12;
   --foreground: #f1f5f9;
-  --muted: #94a3b8;
-  --card: rgba(20, 26, 41, 0.7);
-  --card-strong: rgba(28, 36, 56, 0.9);
-  --border: rgba(255, 255, 255, 0.08);
+  --muted: #64748b;
+  --card: rgba(20, 23, 32, 0.8);
+  --card-strong: rgba(28, 32, 44, 0.95);
+  --border: rgba(148, 163, 184, 0.1);
   --accent: #3b82f6;
   --accent-foreground: #ffffff;
   --accent-secondary: #94a3b8;
   --accent-tertiary: #64748b;
-  --accent-soft: rgba(59, 130, 246, 0.12);
-  --accent-secondary-soft: rgba(148, 163, 184, 0.1);
-  --ring: rgba(59, 130, 246, 0.35);
-  --glow: rgba(59, 130, 246, 0.15);
-  --surface-line: rgba(255, 255, 255, 0.08);
+  --accent-soft: rgba(59, 130, 246, 0.06);
+  --accent-secondary-soft: rgba(148, 163, 184, 0.05);
+  --ring: rgba(59, 130, 246, 0.25);
+  --glow: rgba(59, 130, 246, 0.06);
+  --surface-line: rgba(255, 255, 255, 0.05);
 }
 
 @theme inline {
@@ -64,8 +64,7 @@
   body {
     background-color: var(--background);
     background-image:
-      radial-gradient(circle at 10% 10%, color-mix(in oklab, var(--accent) 6%, transparent), transparent 30rem),
-      radial-gradient(circle at 90% 80%, color-mix(in oklab, var(--accent) 4%, transparent), transparent 30rem),
+      radial-gradient(circle at 50% 0%, color-mix(in oklab, var(--accent) 3%, transparent), transparent 45rem),
       linear-gradient(180deg, var(--background), var(--background));
     background-attachment: fixed;
     color: var(--foreground);
@@ -135,7 +134,7 @@
 
 .animate-marquee {
   display: inline-flex;
-  animation: marquee 32s linear infinite;
+  animation: marquee 60s linear infinite;
   will-change: transform;
 }
 
@@ -230,62 +229,44 @@
   overflow: hidden;
 }
 
-/* scanlines overlay */
+/* scanlines overlay - disabled for strict professional style */
 .crt-screen::before {
-  content: " ";
-  display: block;
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-  z-index: 20;
-  background-size: 100% 4px, 6px 100%;
-  pointer-events: none;
+  content: "";
+  display: none;
 }
 
-@keyframes crt-flicker {
-  0% { opacity: 0.985; }
-  50% { opacity: 0.995; }
-  100% { opacity: 0.985; }
-}
-
+/* No flicker for modern console */
 .crt-active {
-  animation: crt-flicker 0.15s infinite;
+  background-color: #05070a !important; /* Slightly darker VS Code black on active */
 }
 
-/* Green Phosphor Glow Effect on active console text classes */
+/* Keep selectors for compatibility with E2E tests, but style them as clean modern IDE syntax highlighting */
 .crt-active .text-slate-300 {
-  color: #39ff14 !important;
-  text-shadow: 0 0 4px rgba(57, 255, 20, 0.4), 0 0 10px rgba(57, 255, 20, 0.2);
+  color: #e2e8f0 !important;
 }
 
 .crt-active .text-slate-100 {
-  color: #a2ff86 !important;
-  text-shadow: 0 0 4px rgba(57, 255, 20, 0.5);
+  color: #f8fafc !important;
 }
 
 .crt-active .text-blue-400 {
-  color: #39ff14 !important;
-  text-shadow: 0 0 4px rgba(57, 255, 20, 0.5);
+  color: #60a5fa !important;
 }
 
 .crt-active .text-slate-400 {
-  color: #29b510 !important;
-  text-shadow: 0 0 2px rgba(41, 181, 16, 0.3);
+  color: #94a3b8 !important;
 }
 
 .crt-active .text-indigo-400 {
-  color: #a2ff86 !important;
-  text-shadow: 0 0 6px rgba(57, 255, 20, 0.6);
+  color: #818cf8 !important;
 }
 
 .crt-active .text-rose-400 {
-  color: #ff3333 !important;
-  text-shadow: 0 0 4px rgba(255, 51, 51, 0.5);
+  color: #f87171 !important;
 }
 
 .crt-active input {
-  color: #39ff14 !important;
-  text-shadow: 0 0 4px rgba(57, 255, 20, 0.5);
+  color: #f8fafc !important;
 }
 
 

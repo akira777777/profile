@@ -240,7 +240,7 @@ export default function Terminal({ messages, locale }: TerminalProps) {
             onClick={handleTerminalClick}
             className="h-80 overflow-y-auto p-4 flex flex-col gap-1.5 cursor-text no-scrollbar relative z-10"
           >
-            {history.map((line, idx) => {
+             {history.map((line, idx) => {
               let color = "text-slate-300";
               if (line.type === "input") color = "text-blue-400 font-semibold";
               if (line.type === "error") color = "text-rose-400";
@@ -248,15 +248,15 @@ export default function Terminal({ messages, locale }: TerminalProps) {
               if (line.type === "system") color = "text-indigo-400 font-bold";
 
               return (
-                <div key={idx} className={`${color} crt-flicker-anim crt-phosphor-text leading-relaxed whitespace-pre-wrap`}>
+                <div key={idx} className={`${color} leading-relaxed whitespace-pre-wrap`}>
                   {line.text}
                 </div>
               );
             })}
 
             {/* Input Line */}
-            <form onSubmit={handleCommand} className="flex items-center mt-1 crt-flicker-anim">
-              <span className="text-blue-400 font-semibold shrink-0 crt-phosphor-text">visitor@artem-mikhailov:~$ &nbsp;</span>
+            <form onSubmit={handleCommand} className="flex items-center mt-1">
+              <span className="text-blue-400 font-semibold shrink-0">visitor@artem-mikhailov:~$ &nbsp;</span>
               <input
                 ref={inputRef}
                 type="text"
@@ -264,7 +264,7 @@ export default function Terminal({ messages, locale }: TerminalProps) {
                 onChange={(e) => setInputVal(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder={t.placeholder}
-                className="bg-transparent text-slate-100 outline-none border-none flex-1 p-0 font-mono text-sm leading-normal focus:ring-0 focus:outline-none placeholder:text-zinc-800 crt-phosphor-text"
+                className="bg-transparent text-slate-100 outline-none border-none flex-1 p-0 font-mono text-sm leading-normal focus:ring-0 focus:outline-none placeholder:text-zinc-800"
                 autoComplete="off"
                 autoCapitalize="off"
                 spellCheck={false}

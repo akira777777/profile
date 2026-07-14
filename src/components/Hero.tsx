@@ -83,13 +83,13 @@ export default function Hero({ hero }: HeroProps) {
             <div className="mt-1 flex flex-wrap items-center gap-3">
               <a
                 href="#projects"
-                className="inline-flex h-10 items-center justify-center rounded-full bg-gradient-to-r from-accent to-accent-secondary px-4 text-sm font-semibold text-accent-foreground shadow-[0_12px_35px_rgba(100,92,255,0.32)] transition-all hover:scale-[1.015] hover:shadow-[0_16px_45px_rgba(100,92,255,0.42)] active:scale-[0.99] sm:h-11 sm:px-5"
+                className="inline-flex h-10 items-center justify-center rounded-lg bg-gradient-to-r from-accent to-accent-secondary px-4 text-sm font-semibold text-accent-foreground shadow-[0_8px_20px_rgba(37,99,235,0.2)] transition-all hover:scale-[1.01] hover:shadow-[0_12px_28px_rgba(37,99,235,0.3)] active:scale-[0.99] sm:h-11 sm:px-5"
               >
                 {hero.ctaProjects}
               </a>
               <a
                 href="#contact"
-                className="hover-slash-draw inline-flex h-10 items-center justify-center rounded-full border border-border bg-card/80 px-4 text-sm font-semibold text-foreground shadow-sm backdrop-blur transition-colors hover:bg-card-strong sm:h-11 sm:px-5"
+                className="hover-slash-draw inline-flex h-10 items-center justify-center rounded-lg border border-border bg-card/80 px-4 text-sm font-semibold text-foreground shadow-sm backdrop-blur transition-colors hover:bg-card-strong sm:h-11 sm:px-5"
               >
                 {hero.ctaContact}
               </a>
@@ -155,7 +155,7 @@ export default function Hero({ hero }: HeroProps) {
       </div>
 
       <div className="hover-pause relative left-[calc(-50vw+50%)] my-4 w-screen overflow-hidden border-y border-border bg-card/50 py-2 backdrop-blur select-none sm:my-6 sm:py-3">
-        <div className="flex animate-marquee whitespace-nowrap text-[10px] font-bold uppercase text-muted tracking-wider opacity-75">
+        <div className="flex animate-marquee whitespace-nowrap text-[10px] font-bold uppercase text-muted tracking-wider opacity-35">
           <span className="px-4">{hero.ticker} •</span>
           <span className="px-4">{hero.ticker} •</span>
           <span className="px-4">{hero.ticker} •</span>

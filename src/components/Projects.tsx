@@ -18,10 +18,13 @@ function LivePreview({ url, isHovered }: { url: string; isHovered: boolean }) {
   const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
-    if (isHovered && !shouldLoad) {
-      setShouldLoad(true);
+    if (isHovered) {
+      const handle = requestAnimationFrame(() => {
+        setShouldLoad(true);
+      });
+      return () => cancelAnimationFrame(handle);
     }
-  }, [isHovered, shouldLoad]);
+  }, [isHovered]);
 
   return (
     <div

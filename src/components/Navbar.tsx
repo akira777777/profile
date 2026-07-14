@@ -81,7 +81,7 @@ export default function Navbar({
   return (
     <header className="sticky top-3 z-50 px-3 sm:px-5">
       <div
-        className={`relative mx-auto max-w-6xl rounded-[24px] border transition-all duration-300 ${
+        className={`relative mx-auto max-w-6xl rounded-xl border transition-all duration-300 ${
           scrolled
             ? "border-border bg-card/85 shadow-[0_18px_50px_rgba(20,20,35,0.12)] backdrop-blur-xl dark:shadow-[0_18px_50px_rgba(0,0,0,0.28)]"
             : "border-border/60 bg-card/45 backdrop-blur-lg"
@@ -93,7 +93,7 @@ export default function Navbar({
         >
           <div
             ref={progressBarRef}
-            className="h-full bg-gradient-to-r from-accent via-fuchsia-400 to-accent-secondary transition-all duration-75 ease-out"
+            className="h-full bg-gradient-to-r from-accent to-accent-secondary transition-all duration-75 ease-out"
             style={{ width: "0%" }}
           />
         </div>
@@ -140,7 +140,7 @@ export default function Navbar({
           <a
             href="/cv.pdf"
             download
-            className="hidden h-9 items-center gap-1.5 rounded-full border border-accent/25 bg-accent-soft px-3.5 text-xs font-semibold text-accent shadow-sm backdrop-blur transition-colors hover:bg-accent/20 sm:inline-flex"
+            className="hidden h-9 items-center gap-1.5 rounded-lg border border-accent/25 bg-accent-soft px-3.5 text-xs font-semibold text-accent shadow-sm backdrop-blur transition-colors hover:bg-accent/20 sm:inline-flex"
           >
             <DownloadIcon className="h-3.5 w-3.5" />
             {nav.downloadCv}

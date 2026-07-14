@@ -34,7 +34,7 @@ export default function GlowCard({
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden rounded-[28px] border border-border bg-card/70 shadow-[0_24px_80px_rgba(20,20,35,0.14)] backdrop-blur-xl transition-colors hover:border-accent/40 dark:shadow-[0_24px_80px_rgba(0,0,0,0.28)] ${className}`}
+      className={`relative overflow-hidden rounded-xl border border-border bg-card/70 shadow-[0_16px_48px_rgba(15,23,42,0.05)] backdrop-blur-xl transition-colors hover:border-accent/40 dark:shadow-[0_16px_48px_rgba(0,0,0,0.2)] ${className}`}
       style={{
         "--mouse-x": "-999px",
         "--mouse-y": "-999px",
