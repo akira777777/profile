@@ -217,8 +217,8 @@ export default function Terminal({ messages, locale }: TerminalProps) {
         title={t.title}
         subtitle={t.subtitle}
       />
-      <div className="mt-8">
-        <GlowCard className="w-full border border-border bg-slate-950/98 text-slate-100 font-mono text-sm shadow-2xl overflow-hidden rounded-md">
+      <div className={`mt-8 ${crtMode ? "crt-active" : ""}`}>
+        <GlowCard className="w-full border border-border bg-slate-950/98 text-slate-100 font-mono text-sm shadow-2xl overflow-hidden rounded-md crt-screen">
           {/* Windows / macOS header bar */}
           <div className="flex items-center justify-between bg-zinc-900 px-4 py-2.5 border-b border-zinc-800 select-none z-30 relative">
             <div className="flex gap-2">
@@ -248,15 +248,15 @@ export default function Terminal({ messages, locale }: TerminalProps) {
               if (line.type === "system") color = "text-indigo-400 font-bold";
 
               return (
-                <div key={idx} className={`${color} leading-relaxed whitespace-pre-wrap`}>
+                <div key={idx} className={`${color} crt-flicker-anim crt-phosphor-text leading-relaxed whitespace-pre-wrap`}>
                   {line.text}
                 </div>
               );
             })}
 
             {/* Input Line */}
-            <form onSubmit={handleCommand} className="flex items-center mt-1">
-              <span className="text-blue-400 font-semibold shrink-0">visitor@artem-mikhailov:~$ &nbsp;</span>
+            <form onSubmit={handleCommand} className="flex items-center mt-1 crt-flicker-anim">
+              <span className="text-blue-400 font-semibold shrink-0 crt-phosphor-text">visitor@artem-mikhailov:~$ &nbsp;</span>
               <input
                 ref={inputRef}
                 type="text"
@@ -264,7 +264,7 @@ export default function Terminal({ messages, locale }: TerminalProps) {
                 onChange={(e) => setInputVal(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder={t.placeholder}
-                className="bg-transparent text-slate-100 outline-none border-none flex-1 p-0 font-mono text-sm leading-normal focus:ring-0 focus:outline-none placeholder:text-zinc-800"
+                className="bg-transparent text-slate-100 outline-none border-none flex-1 p-0 font-mono text-sm leading-normal focus:ring-0 focus:outline-none placeholder:text-zinc-800 crt-phosphor-text"
                 autoComplete="off"
                 autoCapitalize="off"
                 spellCheck={false}

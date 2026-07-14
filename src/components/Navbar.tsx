@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import type { Locale } from "@/i18n/config";
 import { MenuIcon, DownloadIcon } from "./icons";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -30,16 +30,18 @@ export default function Navbar({
   locale: Locale;
 }) {
   const [scrolled, setScrolled] = useState(false);
-  const [scrollPercent, setScrollPercent] = useState(0);
   const [activeSection, setActiveSection] = useState<string>("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const progressBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (windowHeight > 0) {
         const percent = (window.scrollY / windowHeight) * 100;
-        setScrollPercent(percent);
+        if (progressBarRef.current) {
+          progressBarRef.current.style.width = `${percent}%`;
+        }
       }
       setScrolled(window.scrollY > 8);
     };
@@ -90,8 +92,9 @@ export default function Navbar({
           className="absolute left-4 right-4 top-0 h-[3px] overflow-hidden rounded-full"
         >
           <div
+            ref={progressBarRef}
             className="h-full bg-gradient-to-r from-accent via-fuchsia-400 to-accent-secondary transition-all duration-75 ease-out"
-            style={{ width: `${scrollPercent}%` }}
+            style={{ width: "0%" }}
           />
         </div>
 

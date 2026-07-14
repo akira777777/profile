@@ -230,18 +230,65 @@
   overflow: hidden;
 }
 
+/* scanlines overlay */
 .crt-screen::before {
-  content: "";
-  display: none;
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  z-index: 20;
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
 }
 
-.crt-flicker-anim {
-  animation: none;
+@keyframes crt-flicker {
+  0% { opacity: 0.985; }
+  50% { opacity: 0.995; }
+  100% { opacity: 0.985; }
 }
 
-.crt-phosphor-text {
-  text-shadow: none;
+.crt-active {
+  animation: crt-flicker 0.15s infinite;
 }
+
+/* Green Phosphor Glow Effect on active console text classes */
+.crt-active .text-slate-300 {
+  color: #39ff14 !important;
+  text-shadow: 0 0 4px rgba(57, 255, 20, 0.4), 0 0 10px rgba(57, 255, 20, 0.2);
+}
+
+.crt-active .text-slate-100 {
+  color: #a2ff86 !important;
+  text-shadow: 0 0 4px rgba(57, 255, 20, 0.5);
+}
+
+.crt-active .text-blue-400 {
+  color: #39ff14 !important;
+  text-shadow: 0 0 4px rgba(57, 255, 20, 0.5);
+}
+
+.crt-active .text-slate-400 {
+  color: #29b510 !important;
+  text-shadow: 0 0 2px rgba(41, 181, 16, 0.3);
+}
+
+.crt-active .text-indigo-400 {
+  color: #a2ff86 !important;
+  text-shadow: 0 0 6px rgba(57, 255, 20, 0.6);
+}
+
+.crt-active .text-rose-400 {
+  color: #ff3333 !important;
+  text-shadow: 0 0 4px rgba(255, 51, 51, 0.5);
+}
+
+.crt-active input {
+  color: #39ff14 !important;
+  text-shadow: 0 0 4px rgba(57, 255, 20, 0.5);
+}
+
+
 
 @media (prefers-reduced-motion: reduce) {
   html {

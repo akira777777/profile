@@ -16,16 +16,16 @@ export default function GlowCard({
   glowSize = 350,
 }: GlowCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    setCoords({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    card.style.setProperty("--mouse-x", `${x}px`);
+    card.style.setProperty("--mouse-y", `${y}px`);
   };
 
   return (
@@ -36,8 +36,8 @@ export default function GlowCard({
       onMouseLeave={() => setIsHovered(false)}
       className={`relative overflow-hidden rounded-[28px] border border-border bg-card/70 shadow-[0_24px_80px_rgba(20,20,35,0.14)] backdrop-blur-xl transition-colors hover:border-accent/40 dark:shadow-[0_24px_80px_rgba(0,0,0,0.28)] ${className}`}
       style={{
-        "--mouse-x": `${coords.x}px`,
-        "--mouse-y": `${coords.y}px`,
+        "--mouse-x": "-999px",
+        "--mouse-y": "-999px",
       } as React.CSSProperties}
     >
       {isHovered && (
