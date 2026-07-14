@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Project } from "@/lib/projects";
 import type { Messages } from "@/i18n/dictionaries";
@@ -11,7 +11,6 @@ type ProjectModalProps = {
   isOpen: boolean;
   onClose: () => void;
   project: Project | null;
-  locale: string;
   messages: Messages["projects"];
 };
 
@@ -19,7 +18,6 @@ export default function ProjectModal({
   isOpen,
   onClose,
   project,
-  locale,
   messages,
 }: ProjectModalProps) {
   // Prevent body scroll when modal is open
@@ -43,12 +41,44 @@ export default function ProjectModal({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [onClose]);
 
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const modal = modalRef.current;
+    if (!modal) return;
+
+    const focusTrap = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+      const focusable = modal.querySelectorAll<HTMLElement>(
+        'button, a[href], input, textarea, select, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+    document.addEventListener("keydown", focusTrap);
+    return () => document.removeEventListener("keydown", focusTrap);
+  }, [isOpen]);
+
   if (!project) return null;
 
   const copy = messages.items[project.id as keyof typeof messages.items];
   const category = messages.categories[project.categoryKey];
 
-  // Safely parse metrics or fall back to defaults
+  if (!copy) return null;
+
   const perfScore = parseInt(copy.performance || "90", 10);
   const seoScore = parseInt(copy.seo || "90", 10);
 
@@ -67,6 +97,10 @@ export default function ProjectModal({
 
           {/* Modal Card */}
           <motion.div
+            ref={modalRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={project.title}
             initial={{ opacity: 0, scale: 0.95, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
@@ -87,6 +121,7 @@ export default function ProjectModal({
                 <button
                   type="button"
                   onClick={onClose}
+                  aria-label="Close dialog"
                   className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-muted hover:text-foreground transition-colors cursor-pointer"
                 >
                   <CloseIcon className="h-5 w-5" />
@@ -192,7 +227,7 @@ export default function ProjectModal({
                   {/* Challenge */}
                   <div className="space-y-2">
                     <h4 className="font-display text-base font-bold text-foreground uppercase tracking-wide">
-                      {locale === "ru" ? "Проблема" : "Challenge"}
+                      {messages.challenge}
                     </h4>
                     <p className="text-sm leading-relaxed text-muted text-pretty">
                       {copy.challenge}
@@ -202,7 +237,7 @@ export default function ProjectModal({
                   {/* Solution */}
                   <div className="space-y-2">
                     <h4 className="font-display text-base font-bold text-foreground uppercase tracking-wide">
-                      {locale === "ru" ? "Решение" : "Solution"}
+                      {messages.solution}
                     </h4>
                     <p className="text-sm leading-relaxed text-muted text-pretty">
                       {copy.solution}
@@ -214,7 +249,7 @@ export default function ProjectModal({
                   {/* Achievements Checklist */}
                   <div className="space-y-3">
                     <h4 className="font-display text-base font-bold text-foreground uppercase tracking-wide">
-                      {locale === "ru" ? "Достижения" : "Achievements"}
+                      {messages.achievements}
                     </h4>
                     <ul className="space-y-2.5">
                       {copy.achievements.map((ach, idx) => (

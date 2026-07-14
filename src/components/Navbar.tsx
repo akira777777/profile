@@ -16,6 +16,8 @@ type NavText = {
   contact: string;
   menu: string;
   downloadCv: string;
+  siteName: string;
+  siteInitials: string;
 };
 
 const NAV_IDS = ["about", "skills", "projects", "education", "languages", "contact"] as const;
@@ -35,15 +37,22 @@ export default function Navbar({
   const progressBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (windowHeight > 0) {
-        const percent = (window.scrollY / windowHeight) * 100;
-        if (progressBarRef.current) {
-          progressBarRef.current.style.width = `${percent}%`;
-        }
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+          if (windowHeight > 0) {
+            const percent = (window.scrollY / windowHeight) * 100;
+            if (progressBarRef.current) {
+              progressBarRef.current.style.width = `${percent}%`;
+            }
+          }
+          setScrolled(window.scrollY > 8);
+          ticking = false;
+        });
+        ticking = true;
       }
-      setScrolled(window.scrollY > 8);
     };
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -75,8 +84,7 @@ export default function Navbar({
   }, []);
 
   const items = NAV_IDS.map((id) => ({ id, label: nav[id] }));
-  const name = locale === "ru" ? "Артём Михайлов" : "Artem Mikhailov";
-  const role = locale === "ru" ? "Frontend" : "Frontend";
+  const name = nav.siteName;
 
   return (
     <header className="sticky top-3 z-50 px-3 sm:px-5">
@@ -98,18 +106,18 @@ export default function Navbar({
           />
         </div>
 
-      <nav className="relative flex h-16 w-full items-center justify-between px-4 sm:h-[4.5rem] sm:px-6">
+      <nav aria-label="Main navigation" className="relative flex h-16 w-full items-center justify-between px-4 sm:h-[4.5rem] sm:px-6">
         <Link
           href={locale === "ru" ? "/" : "/en"}
           className="group flex min-w-0 items-center gap-2.5"
         >
           <span className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden bg-foreground text-sm font-bold text-background transition-transform group-hover:scale-105">
-            <span>{locale === "ru" ? "АМ" : "AM"}</span>
+            <span>{nav.siteInitials}</span>
             <span className="absolute bottom-0 left-0 h-1 w-full bg-accent-secondary" />
           </span>
           <span className="hidden min-w-0 flex-col leading-tight sm:flex">
             <span className="truncate text-sm font-bold text-foreground">{name}</span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">{role}</span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-muted">Frontend</span>
           </span>
         </Link>
 
@@ -152,13 +160,14 @@ export default function Navbar({
               type="button"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label={nav.menu}
+              aria-expanded={isMobileMenuOpen}
               className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-border bg-card/80 text-foreground shadow-sm backdrop-blur transition-colors hover:bg-card-strong"
             >
               <MenuIcon className="h-5 w-5" />
             </button>
 
             {isMobileMenuOpen && (
-              <div className="fixed inset-x-0 top-20 z-40 origin-top border-y border-border bg-background/96 px-5 py-4 shadow-2xl backdrop-blur-xl transition-all duration-200 sm:px-8">
+              <div role="dialog" aria-modal="true" aria-label={nav.menu} className="fixed inset-x-0 top-20 z-40 origin-top border-y border-border bg-background/96 px-5 py-4 shadow-2xl backdrop-blur-xl transition-all duration-200 sm:px-8">
                 <ul className="mx-auto flex w-full max-w-6xl flex-col gap-1">
                   {items.map((item) => (
                     <li key={item.id}>

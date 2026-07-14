@@ -6,6 +6,8 @@ export const en: Messages = {
     description:
       "Portfolio of Artem Mikhailov: frontend developer working with Next.js, React and TypeScript. I help build fast, clear and polished web interfaces for business.",
   },
+  siteName: "Artem Mikhailov",
+  siteInitials: "AM",
   nav: {
     about: "About",
     skills: "Skills",
@@ -75,6 +77,11 @@ export const en: Messages = {
     live: "View result",
     featured: "Key project",
     allCategories: "All",
+    caseStudy: "Case Study",
+    projectsCount: "projects",
+    challenge: "Challenge",
+    solution: "Solution",
+    achievements: "Achievements",
     noProjects: "No projects found.",
     categories: {
       tours: "Healthcare",
@@ -210,6 +217,7 @@ export const en: Messages = {
       "A practical IT program focused on programming, databases, web development and software product structure. It gave me more than theory: it trained me to approach tasks systematically, from data structure and application logic to interfaces people can actually use.",
     timelineLabel: "Growth & Experience Timeline",
     timelineHint: "* Click on any milestone to view detailed achievements.",
+    timelineTitle: "Chronological Milestones",
     timeline: [
       {
         year: "2019",
@@ -265,6 +273,15 @@ export const en: Messages = {
     placeholder: "Type a command (e.g. help)...",
     welcome: "Welcome to Artem Mikhailov CLI v1.0.0. Type 'help' for a list of available commands.",
     notFound: "Command not found. Type 'help' for a list of commands.",
+    helpHint: "Type 'help' to see all available commands.",
+    themeToggle: "toggle dark/light theme",
+    languageSwitch: "switch language to Russian",
+    crtToggle: "toggle retro CRT screen effect",
+    themeDark: "DARK",
+    themeLight: "LIGHT",
+    crtEnabled: "ENABLED",
+    crtDisabled: "DISABLED",
+    languageRedirect: "Redirecting to Russian version...",
     commands: {
       help: {
         desc: "Show available commands",
@@ -316,6 +333,10 @@ export const en: Messages = {
       configHint: "Add the Web3Forms key to enable sending (see README).",
     },
     direct: "Convenient contact channels",
+    quickTemplates: "Quick message templates:",
+    presetJob: { label: "Job Opportunity", text: "Hi Artem, I came across your portfolio and would like to discuss an open frontend developer opportunity with our team." },
+    presetProject: { label: "Project Collaboration", text: "Hi Artem, we have a Next.js/React project coming up and would love to discuss a potential collaboration." },
+    presetHello: { label: "Say Hello", text: "Hi Artem! Cool portfolio, especially the interactive terminal dashboard. Best of luck!" },
     copy: "Copied",
   },
   footer: {
@@ -326,4 +347,11 @@ export const en: Messages = {
   theme: {
     toggle: "Toggle theme",
   },
+  notFound: {
+    title: "Page not found",
+    description: "The page you're looking for doesn't exist or has been moved.",
+    goHome: "Go home",
+    english: "English",
+  },
+  skipToContent: "Skip to content",
 };

@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import type { Locale } from "@/i18n/config";
 import { site } from "@/lib/site";
 import { ArrowUpIcon } from "./icons";
 
@@ -9,30 +7,22 @@ export default function Footer({
   rights,
   builtWith,
   backToTop,
-  locale,
+  siteName,
 }: {
   rights: string;
   builtWith: string;
   backToTop: string;
-  locale: Locale;
+  siteName: string;
 }) {
-  const name = locale === "ru" ? "Артём Михайлов" : "Artem Mikhailov";
-  const [year, setYear] = useState(2026);
-
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => {
-      setYear(new Date().getFullYear());
-    });
-    return () => cancelAnimationFrame(frame);
-  }, []);
+  const year = new Date().getFullYear();
 
   return (
     <footer className="border-t border-border bg-card/20 px-5 py-10 sm:px-8">
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row">
         <div className="text-center sm:text-left">
-          <p className="text-sm font-semibold">{name}</p>
+          <p className="text-sm font-semibold">{siteName}</p>
           <p className="mt-1 text-xs text-muted">
-            © {year} {name}. {rights}
+            © {year} {siteName}. {rights}
           </p>
           <p className="mt-1 text-xs text-muted">{builtWith}</p>
         </div>

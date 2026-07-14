@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import type { Locale } from "@/i18n/config";
 import type { Messages } from "@/i18n/dictionaries";
+import { site } from "@/lib/site";
 import { Section, SectionHeading } from "./ui/Section";
 import GlowCard from "./ui/GlowCard";
 
@@ -20,7 +21,7 @@ export default function Terminal({ messages, locale }: TerminalProps) {
   const t = messages.terminal;
   const [history, setHistory] = useState<LogLine[]>(() => [
     { text: messages.terminal.welcome, type: "system" },
-    { text: locale === "ru" ? "Введите 'help' для просмотра списка команд." : "Type 'help' to see all available commands.", type: "info" }
+    { text: messages.terminal.helpHint, type: "info" }
   ]);
   const [inputVal, setInputVal] = useState("");
   const [crtMode, setCrtMode] = useState(false);
@@ -106,9 +107,9 @@ export default function Terminal({ messages, locale }: TerminalProps) {
     switch (command) {
       case "help":
         newLines.push({ text: t.commands.help.output, type: "output" });
-        newLines.push({ text: "theme      - " + (locale === "ru" ? "переключить темную/светлую тему" : "toggle dark/light theme"), type: "info" });
-        newLines.push({ text: "language   - " + (locale === "ru" ? "переключить язык на английский" : "switch language to Russian"), type: "info" });
-        newLines.push({ text: "crt        - " + (locale === "ru" ? "переключить эффект старого монитора" : "toggle retro CRT screen effect"), type: "info" });
+        newLines.push({ text: "theme      - " + t.themeToggle, type: "info" });
+        newLines.push({ text: "language   - " + t.languageSwitch, type: "info" });
+        newLines.push({ text: "crt        - " + t.crtToggle, type: "info" });
         break;
 
       case "about":
@@ -149,8 +150,8 @@ export default function Terminal({ messages, locale }: TerminalProps) {
 
       case "contact":
         newLines.push({ text: `=== ${messages.contact.title} ===`, type: "info" });
-        newLines.push({ text: `Email: fear75412@gmail.com`, type: "output" });
-        newLines.push({ text: `Telegram: https://t.me/liltrafficRUS`, type: "output" });
+        newLines.push({ text: `Email: ${site.email}`, type: "output" });
+        newLines.push({ text: `Telegram: ${site.telegramUrl}`, type: "output" });
         break;
 
       case "clear":
@@ -164,7 +165,7 @@ export default function Terminal({ messages, locale }: TerminalProps) {
         root.classList.toggle("dark", next);
         localStorage.setItem("theme", next ? "dark" : "light");
         newLines.push({
-          text: locale === "ru" ? `Тема переключена на ${next ? "ТЕМНУЮ" : "СВЕТЛУЮ"}` : `Theme changed to ${next ? "DARK" : "LIGHT"}`,
+          text: `Theme changed to ${next ? t.themeDark : t.themeLight}`,
           type: "system",
         });
         break;
@@ -173,7 +174,7 @@ export default function Terminal({ messages, locale }: TerminalProps) {
       case "crt":
         setCrtMode((prev) => !prev);
         newLines.push({
-          text: locale === "ru" ? `Эффект CRT ${!crtMode ? "ВКЛЮЧЕН" : "ВЫКЛЮЧЕН"}` : `CRT screen effect ${!crtMode ? "ENABLED" : "DISABLED"}`,
+          text: `CRT screen effect ${!crtMode ? t.crtEnabled : t.crtDisabled}`,
           type: "system",
         });
         break;
@@ -182,7 +183,7 @@ export default function Terminal({ messages, locale }: TerminalProps) {
       case "lang": {
         const other = locale === "ru" ? "en" : "ru";
         newLines.push({
-          text: locale === "ru" ? "Перенаправление на английскую версию..." : "Redirecting to Russian version...",
+          text: t.languageRedirect,
           type: "system",
         });
         setHistory((prev) => [...prev, ...newLines]);
@@ -211,7 +212,7 @@ export default function Terminal({ messages, locale }: TerminalProps) {
   };
 
   return (
-    <Section bgLetter="C" id="terminal-section" className="border-t border-border bg-card/10 pb-20">
+    <Section id="terminal-section" className="border-t border-border bg-card/10 pb-20">
       <SectionHeading
         eyebrow="07"
         title={t.title}
@@ -264,6 +265,7 @@ export default function Terminal({ messages, locale }: TerminalProps) {
                 onChange={(e) => setInputVal(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder={t.placeholder}
+                aria-label={t.placeholder}
                 className="bg-transparent text-slate-100 outline-none border-none flex-1 p-0 font-mono text-sm leading-normal focus:ring-0 focus:outline-none placeholder:text-zinc-800"
                 autoComplete="off"
                 autoCapitalize="off"

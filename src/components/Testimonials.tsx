@@ -15,15 +15,16 @@ export default function Testimonials({
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   const items = testimonials.items || [];
 
   const handleNext = useCallback(() => {
-    if (isAnimating || items.length === 0) return;
+    if (isAnimating || isPaused || items.length === 0) return;
     setIsAnimating(true);
     setActiveIndex((prev) => (prev + 1) % items.length);
     setTimeout(() => setIsAnimating(false), 500);
-  }, [isAnimating, items.length]);
+  }, [isAnimating, isPaused, items.length]);
 
   const handlePrev = useCallback(() => {
     if (isAnimating || items.length === 0) return;
@@ -43,7 +44,7 @@ export default function Testimonials({
   if (items.length === 0) return null;
 
   return (
-    <Section bgLetter="T" id="testimonials" className="border-t border-border">
+    <Section id="testimonials" className="border-t border-border">
       <SectionHeading
         eyebrow="05"
         title={testimonials.title}
@@ -51,7 +52,11 @@ export default function Testimonials({
       />
       <div className="mt-8 flex flex-col items-center">
         <FadeIn className="w-full max-w-3xl">
-          <GlowCard className="border border-border bg-card/45 p-6 md:p-10">
+          <GlowCard
+            className="border border-border bg-card/45 p-6 md:p-10"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
             <div className="relative min-h-[220px] md:min-h-[180px] overflow-hidden">
               {/* Decorative quote mark */}
               <svg

@@ -111,6 +111,7 @@ export default function Hero({ hero }: HeroProps) {
               src="/hero-portrait.jpg"
               alt="Artem Mikhailov Portrait"
               fill
+              sizes="(max-width: 1024px) 100vw, 340px"
               priority
               className="object-cover object-center grayscale contrast-[1.08] brightness-[0.88] transition-all duration-700 ease-out group-hover:scale-105 group-hover:grayscale-0 group-hover:brightness-100"
             />
@@ -154,7 +155,7 @@ export default function Hero({ hero }: HeroProps) {
         </FadeIn>
       </div>
 
-      <div className="hover-pause relative left-[calc(-50vw+50%)] my-4 w-screen overflow-hidden border-y border-border bg-card/50 py-2 backdrop-blur select-none sm:my-6 sm:py-3">
+      <div aria-hidden="true" className="hover-pause relative left-[calc(-50vw+50%)] my-4 w-screen overflow-hidden border-y border-border bg-card/50 py-2 backdrop-blur select-none sm:my-6 sm:py-3">
         <div className="flex animate-marquee whitespace-nowrap text-[10px] font-bold uppercase text-muted tracking-wider opacity-35">
           <span className="px-4">{hero.ticker} •</span>
           <span className="px-4">{hero.ticker} •</span>

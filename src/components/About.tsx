@@ -54,7 +54,7 @@ function AnimatedCounter({ target, duration = 1.5 }: { target: number; duration?
 
 export default function About({ about }: { about: About }) {
   return (
-    <Section bgLetter="A" id="about">
+    <Section id="about">
       <div className="mt-8 grid gap-8 lg:grid-cols-[1.45fr_0.95fr] lg:gap-12">
         <div>
           <SectionHeading eyebrow="01" title={about.title} />

@@ -17,7 +17,7 @@ export default function Skills({ skills }: { skills: Skills }) {
   const entries = Object.entries(skills.groups) as [string, { label: string; items: string[] }][];
 
   return (
-    <Section bgLetter="S" id="skills" className="border-y border-border bg-card/20">
+    <Section id="skills" className="border-y border-border bg-card/20">
       <SectionHeading eyebrow="02" title={skills.title} subtitle={skills.subtitle} />
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {entries.map(([key, group], i) => {

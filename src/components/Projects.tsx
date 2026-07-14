@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import type { Messages } from "@/i18n/dictionaries";
 import { projects as projectData, type Project, type ProjectCategoryKey } from "@/lib/projects";
 import Image from "next/image";
@@ -38,7 +38,7 @@ function LivePreview({ url, isHovered }: { url: string; isHovered: boolean }) {
           title="Live preview"
           className="h-full w-full border-0 pointer-events-none"
           loading="lazy"
-          sandbox="allow-scripts allow-same-origin"
+          sandbox="allow-scripts"
           style={{ transform: "scale(0.5)", transformOrigin: "top left", width: "200%", height: "200%" }}
           onLoad={() => setLoaded(true)}
         />
@@ -140,12 +140,10 @@ function CardVisual({
 function ProjectCard({
   project,
   messages,
-  locale,
   onSelect,
 }: {
   project: Project;
   messages: ProjectsMessages;
-  locale: string;
   onSelect: (p: Project) => void;
 }) {
   const copy = messages.items[project.id as keyof typeof messages.items];
@@ -198,7 +196,7 @@ function ProjectCard({
                   onClick={() => onSelect(project)}
                   className="hover-slash-draw inline-flex items-center gap-1 text-sm font-semibold text-foreground cursor-pointer"
                 >
-                  {locale === "ru" ? "Детали проекта" : "Case Study"}
+                  {messages.caseStudy}
                   <span className="text-xs">→</span>
                 </button>
 
@@ -248,7 +246,7 @@ function ProjectCard({
                   onClick={() => onSelect(project)}
                   className="hover-slash-draw inline-flex items-center gap-1 text-sm font-semibold text-foreground cursor-pointer"
                 >
-                  {locale === "ru" ? "Детали проекта" : "Case Study"}
+                  {messages.caseStudy}
                   <span className="text-xs">→</span>
                 </button>
 
@@ -272,7 +270,7 @@ function ProjectCard({
   );
 }
 
-export default function Projects({ projects, locale }: { projects: ProjectsMessages; locale: string }) {
+export default function Projects({ projects }: { projects: ProjectsMessages }) {
   const [activeCategory, setActiveCategory] = useState<"all" | ProjectCategoryKey>("all");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -287,7 +285,7 @@ export default function Projects({ projects, locale }: { projects: ProjectsMessa
   const rest = filteredProjects.filter((p) => !p.featured);
 
   return (
-    <Section bgLetter="P" id="projects">
+    <Section id="projects">
       <SectionHeading eyebrow="03" title={projects.title} subtitle={projects.subtitle} />
 
       {/* Category Filter Bar */}
@@ -295,6 +293,7 @@ export default function Projects({ projects, locale }: { projects: ProjectsMessa
         <button
           type="button"
           onClick={() => setActiveCategory("all")}
+          aria-pressed={activeCategory === "all"}
           className={`px-4 py-2 text-xs font-semibold border transition-all duration-300 ${
             activeCategory === "all"
               ? "bg-accent border-accent text-accent-foreground shadow-lg shadow-accent/10"
@@ -308,6 +307,7 @@ export default function Projects({ projects, locale }: { projects: ProjectsMessa
             key={key}
             type="button"
             onClick={() => setActiveCategory(key)}
+            aria-pressed={activeCategory === key}
             className={`px-4 py-2 text-xs font-semibold border transition-all duration-300 ${
               activeCategory === key
                 ? "bg-accent border-accent text-accent-foreground shadow-lg shadow-accent/10"
@@ -321,7 +321,7 @@ export default function Projects({ projects, locale }: { projects: ProjectsMessa
 
       {/* Projects count */}
       <p className="mt-4 text-xs font-mono text-muted">
-        {filteredProjects.length} {locale === "ru" ? "проектов" : "projects"}
+        {filteredProjects.length} {projects.projectsCount}
       </p>
 
       {/* Projects Grid/List */}
@@ -329,7 +329,7 @@ export default function Projects({ projects, locale }: { projects: ProjectsMessa
         {featured ? (
           <FadeIn key={featured.id}>
             <div className="transition-transform duration-300 hover:-translate-y-0.5">
-              <ProjectCard project={featured} messages={projects} locale={locale} onSelect={setSelectedProject} />
+              <ProjectCard project={featured} messages={projects} onSelect={setSelectedProject} />
             </div>
           </FadeIn>
         ) : null}
@@ -339,7 +339,7 @@ export default function Projects({ projects, locale }: { projects: ProjectsMessa
             {rest.map((project, i) => (
               <FadeIn key={project.id} delay={0.05 + i * 0.05}>
                 <div className="transition-transform duration-300 hover:-translate-y-0.5">
-                  <ProjectCard project={project} messages={projects} locale={locale} onSelect={setSelectedProject} />
+                  <ProjectCard project={project} messages={projects} onSelect={setSelectedProject} />
                 </div>
               </FadeIn>
             ))}
@@ -355,7 +355,6 @@ export default function Projects({ projects, locale }: { projects: ProjectsMessa
         isOpen={!!selectedProject}
         onClose={() => setSelectedProject(null)}
         project={selectedProject}
-        locale={locale}
         messages={projects}
       />
     </Section>

@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Messages } from "@/i18n/dictionaries";
-import type { Locale } from "@/i18n/config";
 import { GraduationIcon } from "./icons";
 import { Section, SectionHeading } from "./ui/Section";
 import FadeIn from "./ui/FadeIn";
@@ -13,10 +12,8 @@ type Education = Messages["education"];
 
 export default function Education({
   education,
-  locale,
 }: {
   education: Education;
-  locale: Locale;
 }) {
   const [activeMilestoneIndex, setActiveMilestoneIndex] = useState<number | null>(
     education.timeline && education.timeline.length > 0 ? education.timeline.length - 1 : null
@@ -27,7 +24,7 @@ export default function Education({
   };
 
   return (
-    <Section bgLetter="E" id="education" className="border-y border-border bg-card/20">
+    <Section id="education" className="border-y border-border bg-card/20">
       <SectionHeading eyebrow="04" title={education.title} />
       <div className="mt-8">
         <FadeIn>
@@ -83,7 +80,7 @@ export default function Education({
           <div className="mt-16 max-w-4xl mx-auto">
             <h4 className="font-display text-lg font-bold text-foreground mb-4 border-b border-border pb-3 flex items-center gap-2">
               <span className="h-2 w-2 bg-accent rounded-full animate-pulse" />
-              {locale === "ru" ? "Хронология развития" : "Chronological Milestones"}
+              {education.timelineTitle}
             </h4>
             
             {/* Timeline Hint */}
@@ -113,6 +110,9 @@ export default function Education({
 
                       <div
                         onClick={() => toggleMilestone(index)}
+                        onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggleMilestone(index); } }}
+                        role="button"
+                        tabIndex={0}
                         className="cursor-pointer"
                       >
                         <span className={`font-mono text-xs font-bold block tracking-wider transition-colors duration-200 ${

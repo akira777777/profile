@@ -81,7 +81,7 @@ export default function Languages({ languages }: { languages: Languages }) {
   }));
 
   return (
-    <Section bgLetter="L" id="languages">
+    <Section id="languages">
       <SectionHeading eyebrow="06" title={languages.title} subtitle={languages.subtitle} />
       <div className="mt-8 grid gap-4 sm:grid-cols-3">
         {items.map((item, i) => {

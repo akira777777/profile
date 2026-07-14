@@ -51,7 +51,7 @@ export async function generateMetadata({
     metadataBase: new URL(site.url),
     title: {
       default: t.meta.title,
-      template: `%s · ${locale === "ru" ? "Артём Михайлов" : "Artem Mikhailov"}`,
+      template: `%s · ${t.siteName}`,
     },
     description: t.meta.description,
     applicationName: t.meta.title,
@@ -83,11 +83,13 @@ export async function generateMetadata({
       title: t.meta.title,
       description: t.meta.description,
       locale: locale === "ru" ? "ru_RU" : "en_US",
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: t.meta.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: t.meta.title,
       description: t.meta.description,
+      images: ["/og-image.png"],
     },
     robots: { index: true, follow: true },
   };
@@ -130,9 +132,9 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-accent focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-accent-foreground"
         >
-          {locale === "ru" ? "Перейти к содержимому" : "Skip to content"}
+          {t.skipToContent}
         </a>
-        <Navbar nav={t.nav} themeToggle={t.theme.toggle} locale={locale} />
+        <Navbar nav={{ ...t.nav, siteName: t.siteName, siteInitials: t.siteInitials }} themeToggle={t.theme.toggle} locale={locale} />
         <main id="main" className="flex-1">
           {children}
         </main>
@@ -140,7 +142,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
           rights={t.footer.rights}
           builtWith={t.footer.builtWith}
           backToTop={t.footer.backToTop}
-          locale={locale}
+          siteName={t.siteName}
         />
       </body>
     </html>

@@ -2,7 +2,6 @@
 
 import { useState, type FormEvent } from "react";
 import type { Messages } from "@/i18n/dictionaries";
-import type { Locale } from "@/i18n/config";
 import { site } from "@/lib/site";
 import {
   CheckIcon,
@@ -25,10 +24,8 @@ type Status = "idle" | "submitting" | "success" | "error";
 
 export default function Contact({
   contact,
-  locale,
 }: {
   contact: ContactMessages;
-  locale: Locale;
 }) {
   const f = contact.form;
   const [status, setStatus] = useState<Status>("idle");
@@ -52,11 +49,15 @@ export default function Contact({
 
     try {
       setStatus("submitting");
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 15000);
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(payload),
+        signal: controller.signal,
       });
+      clearTimeout(timeout);
       const json = await res.json();
       if (json.success) {
         setStatus("success");
@@ -80,14 +81,10 @@ export default function Contact({
     }
   }
 
-  const presets = locale === "ru" ? [
-    { label: "Вакансия", text: "Здравствуйте, Артём! Меня заинтересовало ваше портфолио. Хочу обсудить открытую вакансию frontend-разработчика." },
-    { label: "Проект", text: "Привет, Артём! Есть интересный проект на Next.js/React. Давай обсудим сотрудничество." },
-    { label: "Написать привет", text: "Привет, Артём! Отличное портфолио, особенно интерактивный терминал! Успехов в кодинге!" }
-  ] : [
-    { label: "Job Opportunity", text: "Hi Artem, I came across your portfolio and would like to discuss an open frontend developer opportunity with our team." },
-    { label: "Project Collaboration", text: "Hi Artem, we have a Next.js/React project coming up and would love to discuss a potential collaboration." },
-    { label: "Say Hello", text: "Hi Artem! Cool portfolio, especially the interactive terminal dashboard. Best of luck!" }
+  const presets = [
+    { label: contact.presetJob.label, text: contact.presetJob.text },
+    { label: contact.presetProject.label, text: contact.presetProject.text },
+    { label: contact.presetHello.label, text: contact.presetHello.text },
   ];
 
   const directLinks = [
@@ -107,7 +104,7 @@ export default function Contact({
   ];
 
   return (
-    <Section bgLetter="C" id="contact">
+    <Section id="contact">
       <SectionHeading eyebrow="08" title={contact.title} subtitle={contact.subtitle} align="center" />
       <div className="mt-8 grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
         <FadeIn>
@@ -156,7 +153,7 @@ export default function Contact({
               {/* Quick presets */}
               <div className="mt-4 flex flex-col gap-1.5">
                 <span className="text-xs font-semibold text-muted">
-                  {locale === "ru" ? "Быстрые шаблоны сообщений:" : "Quick message templates:"}
+                  {contact.quickTemplates}
                 </span>
                 <div className="flex flex-wrap gap-2 mt-1">
                   {presets.map((p, idx) => (
@@ -226,6 +223,7 @@ export default function Contact({
               <button
                 type="button"
                 onClick={copyEmail}
+                aria-label="Copy email address"
                 className="group flex items-center justify-between gap-3 border border-border bg-card/45 p-4 text-left transition-all hover:border-accent/45 hover:bg-card/75 cursor-pointer w-full"
               >
                 <span className="flex min-w-0 items-center gap-3">

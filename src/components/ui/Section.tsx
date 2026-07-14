@@ -7,7 +7,6 @@ export function Section({
 }: {
   id?: string;
   children: ReactNode;
-  bgLetter?: string;
   className?: string;
 }) {
   return (

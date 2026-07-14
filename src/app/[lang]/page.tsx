@@ -27,12 +27,12 @@ export default async function HomePage({ params }: PageProps) {
       <Hero hero={t.hero} />
       <About about={t.about} />
       <Skills skills={t.skills} />
-      <Projects projects={t.projects} locale={locale} />
-      <Education education={t.education} locale={locale} />
+      <Projects projects={t.projects} />
+      <Education education={t.education} />
       <Testimonials testimonials={t.testimonials} />
       <Languages languages={t.languages} />
       <Terminal messages={t} locale={locale} />
-      <Contact contact={t.contact} locale={locale} />
+      <Contact contact={t.contact} />
     </>
   );
 }
