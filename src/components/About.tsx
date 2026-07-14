@@ -16,17 +16,17 @@ const stats = [
 
 function AnimatedCounter({ target, duration = 1.5 }: { target: number; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [count, setCount] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
 
+    let hasAnimated = false;
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry?.isIntersecting || hasAnimated) return;
-        setHasAnimated(true);
+        hasAnimated = true;
         observer.disconnect();
 
         const start = performance.now();
@@ -35,7 +35,11 @@ function AnimatedCounter({ target, duration = 1.5 }: { target: number; duration?
           const progress = Math.min(elapsed / duration, 1);
           // Ease out cubic
           const eased = 1 - Math.pow(1 - progress, 3);
-          setCount(Math.round(eased * target));
+          
+          if (ref.current) {
+            ref.current.textContent = Math.round(eased * target).toString();
+          }
+
           if (progress < 1) {
             requestAnimationFrame(animate);
           }
@@ -47,9 +51,9 @@ function AnimatedCounter({ target, duration = 1.5 }: { target: number; duration?
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [target, duration, hasAnimated]);
+  }, [target, duration]);
 
-  return <span ref={ref}>{count}</span>;
+  return <span ref={ref}>0</span>;
 }
 
 export default function About({ about }: { about: About }) {

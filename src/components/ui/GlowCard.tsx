@@ -2,9 +2,8 @@
 
 import React, { useRef, useState } from "react";
 
-type GlowCardProps = {
+type GlowCardProps = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode;
-  className?: string;
   glowColor?: string;
   glowSize?: number;
 };
@@ -14,6 +13,10 @@ export default function GlowCard({
   className = "",
   glowColor = "var(--accent-soft)",
   glowSize = 350,
+  onMouseMove,
+  onMouseEnter,
+  onMouseLeave,
+  ...props
 }: GlowCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -26,19 +29,34 @@ export default function GlowCard({
     const y = e.clientY - rect.top;
     card.style.setProperty("--mouse-x", `${x}px`);
     card.style.setProperty("--mouse-y", `${y}px`);
+    
+    if (onMouseMove) {
+      onMouseMove(e);
+    }
+  };
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    setIsHovered(true);
+    if (onMouseEnter) onMouseEnter(e);
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+    setIsHovered(false);
+    if (onMouseLeave) onMouseLeave(e);
   };
 
   return (
     <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
       className={`relative overflow-hidden rounded-xl border border-border bg-card/70 shadow-[0_16px_48px_rgba(15,23,42,0.05)] backdrop-blur-xl transition-colors hover:border-accent/40 dark:shadow-[0_16px_48px_rgba(0,0,0,0.2)] ${className}`}
       style={{
         "--mouse-x": "-999px",
         "--mouse-y": "-999px",
       } as React.CSSProperties}
+      {...props}
     >
       {isHovered && (
         <div
