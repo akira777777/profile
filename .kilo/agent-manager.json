@@ -16,11 +16,16 @@
     "ses_0de76e62affeyVzLivdVB4jmJR": {
       "worktreeId": "wt-1782974058155-1",
       "createdAt": "2026-07-02T06:34:21.021Z"
+    },
+    "ses_0a0b476d6ffeEwkWR3G9aJbsQT": {
+      "worktreeId": null,
+      "createdAt": "2026-07-14T06:23:33.700Z"
     }
   },
   "tabOrder": {
     "local": [
-      "pending:1"
+      "pending:1",
+      "ses_0a0b476d6ffeEwkWR3G9aJbsQT"
     ],
     "wt-1782974058155-1": [
       "ses_0de76f12fffeSKcPT7TYcgN1bY",
@@ -29,5 +34,6 @@
   },
   "worktreeOrder": [
     "wt-1782974058155-1"
-  ]
+  ],
+  "sessionsCollapsed": false
 }
