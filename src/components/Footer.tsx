@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import { site } from "@/lib/site";
 import { ArrowUpIcon } from "./icons";
+import CurrentYear from "./ui/CurrentYear";
 
 export default function Footer({
   rights,
@@ -12,15 +14,13 @@ export default function Footer({
   backToTop: string;
   siteName: string;
 }) {
-  const year = new Date().getFullYear();
-
   return (
     <footer className="border-t border-border bg-card/20 px-5 py-10 sm:px-8">
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-6 sm:flex-row">
         <div className="text-center sm:text-left">
           <p className="text-sm font-semibold">{siteName}</p>
           <p className="mt-1 text-xs text-muted">
-            © {year} {siteName}. {rights}
+            © <Suspense><CurrentYear /></Suspense> {siteName}. {rights}
           </p>
           <p className="mt-1 text-xs text-muted">{builtWith}</p>
         </div>
