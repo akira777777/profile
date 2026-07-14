@@ -218,9 +218,7 @@ export default function Terminal({ messages, locale }: TerminalProps) {
         subtitle={t.subtitle}
       />
       <div className="mt-8">
-        <GlowCard className={`w-full border border-border bg-black/95 text-green-400 font-mono text-sm shadow-2xl overflow-hidden rounded-md ${
-          crtMode ? "crt-screen crt-flicker-anim" : ""
-        }`}>
+        <GlowCard className="w-full border border-border bg-slate-950/98 text-slate-100 font-mono text-sm shadow-2xl overflow-hidden rounded-md">
           {/* Windows / macOS header bar */}
           <div className="flex items-center justify-between bg-zinc-900 px-4 py-2.5 border-b border-zinc-800 select-none z-30 relative">
             <div className="flex gap-2">
@@ -230,34 +228,24 @@ export default function Terminal({ messages, locale }: TerminalProps) {
             </div>
             <span className="text-xs text-zinc-400 font-sans font-medium">artem@mikhailov:~</span>
             
-            {/* CRT Switcher */}
-            <button
-              type="button"
-              onClick={() => setCrtMode((v) => !v)}
-              className={`text-[10px] font-bold px-2 py-0.5 border cursor-pointer transition-all uppercase ${
-                crtMode
-                  ? "border-emerald-500 bg-emerald-500/10 text-emerald-400"
-                  : "border-zinc-700 bg-zinc-800 text-zinc-400 hover:border-zinc-500 hover:text-zinc-200"
-              }`}
-            >
-              CRT: {crtMode ? "ON" : "OFF"}
-            </button>
+            {/* IDE Console indicator */}
+            <span className="text-[9px] font-bold px-2 py-0.5 border border-zinc-700 bg-zinc-800 text-zinc-400 uppercase select-none">
+              IDE CONSOLE
+            </span>
           </div>
 
           {/* Console logs */}
           <div
             ref={containerRef}
             onClick={handleTerminalClick}
-            className={`h-80 overflow-y-auto p-4 flex flex-col gap-1.5 cursor-text no-scrollbar relative z-10 ${
-              crtMode ? "crt-phosphor-text" : ""
-            }`}
+            className="h-80 overflow-y-auto p-4 flex flex-col gap-1.5 cursor-text no-scrollbar relative z-10"
           >
             {history.map((line, idx) => {
-              let color = "text-zinc-300";
-              if (line.type === "input") color = "text-emerald-400 font-semibold";
-              if (line.type === "error") color = "text-red-400";
-              if (line.type === "info") color = "text-cyan-400";
-              if (line.type === "system") color = "text-amber-400 font-bold";
+              let color = "text-slate-300";
+              if (line.type === "input") color = "text-blue-400 font-semibold";
+              if (line.type === "error") color = "text-rose-400";
+              if (line.type === "info") color = "text-slate-400";
+              if (line.type === "system") color = "text-indigo-400 font-bold";
 
               return (
                 <div key={idx} className={`${color} leading-relaxed whitespace-pre-wrap`}>
@@ -268,7 +256,7 @@ export default function Terminal({ messages, locale }: TerminalProps) {
 
             {/* Input Line */}
             <form onSubmit={handleCommand} className="flex items-center mt-1">
-              <span className="text-emerald-400 font-semibold shrink-0">visitor@artem-mikhailov:~$ &nbsp;</span>
+              <span className="text-blue-400 font-semibold shrink-0">visitor@artem-mikhailov:~$ &nbsp;</span>
               <input
                 ref={inputRef}
                 type="text"
@@ -276,7 +264,7 @@ export default function Terminal({ messages, locale }: TerminalProps) {
                 onChange={(e) => setInputVal(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder={t.placeholder}
-                className="bg-transparent text-green-400 outline-none border-none flex-1 p-0 font-mono text-sm leading-normal focus:ring-0 focus:outline-none placeholder:text-zinc-700"
+                className="bg-transparent text-slate-100 outline-none border-none flex-1 p-0 font-mono text-sm leading-normal focus:ring-0 focus:outline-none placeholder:text-zinc-800"
                 autoComplete="off"
                 autoCapitalize="off"
                 spellCheck={false}

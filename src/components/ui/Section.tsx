@@ -3,7 +3,6 @@ import type { ReactNode } from "react";
 export function Section({
   id,
   children,
-  bgLetter,
   className = "",
 }: {
   id?: string;
@@ -16,11 +15,6 @@ export function Section({
       id={id}
       className={`relative overflow-hidden scroll-mt-24 px-5 py-16 sm:px-8 sm:py-20 ${className}`}
     >
-      {bgLetter && (
-        <div className="outline-text absolute -left-8 top-2 z-0 select-none opacity-55">
-          {bgLetter}
-        </div>
-      )}
       <div className="relative z-10 mx-auto w-full max-w-6xl">{children}</div>
     </section>
   );

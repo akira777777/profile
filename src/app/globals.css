@@ -3,38 +3,38 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f6f8ff;
-  --foreground: #0e1220;
-  --muted: #5b6478;
-  --card: rgba(255, 255, 255, 0.8);
-  --card-strong: rgba(255, 255, 255, 0.96);
-  --border: rgba(91, 76, 255, 0.2);
-  --accent: #5b4cff;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --muted: #475569;
+  --card: rgba(255, 255, 255, 0.7);
+  --card-strong: rgba(255, 255, 255, 0.95);
+  --border: rgba(148, 163, 184, 0.2);
+  --accent: #2563eb;
   --accent-foreground: #ffffff;
-  --accent-secondary: #ff6a3d;
-  --accent-tertiary: #06b6d4;
-  --accent-soft: rgba(91, 76, 255, 0.14);
-  --accent-secondary-soft: rgba(255, 106, 61, 0.14);
-  --ring: rgba(91, 76, 255, 0.38);
-  --glow: rgba(91, 76, 255, 0.2);
-  --surface-line: rgba(14, 18, 32, 0.07);
+  --accent-secondary: #0f172a;
+  --accent-tertiary: #475569;
+  --accent-soft: rgba(37, 99, 235, 0.08);
+  --accent-secondary-soft: rgba(15, 23, 42, 0.06);
+  --ring: rgba(37, 99, 235, 0.25);
+  --glow: rgba(37, 99, 235, 0.08);
+  --surface-line: rgba(15, 23, 42, 0.06);
 }
 
 .dark {
-  --background: #16161a;
-  --foreground: #f7f7fb;
-  --muted: #adaec0;
-  --card: rgba(36, 36, 44, 0.72);
-  --card-strong: rgba(52, 52, 64, 0.92);
-  --border: rgba(255, 255, 255, 0.12);
-  --accent: #8b7bff;
+  --background: #0b0f19;
+  --foreground: #f1f5f9;
+  --muted: #94a3b8;
+  --card: rgba(20, 26, 41, 0.7);
+  --card-strong: rgba(28, 36, 56, 0.9);
+  --border: rgba(255, 255, 255, 0.08);
+  --accent: #3b82f6;
   --accent-foreground: #ffffff;
-  --accent-secondary: #ff8a4c;
-  --accent-tertiary: #2dd4ec;
-  --accent-soft: rgba(139, 123, 255, 0.22);
-  --accent-secondary-soft: rgba(255, 138, 76, 0.18);
-  --ring: rgba(139, 123, 255, 0.46);
-  --glow: rgba(120, 96, 255, 0.32);
+  --accent-secondary: #94a3b8;
+  --accent-tertiary: #64748b;
+  --accent-soft: rgba(59, 130, 246, 0.12);
+  --accent-secondary-soft: rgba(148, 163, 184, 0.1);
+  --ring: rgba(59, 130, 246, 0.35);
+  --glow: rgba(59, 130, 246, 0.15);
   --surface-line: rgba(255, 255, 255, 0.08);
 }
 
@@ -64,10 +64,9 @@
   body {
     background-color: var(--background);
     background-image:
-      radial-gradient(circle at 16% 16%, color-mix(in oklab, var(--accent) 52%, transparent), transparent 24rem),
-      radial-gradient(circle at 86% 10%, color-mix(in oklab, var(--accent-tertiary) 40%, transparent), transparent 23rem),
-      radial-gradient(circle at 78% 74%, color-mix(in oklab, var(--accent-secondary) 36%, transparent), transparent 25rem),
-      linear-gradient(135deg, color-mix(in oklab, var(--background) 92%, #ffffff 8%), var(--background));
+      radial-gradient(circle at 10% 10%, color-mix(in oklab, var(--accent) 6%, transparent), transparent 30rem),
+      radial-gradient(circle at 90% 80%, color-mix(in oklab, var(--accent) 4%, transparent), transparent 30rem),
+      linear-gradient(180deg, var(--background), var(--background));
     background-attachment: fixed;
     color: var(--foreground);
     font-family: var(--font-sans), Arial, Helvetica, sans-serif;
@@ -76,14 +75,14 @@
     transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
   
-  /* Subtle editorial grain overlay fixed over everything. */
+  /* Extremely subtle editorial grain overlay fixed over everything. */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
     z-index: 1;
     pointer-events: none;
-    opacity: 0.028;
+    opacity: 0.015;
     mix-blend-mode: overlay;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
@@ -107,30 +106,21 @@
   }
 }
 
-/* Vibrant tri-tone gradient text for headings and accents. */
+/* Clean, subtle slate gradient for text */
 .text-gradient {
   background-image: linear-gradient(
-    100deg,
-    var(--accent) 0%,
-    color-mix(in oklab, var(--accent) 55%, var(--accent-tertiary)) 45%,
-    var(--accent-secondary) 100%
+    135deg,
+    var(--foreground) 30%,
+    var(--accent) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-/* Custom backdrop outline text for editorial ghost initials. */
+/* Custom backdrop outline text - hidden in the strict theme */
 .outline-text {
-  font-size: clamp(9rem, 26vw, 28rem);
-  font-weight: 800;
-  line-height: 0.78;
-  color: transparent;
-  -webkit-text-stroke: 1px color-mix(in oklab, var(--accent) 18%, transparent);
-  user-select: none;
-  pointer-events: none;
-  font-family: var(--font-display), var(--font-sans), sans-serif;
-  letter-spacing: 0;
+  display: none;
 }
 
 /* Infinite loop horizontal marquee */
@@ -179,10 +169,10 @@
     transform: translateY(0px) translateX(0px) scale(1);
   }
   33% {
-    transform: translateY(-25px) translateX(15px) scale(1.05);
+    transform: translateY(-10px) translateX(6px) scale(1.02);
   }
   66% {
-    transform: translateY(12px) translateX(-12px) scale(0.95);
+    transform: translateY(5px) translateX(-5px) scale(0.98);
   }
 }
 
@@ -193,7 +183,6 @@
 .animate-float-reverse {
   animation: float-slow 18s ease-in-out infinite reverse;
 }
-
 
 .fade-in {
   opacity: 0;
@@ -210,31 +199,6 @@
   will-change: auto;
 }
 
-/* Editorial inline highlight. */
-.gleamy-highlight {
-  position: relative;
-  z-index: 1;
-  display: inline-block;
-}
-
-.gleamy-highlight::after {
-  content: "";
-  position: absolute;
-  left: -2px;
-  right: -2px;
-  bottom: 0.08em;
-  height: 18%;
-  background: linear-gradient(90deg, var(--accent), color-mix(in oklab, var(--accent) 50%, var(--accent-tertiary)), var(--accent-secondary));
-  z-index: -1;
-  transform: skewX(-10deg);
-  opacity: 0.78;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.gleamy-highlight:hover::after {
-  transform: skewX(-10deg) scaleX(1.025);
-}
-
 /* Hover highlight draw-in effect for link text */
 .hover-slash-draw {
   position: relative;
@@ -247,8 +211,8 @@
   left: -4px;
   right: -4px;
   bottom: 0px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-tertiary));
   z-index: -1;
   transform: skewX(-20deg) scaleX(0);
   transform-origin: left;
@@ -260,37 +224,24 @@
   transform: skewX(-20deg) scaleX(1);
 }
 
-/* CRT/Retro Screen Terminal Styles */
+/* Clean Modern IDE console styling */
 .crt-screen {
   position: relative;
   overflow: hidden;
 }
 
 .crt-screen::before {
-  content: " ";
-  display: block;
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-  z-index: 20;
-  background-size: 100% 4px, 6px 100%;
-  pointer-events: none;
-}
-
-@keyframes crt-flicker {
-  0% { opacity: 0.982; }
-  50% { opacity: 0.995; }
-  100% { opacity: 0.982; }
+  content: "";
+  display: none;
 }
 
 .crt-flicker-anim {
-  animation: crt-flicker 0.15s infinite;
+  animation: none;
 }
 
 .crt-phosphor-text {
-  text-shadow: 0 0 6px rgba(52, 211, 153, 0.65);
+  text-shadow: none;
 }
-
 
 @media (prefers-reduced-motion: reduce) {
   html {

@@ -10,14 +10,9 @@ type HeroProps = {
 };
 
 export default function Hero({ hero }: HeroProps) {
-  const initial = hero.name.charAt(0);
-
   return (
     <section id="hero" className="relative -mt-20 overflow-hidden border-b border-border px-5 pb-5 pt-24 sm:px-8 sm:pb-8 sm:pt-28">
-      {/* Editorial background initials */}
-      <div className="outline-text pointer-events-none absolute -left-10 -top-12 z-0 select-none opacity-40 dark:opacity-55">
-        {initial}
-      </div>
+      {/* Clean, minimalist hero section layout */}
 
       <div
         aria-hidden="true"
@@ -110,18 +105,18 @@ export default function Hero({ hero }: HeroProps) {
         </div>
 
         <FadeIn delay={0.3} direction="left" className="hidden lg:block h-full relative">
-          <div className="group relative h-[520px] w-full select-none overflow-hidden rounded-[20px] border border-border/50 bg-card/30 shadow-[0_28px_90px_rgba(20,20,35,0.18)] backdrop-blur-xl dark:shadow-[0_28px_90px_rgba(0,0,0,0.34)]">
-            {/* Portrait Image */}
+          <div className="group relative h-[520px] w-full select-none overflow-hidden rounded-[20px] border border-border/60 bg-card/30 shadow-[0_28px_90px_rgba(20,20,35,0.1)] backdrop-blur-xl dark:shadow-[0_28px_90px_rgba(0,0,0,0.25)]">
+            {/* Portrait Image with strict grayscale filters for a serious, professional look */}
             <Image
               src="/hero-portrait.jpg"
               alt="Artem Mikhailov Portrait"
               fill
               priority
-              className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+              className="object-cover object-center grayscale contrast-[1.08] brightness-[0.88] transition-all duration-700 ease-out group-hover:scale-105 group-hover:grayscale-0 group-hover:brightness-100"
             />
             {/* Gradient Overlay for blending */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80" />
-            <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent opacity-40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent opacity-90" />
+            <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent opacity-30" />
 
             {/* Profile Info Overlay */}
             <div className="absolute bottom-5 left-5 right-5 border border-border/50 bg-background/80 backdrop-blur-md p-4 shadow-2xl transition-all duration-300 hover:border-accent/50">
@@ -160,7 +155,7 @@ export default function Hero({ hero }: HeroProps) {
       </div>
 
       <div className="hover-pause relative left-[calc(-50vw+50%)] my-4 w-screen overflow-hidden border-y border-border bg-card/50 py-2 backdrop-blur select-none sm:my-6 sm:py-3">
-        <div className="flex animate-marquee whitespace-nowrap text-[11px] font-bold uppercase text-accent/85">
+        <div className="flex animate-marquee whitespace-nowrap text-[10px] font-bold uppercase text-muted tracking-wider opacity-75">
           <span className="px-4">{hero.ticker} •</span>
           <span className="px-4">{hero.ticker} •</span>
           <span className="px-4">{hero.ticker} •</span>
