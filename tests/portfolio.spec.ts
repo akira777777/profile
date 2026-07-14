@@ -8,7 +8,7 @@ test.describe("Portfolio E2E Tests", () => {
     await expect(page).toHaveTitle(/Артём Михайлов/);
     
     // Look for RU header descriptor
-    const heroTitleRu = page.locator("h1");
+    const heroTitleRu = page.locator("h1").first();
     await expect(heroTitleRu).toContainText("Артём Михайлов");
 
     // Click language switcher (EN)
@@ -20,7 +20,7 @@ test.describe("Portfolio E2E Tests", () => {
     await page.waitForURL("**/en");
     await page.waitForSelector("html[data-hydrated='true']");
     await expect(page).toHaveTitle(/Artem Mikhailov/);
-    const heroTitleEn = page.locator("h1");
+    const heroTitleEn = page.locator("h1").first();
     await expect(heroTitleEn).toContainText("Artem Mikhailov");
   });
 
