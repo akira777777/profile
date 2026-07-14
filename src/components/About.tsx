@@ -9,8 +9,8 @@ import GlowCard from "./ui/GlowCard";
 type About = Messages["about"];
 
 const stats = [
-  { key: "projects", value: 5 },
-  { key: "years", value: 5 },
+  { key: "projects", value: 9 },
+  { key: "years", value: 6 },
   { key: "languages", value: 3 },
 ] as const;
 
