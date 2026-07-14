@@ -13,15 +13,11 @@ export default function Hero({ hero }: HeroProps) {
   const initial = hero.name.charAt(0);
 
   return (
-    <section id="hero" className="relative -mt-20 overflow-hidden border-b border-border px-5 pb-6 pt-28 sm:px-8 sm:pb-12 sm:pt-36">
+    <section id="hero" className="relative -mt-20 overflow-hidden border-b border-border px-5 pb-5 pt-24 sm:px-8 sm:pb-8 sm:pt-28">
       {/* Editorial background initials */}
       <div className="outline-text pointer-events-none absolute -left-10 -top-12 z-0 select-none opacity-40 dark:opacity-55">
         {initial}
       </div>
-
-      {/* Floating blur background orbs */}
-      <div className="floating-orb bg-accent/20 w-80 h-80 -top-20 -right-20 animate-float" />
-      <div className="floating-orb bg-accent-secondary/15 w-[360px] h-[360px] top-[40%] -left-40 animate-float-reverse" />
 
       <div
         aria-hidden="true"
@@ -41,7 +37,7 @@ export default function Hero({ hero }: HeroProps) {
         }}
       />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-6 sm:gap-8 lg:grid-cols-[1fr_360px] lg:items-end">
+      <div className="relative z-10 mx-auto grid w-full max-w-6xl gap-6 sm:gap-8 lg:grid-cols-[1fr_340px] lg:items-end">
         <div className="flex flex-col items-start gap-3 sm:gap-4">
           <FadeIn delay={0.1}>
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-3 py-1.5 text-xs font-medium text-muted shadow-sm backdrop-blur">
@@ -114,7 +110,7 @@ export default function Hero({ hero }: HeroProps) {
         </div>
 
         <FadeIn delay={0.3} direction="left" className="hidden lg:block h-full relative">
-          <div className="group relative h-[600px] w-full select-none overflow-hidden rounded-[34px] border border-border/50 bg-card/30 shadow-[0_28px_90px_rgba(20,20,35,0.18)] backdrop-blur-xl dark:shadow-[0_28px_90px_rgba(0,0,0,0.34)]">
+          <div className="group relative h-[520px] w-full select-none overflow-hidden rounded-[20px] border border-border/50 bg-card/30 shadow-[0_28px_90px_rgba(20,20,35,0.18)] backdrop-blur-xl dark:shadow-[0_28px_90px_rgba(0,0,0,0.34)]">
             {/* Portrait Image */}
             <Image
               src="/hero-portrait.jpg"
@@ -128,7 +124,7 @@ export default function Hero({ hero }: HeroProps) {
             <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-transparent opacity-40" />
 
             {/* Profile Info Overlay */}
-            <div className="absolute bottom-6 left-6 right-6 border border-border/50 bg-background/80 backdrop-blur-md p-5 shadow-2xl transition-all duration-300 hover:border-accent/50">
+            <div className="absolute bottom-5 left-5 right-5 border border-border/50 bg-background/80 backdrop-blur-md p-4 shadow-2xl transition-all duration-300 hover:border-accent/50">
               <div className="flex items-center justify-between mb-4">
                 <span className="font-mono text-[10px] uppercase tracking-wider text-muted font-semibold">
                   {hero.profileLabel}

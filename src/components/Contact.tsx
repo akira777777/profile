@@ -81,13 +81,13 @@ export default function Contact({
   }
 
   const presets = locale === "ru" ? [
-    { label: "💼 Вакансия", text: "Здравствуйте, Артём! Меня заинтересовало ваше портфолио. Хочу обсудить открытую вакансию frontend-разработчика." },
-    { label: "🚀 Проект", text: "Привет, Артём! Есть интересный проект на Next.js/React. Давай обсудим сотрудничество." },
-    { label: "💬 Написать привет", text: "Привет, Артём! Отличное портфолио, особенно интерактивный терминал! Успехов в кодинге!" }
+    { label: "Вакансия", text: "Здравствуйте, Артём! Меня заинтересовало ваше портфолио. Хочу обсудить открытую вакансию frontend-разработчика." },
+    { label: "Проект", text: "Привет, Артём! Есть интересный проект на Next.js/React. Давай обсудим сотрудничество." },
+    { label: "Написать привет", text: "Привет, Артём! Отличное портфолио, особенно интерактивный терминал! Успехов в кодинге!" }
   ] : [
-    { label: "💼 Job Opportunity", text: "Hi Artem, I came across your portfolio and would like to discuss an open frontend developer opportunity with our team." },
-    { label: "🚀 Project Collaboration", text: "Hi Artem, we have a Next.js/React project coming up and would love to discuss a potential collaboration." },
-    { label: "💬 Say Hello", text: "Hi Artem! Cool portfolio, especially the interactive terminal dashboard. Best of luck!" }
+    { label: "Job Opportunity", text: "Hi Artem, I came across your portfolio and would like to discuss an open frontend developer opportunity with our team." },
+    { label: "Project Collaboration", text: "Hi Artem, we have a Next.js/React project coming up and would love to discuss a potential collaboration." },
+    { label: "Say Hello", text: "Hi Artem! Cool portfolio, especially the interactive terminal dashboard. Best of luck!" }
   ];
 
   const directLinks = [

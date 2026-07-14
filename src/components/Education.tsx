@@ -1,3 +1,7 @@
+"use client";
+
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import type { Messages } from "@/i18n/dictionaries";
 import type { Locale } from "@/i18n/config";
 import { GraduationIcon } from "./icons";
@@ -14,6 +18,14 @@ export default function Education({
   education: Education;
   locale: Locale;
 }) {
+  const [activeMilestoneIndex, setActiveMilestoneIndex] = useState<number | null>(
+    education.timeline && education.timeline.length > 0 ? education.timeline.length - 1 : null
+  );
+
+  const toggleMilestone = (index: number) => {
+    setActiveMilestoneIndex(activeMilestoneIndex === index ? null : index);
+  };
+
   return (
     <Section bgLetter="E" id="education" className="border-y border-border bg-card/20">
       <SectionHeading eyebrow="04" title={education.title} />
@@ -69,30 +81,72 @@ export default function Education({
         {/* Timeline block */}
         {education.timeline && education.timeline.length > 0 && (
           <div className="mt-16 max-w-4xl mx-auto">
-            <h4 className="font-display text-lg font-bold text-foreground mb-8 border-b border-border pb-3 flex items-center gap-2">
+            <h4 className="font-display text-lg font-bold text-foreground mb-4 border-b border-border pb-3 flex items-center gap-2">
               <span className="h-2 w-2 bg-accent rounded-full animate-pulse" />
               {locale === "ru" ? "Хронология развития" : "Chronological Milestones"}
             </h4>
+            
+            {/* Timeline Hint */}
+            <p className="text-xs text-muted mb-8 font-semibold select-none flex items-center gap-1.5 opacity-90">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-accent-secondary" />
+              {education.timelineHint}
+            </p>
+
             <div className="relative border-l-2 border-border pl-6 ml-4 space-y-10">
-              {education.timeline.map((item, index) => (
-                <FadeIn key={index} delay={index * 0.08}>
-                  <div className="relative group">
-                    {/* Glowing bullet marker */}
-                    <span className="absolute -left-[33px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full border border-accent bg-background transition-transform duration-300 group-hover:scale-125">
-                      <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                    </span>
-                    <span className="font-mono text-xs font-bold text-accent block tracking-wider">
-                      {item.year}
-                    </span>
-                    <h5 className="font-display text-base font-bold text-foreground mt-1 group-hover:text-accent transition-colors duration-200">
-                      {item.title}
-                    </h5>
-                    <p className="text-sm text-muted mt-2 leading-relaxed max-w-3xl">
-                      {item.desc}
-                    </p>
-                  </div>
-                </FadeIn>
-              ))}
+              {education.timeline.map((item, index) => {
+                const isActive = activeMilestoneIndex === index;
+                return (
+                  <FadeIn key={index} delay={index * 0.08}>
+                    <div className="relative group">
+                      {/* Pulsating / glowing bullet marker */}
+                      <button
+                        type="button"
+                        onClick={() => toggleMilestone(index)}
+                        className={`absolute -left-[33px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full border bg-background transition-transform duration-300 focus:outline-none cursor-pointer ${
+                          isActive
+                            ? "border-accent scale-110 shadow-[0_0_8px_var(--accent)]"
+                            : "border-border hover:scale-110"
+                        }`}
+                      >
+                        <span className={`h-1.5 w-1.5 rounded-full ${isActive ? "bg-accent" : "bg-muted"}`} />
+                      </button>
+
+                      <div
+                        onClick={() => toggleMilestone(index)}
+                        className="cursor-pointer"
+                      >
+                        <span className={`font-mono text-xs font-bold block tracking-wider transition-colors duration-200 ${
+                          isActive ? "text-accent" : "text-muted group-hover:text-foreground"
+                        }`}>
+                          {item.year}
+                        </span>
+                        
+                        <h5 className={`font-display text-base font-bold mt-1 transition-colors duration-200 ${
+                          isActive ? "text-accent" : "text-foreground group-hover:text-accent"
+                        }`}>
+                          {item.title}
+                        </h5>
+                      </div>
+
+                      <AnimatePresence initial={false}>
+                        {isActive && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="overflow-hidden"
+                          >
+                            <p className="text-sm text-muted mt-2 leading-relaxed max-w-3xl border-l-2 border-accent-soft pl-3 py-0.5">
+                              {item.desc}
+                            </p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </FadeIn>
+                );
+              })}
             </div>
           </div>
         )}

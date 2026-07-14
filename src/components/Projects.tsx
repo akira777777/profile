@@ -8,6 +8,7 @@ import { ArrowUpRightIcon, StarIcon } from "./icons";
 import { Section, SectionHeading } from "./ui/Section";
 import GlowCard from "./ui/GlowCard";
 import FadeIn from "./ui/FadeIn";
+import ProjectModal from "./ProjectModal";
 
 type ProjectsMessages = Messages["projects"];
 
@@ -78,9 +79,13 @@ function CardVisual({
 function ProjectCard({
   project,
   messages,
+  locale,
+  onSelect,
 }: {
   project: Project;
   messages: ProjectsMessages;
+  locale: string;
+  onSelect: (p: Project) => void;
 }) {
   const copy = messages.items[project.id as keyof typeof messages.items];
   const category = messages.categories[project.categoryKey];
@@ -110,8 +115,17 @@ function ProjectCard({
             <p className="text-pretty text-sm leading-relaxed text-muted sm:text-base">
               {copy.description}
             </p>
-            {project.url ? (
-              <div className="pt-2">
+            <div className="pt-2 flex items-center justify-between gap-4">
+              <button
+                type="button"
+                onClick={() => onSelect(project)}
+                className="hover-slash-draw inline-flex items-center gap-1 text-sm font-semibold text-foreground cursor-pointer"
+              >
+                {locale === "ru" ? "Детали проекта" : "Case Study"}
+                <span className="text-xs">→</span>
+              </button>
+
+              {project.url ? (
                 <a
                   href={project.url}
                   target="_blank"
@@ -121,8 +135,8 @@ function ProjectCard({
                   {messages.live}
                   <ArrowUpRightIcon className="h-4 w-4" />
                 </a>
-              </div>
-            ) : null}
+              ) : null}
+            </div>
           </div>
         </div>
       ) : (
@@ -143,8 +157,17 @@ function ProjectCard({
                 </span>
               ))}
             </div>
-            {project.url ? (
-              <div className="pt-1">
+            <div className="pt-2 flex items-center justify-between gap-4 mt-auto">
+              <button
+                type="button"
+                onClick={() => onSelect(project)}
+                className="hover-slash-draw inline-flex items-center gap-1 text-sm font-semibold text-foreground cursor-pointer"
+              >
+                {locale === "ru" ? "Детали проекта" : "Case Study"}
+                <span className="text-xs">→</span>
+              </button>
+
+              {project.url ? (
                 <a
                   href={project.url}
                   target="_blank"
@@ -154,8 +177,8 @@ function ProjectCard({
                   {messages.live}
                   <ArrowUpRightIcon className="h-4 w-4" />
                 </a>
-              </div>
-            ) : null}
+              ) : null}
+            </div>
           </div>
         </>
       )}
@@ -163,8 +186,9 @@ function ProjectCard({
   );
 }
 
-export default function Projects({ projects }: { projects: ProjectsMessages }) {
+export default function Projects({ projects, locale }: { projects: ProjectsMessages; locale: string }) {
   const [activeCategory, setActiveCategory] = useState<"all" | ProjectCategoryKey>("all");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const categories = Object.entries(projects.categories) as [ProjectCategoryKey, string][];
 
@@ -214,7 +238,7 @@ export default function Projects({ projects }: { projects: ProjectsMessages }) {
         {featured ? (
           <FadeIn key={featured.id}>
             <div className="transition-transform duration-300 hover:-translate-y-0.5">
-              <ProjectCard project={featured} messages={projects} />
+              <ProjectCard project={featured} messages={projects} locale={locale} onSelect={setSelectedProject} />
             </div>
           </FadeIn>
         ) : null}
@@ -224,7 +248,7 @@ export default function Projects({ projects }: { projects: ProjectsMessages }) {
             {rest.map((project, i) => (
               <FadeIn key={project.id} delay={0.05 + i * 0.05}>
                 <div className="transition-transform duration-300 hover:-translate-y-0.5">
-                  <ProjectCard project={project} messages={projects} />
+                  <ProjectCard project={project} messages={projects} locale={locale} onSelect={setSelectedProject} />
                 </div>
               </FadeIn>
             ))}
@@ -235,6 +259,14 @@ export default function Projects({ projects }: { projects: ProjectsMessages }) {
           </div>
         ) : null}
       </div>
+
+      <ProjectModal
+        isOpen={!!selectedProject}
+        onClose={() => setSelectedProject(null)}
+        project={selectedProject}
+        locale={locale}
+        messages={projects}
+      />
     </Section>
   );
 }

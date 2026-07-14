@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Locale } from "@/i18n/config";
-import { CloseIcon, MenuIcon, DownloadIcon } from "./icons";
+import { MenuIcon, DownloadIcon } from "./icons";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeToggle from "./ThemeToggle";
 
@@ -30,9 +30,9 @@ export default function Navbar({
   locale: Locale;
 }) {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
   const [scrollPercent, setScrollPercent] = useState(0);
   const [activeSection, setActiveSection] = useState<string>("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,13 +72,6 @@ export default function Navbar({
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
   const items = NAV_IDS.map((id) => ({ id, label: nav[id] }));
   const name = locale === "ru" ? "Артём Михайлов" : "Artem Mikhailov";
   const role = locale === "ru" ? "Frontend" : "Frontend";
@@ -106,7 +99,6 @@ export default function Navbar({
         <Link
           href={locale === "ru" ? "/" : "/en"}
           className="group flex min-w-0 items-center gap-2.5"
-          onClick={() => setOpen(false)}
         >
           <span className="relative flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden bg-foreground text-sm font-bold text-background transition-transform group-hover:scale-105">
             <span>{locale === "ru" ? "АМ" : "AM"}</span>
@@ -152,58 +144,43 @@ export default function Navbar({
           </a>
           <LanguageSwitcher locale={locale} />
           <ThemeToggle label={themeToggle} />
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-label={nav.menu}
-            aria-expanded={open}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card/80 text-foreground shadow-sm backdrop-blur transition-colors hover:bg-card-strong md:hidden"
-          >
-            {open ? <CloseIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
-          </button>
+          <div className="relative md:hidden">
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label={nav.menu}
+              className="inline-flex h-9 w-9 cursor-pointer items-center justify-center rounded-full border border-border bg-card/80 text-foreground shadow-sm backdrop-blur transition-colors hover:bg-card-strong"
+            >
+              <MenuIcon className="h-5 w-5" />
+            </button>
+
+            {isMobileMenuOpen && (
+              <div className="fixed inset-x-0 top-20 z-40 origin-top border-y border-border bg-background/96 px-5 py-4 shadow-2xl backdrop-blur-xl transition-all duration-200 sm:px-8">
+                <ul className="mx-auto flex w-full max-w-6xl flex-col gap-1">
+                  {items.map((item) => (
+                    <li key={item.id}>
+                      <a
+                        href={`#${item.id}`}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`flex items-center gap-2 px-4 py-3 text-sm font-semibold transition-colors ${
+                          activeSection === item.id
+                            ? "bg-accent-soft text-accent"
+                            : "text-foreground hover:bg-card"
+                        }`}
+                      >
+                        {activeSection === item.id ? (
+                          <span className="h-1.5 w-1.5 rounded-full bg-accent" />
+                        ) : null}
+                        {item.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       </nav>
-
-      {/* Mobile menu */}
-      <div
-        className={`md:hidden ${
-          open ? "pointer-events-auto" : "pointer-events-none"
-        }`}
-      >
-        <div
-          className={`fixed inset-x-0 top-16 z-40 origin-top border-b border-border bg-background/95 backdrop-blur-xl transition-all duration-200 ${
-            open ? "scale-y-100 opacity-100" : "scale-y-95 opacity-0"
-          }`}
-        >
-          <ul className="mx-auto flex w-full max-w-6xl flex-col gap-1 px-5 py-4 sm:px-8">
-            {items.map((item) => (
-              <li key={item.id}>
-                <a
-                  href={`#${item.id}`}
-                  onClick={() => setOpen(false)}
-                  className={`block px-4 py-3 text-base font-medium transition-colors ${
-                    activeSection === item.id
-                      ? "text-accent bg-accent-soft/50"
-                      : "text-foreground hover:bg-card"
-                  }`}
-                >
-                  {activeSection === item.id && (
-                    <span className="mr-2 inline-block h-1.5 w-1.5 bg-accent rounded-full" />
-                  )}
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-        {open ? (
-          <div
-            className="fixed inset-0 top-16 z-30 bg-black/30 backdrop-blur-sm md:hidden"
-            onClick={() => setOpen(false)}
-            aria-hidden="true"
-          />
-        ) : null}
-      </div>
       </div>
     </header>
   );

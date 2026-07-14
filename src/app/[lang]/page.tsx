@@ -27,7 +27,7 @@ export default async function HomePage({ params }: PageProps) {
       <Hero hero={t.hero} />
       <About about={t.about} />
       <Skills skills={t.skills} />
-      <Projects projects={t.projects} />
+      <Projects projects={t.projects} locale={locale} />
       <Education education={t.education} locale={locale} />
       <Testimonials testimonials={t.testimonials} />
       <Languages languages={t.languages} />

@@ -163,15 +163,15 @@
   animation: spin-slow 8s linear infinite;
 }
 
-/* Floating blur orbs background styles */
-.floating-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  opacity: 0.12;
-  pointer-events: none;
-  z-index: 0;
-  will-change: transform;
+@keyframes fade-in-soft {
+  from {
+    opacity: 0;
+    transform: var(--fade-start, translate3d(0, 12px, 0));
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 @keyframes float-slow {

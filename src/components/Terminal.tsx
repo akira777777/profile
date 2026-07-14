@@ -24,8 +24,58 @@ export default function Terminal({ messages, locale }: TerminalProps) {
   ]);
   const [inputVal, setInputVal] = useState("");
   const [crtMode, setCrtMode] = useState(false);
+  const [commandHistory, setCommandHistory] = useState<string[]>([]);
+  const [historyPointer, setHistoryPointer] = useState<number>(-1);
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const availableCommands = [
+    "help",
+    "about",
+    "skills",
+    "projects",
+    "education",
+    "contact",
+    "clear",
+    "crt",
+    "theme",
+    "language",
+  ];
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Tab") {
+      e.preventDefault();
+      const val = inputVal.trim().toLowerCase();
+      if (!val) return;
+      const matches = availableCommands.filter((cmd) => cmd.startsWith(val));
+      if (matches.length === 1) {
+        setInputVal(matches[0]);
+      } else if (matches.length > 1) {
+        setHistory((prev) => [
+          ...prev,
+          { text: `visitor@artem-mikhailov:~$ ${inputVal}`, type: "input" },
+          { text: matches.join("    "), type: "info" },
+        ]);
+      }
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      if (commandHistory.length === 0) return;
+      const nextPointer = historyPointer === -1 ? commandHistory.length - 1 : Math.max(0, historyPointer - 1);
+      setHistoryPointer(nextPointer);
+      setInputVal(commandHistory[nextPointer]);
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (historyPointer === -1) return;
+      const nextPointer = historyPointer + 1;
+      if (nextPointer >= commandHistory.length) {
+        setHistoryPointer(-1);
+        setInputVal("");
+      } else {
+        setHistoryPointer(nextPointer);
+        setInputVal(commandHistory[nextPointer]);
+      }
+    }
+  };
 
   // Auto scroll to bottom
   useEffect(() => {
@@ -42,6 +92,12 @@ export default function Terminal({ messages, locale }: TerminalProps) {
     e.preventDefault();
     const command = inputVal.trim().toLowerCase();
     if (!command) return;
+
+    setCommandHistory((prev) => {
+      if (prev.length > 0 && prev[prev.length - 1] === command) return prev;
+      return [...prev, command];
+    });
+    setHistoryPointer(-1);
 
     const newLines: LogLine[] = [
       { text: `visitor@artem-mikhailov:~$ ${inputVal}`, type: "input" }
@@ -73,9 +129,14 @@ export default function Terminal({ messages, locale }: TerminalProps) {
         break;
 
       case "projects":
-        newLines.push({ text: `=== ${messages.projects.title} ===`, type: "info" });
-        Object.entries(messages.projects.items).forEach(([key, proj]: [string, { description: string }]) => {
-          newLines.push({ text: `• ${key.toUpperCase()}: ${proj.description}`, type: "output" });
+        newLines.push({ text: `=== ${messages.projects.title} ===`, type: "system" });
+        Object.entries(messages.projects.items).forEach(([key, proj]) => {
+          newLines.push({ text: `\n[ ${key.toUpperCase()} ]`, type: "info" });
+          newLines.push({ text: `• Description: ${proj.description}`, type: "output" });
+          newLines.push({ text: `• Challenge: ${proj.challenge}`, type: "output" });
+          newLines.push({ text: `• Solution: ${proj.solution}`, type: "output" });
+          newLines.push({ text: `• Achievements: ${proj.achievements.join(", ")}`, type: "output" });
+          newLines.push({ text: `• Lighthouse Score: Performance ${proj.performance || 90} | SEO ${proj.seo || 90}`, type: "system" });
         });
         break;
 
@@ -213,6 +274,7 @@ export default function Terminal({ messages, locale }: TerminalProps) {
                 type="text"
                 value={inputVal}
                 onChange={(e) => setInputVal(e.target.value)}
+                onKeyDown={handleKeyDown}
                 placeholder={t.placeholder}
                 className="bg-transparent text-green-400 outline-none border-none flex-1 p-0 font-mono text-sm leading-normal focus:ring-0 focus:outline-none placeholder:text-zinc-700"
                 autoComplete="off"
