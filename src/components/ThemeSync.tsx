@@ -12,6 +12,7 @@ export default function ThemeSync() {
     } catch {
       document.documentElement.classList.add("dark");
     }
+    document.documentElement.dataset.hydrated = "true";
   }, [pathname]);
 
   return null;

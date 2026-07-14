@@ -4,6 +4,7 @@ test.describe("Portfolio E2E Tests", () => {
   test("Localization - RU default and EN switcher", async ({ page }) => {
     // Visit home page (RU default)
     await page.goto("/");
+    await page.waitForSelector("html[data-hydrated='true']");
     await expect(page).toHaveTitle(/Артём Михайлов/);
     
     // Look for RU header descriptor
@@ -17,6 +18,7 @@ test.describe("Portfolio E2E Tests", () => {
 
     // Verify redirect to /en and content changes to English
     await page.waitForURL("**/en");
+    await page.waitForSelector("html[data-hydrated='true']");
     await expect(page).toHaveTitle(/Artem Mikhailov/);
     const heroTitleEn = page.locator("h1");
     await expect(heroTitleEn).toContainText("Artem Mikhailov");
@@ -24,6 +26,7 @@ test.describe("Portfolio E2E Tests", () => {
 
   test("Theme Toggle - light and dark modes", async ({ page }) => {
     await page.goto("/");
+    await page.waitForSelector("html[data-hydrated='true']");
     
     // Default theme should be dark (has 'dark' class on html)
     const html = page.locator("html");
@@ -44,6 +47,7 @@ test.describe("Portfolio E2E Tests", () => {
 
   test("Terminal Console commands", async ({ page }) => {
     await page.goto("/");
+    await page.waitForSelector("html[data-hydrated='true']");
 
     const terminalInput = page.locator("input[placeholder*='Введите команду']");
     await expect(terminalInput).toBeVisible();

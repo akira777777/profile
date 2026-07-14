@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import type { Messages } from "@/i18n/dictionaries";
 import { projects as projectData, type Project, type ProjectCategoryKey } from "@/lib/projects";
 import Image from "next/image";
@@ -12,24 +12,81 @@ import ProjectModal from "./ProjectModal";
 
 type ProjectsMessages = Messages["projects"];
 
+/* ── Live‑site preview iframe that loads on hover ── */
+function LivePreview({ url, isHovered }: { url: string; isHovered: boolean }) {
+  const [loaded, setLoaded] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
+
+  useEffect(() => {
+    if (isHovered && !shouldLoad) {
+      setShouldLoad(true);
+    }
+  }, [isHovered, shouldLoad]);
+
+  return (
+    <div
+      className={`absolute inset-0 z-20 transition-opacity duration-500 ${
+        isHovered && loaded ? "opacity-100" : "opacity-0"
+      }`}
+    >
+      {shouldLoad && (
+        <iframe
+          src={url}
+          title="Live preview"
+          className="h-full w-full border-0 pointer-events-none"
+          loading="lazy"
+          sandbox="allow-scripts allow-same-origin"
+          style={{ transform: "scale(0.5)", transformOrigin: "top left", width: "200%", height: "200%" }}
+          onLoad={() => setLoaded(true)}
+        />
+      )}
+      {/* Gradient fade at bottom so text is still readable */}
+      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background via-background/80 to-transparent" />
+    </div>
+  );
+}
+
+/* ── Metric dot (tiny performance indicator) ── */
+function PerfDot({ score }: { score: number }) {
+  const color =
+    score >= 95
+      ? "bg-emerald-500"
+      : score >= 80
+        ? "bg-amber-400"
+        : "bg-red-400";
+  return (
+    <span className="inline-flex items-center gap-1 font-mono text-[10px] text-muted">
+      <span className={`h-1.5 w-1.5 rounded-full ${color}`} />
+      {score}
+    </span>
+  );
+}
+
+/* ── Card Visual ── */
 function CardVisual({
   project,
   category,
   featuredLabel,
+  isHovered,
 }: {
   project: Project;
   category: string;
   featuredLabel?: string;
+  isHovered: boolean;
 }) {
   return (
     <div
-      className="relative min-h-[190px] overflow-hidden border border-border bg-background p-3 transition-transform duration-500 group-hover:scale-[1.01]"
+      className="relative min-h-[220px] overflow-hidden border border-border bg-background p-3 transition-transform duration-500 group-hover:scale-[1.01]"
     >
       <div
         aria-hidden="true"
-        className={`absolute inset-0 bg-gradient-to-br ${project.accent} opacity-[0.18] dark:opacity-[0.22]`}
+        className={`absolute inset-0 bg-gradient-to-br ${project.accent} opacity-[0.18] dark:opacity-[0.22] transition-opacity duration-500 group-hover:opacity-[0.28]`}
       />
-      <div className="relative z-10 flex h-full min-h-[166px] flex-col border border-border bg-card/90 shadow-xl shadow-black/10 backdrop-blur">
+
+      {/* Live iframe preview appears on hover */}
+      {project.url && <LivePreview url={project.url} isHovered={isHovered} />}
+
+      <div className="relative z-10 flex h-full min-h-[196px] flex-col border border-border bg-card/90 shadow-xl shadow-black/10 backdrop-blur">
         <div className="flex h-9 items-center justify-between border-b border-border px-3">
           <div className="flex items-center gap-1.5">
             <span className="h-2 w-2 rounded-full bg-red-400/80" />
@@ -76,6 +133,7 @@ function CardVisual({
   );
 }
 
+/* ── Project Card ── */
 function ProjectCard({
   project,
   messages,
@@ -90,99 +148,124 @@ function ProjectCard({
   const copy = messages.items[project.id as keyof typeof messages.items];
   const category = messages.categories[project.categoryKey];
   const isFeatured = Boolean(project.featured);
+  const [isHovered, setIsHovered] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  const perfScore = parseInt(copy?.performance || "90", 10);
 
   return (
-    <GlowCard
-      className={`group relative flex flex-col overflow-hidden p-3 transition-all duration-300 hover:border-accent/45 hover:bg-card/85 hover:shadow-xl hover:shadow-black/10 ${
-        isFeatured ? "sm:p-6" : ""
-      }`}
+    <div
+      ref={cardRef}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      {isFeatured ? (
-        <div className="grid gap-6 md:grid-cols-2">
-          <CardVisual project={project} category={category} featuredLabel={messages.featured} />
-          <div className="flex flex-col justify-center gap-4 p-2">
-            <div className="flex flex-wrap gap-2">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="border border-accent/20 bg-accent-soft px-2.5 py-1 text-xs font-semibold text-accent"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <h3 className="font-display text-2xl font-bold text-foreground sm:text-3xl">{project.title}</h3>
-            <p className="text-pretty text-sm leading-relaxed text-muted sm:text-base">
-              {copy.description}
-            </p>
-            <div className="pt-2 flex items-center justify-between gap-4">
-              <button
-                type="button"
-                onClick={() => onSelect(project)}
-                className="hover-slash-draw inline-flex items-center gap-1 text-sm font-semibold text-foreground cursor-pointer"
-              >
-                {locale === "ru" ? "Детали проекта" : "Case Study"}
-                <span className="text-xs">→</span>
-              </button>
+      <GlowCard
+        className={`group relative flex flex-col overflow-hidden p-3 transition-all duration-300 hover:border-accent/45 hover:bg-card/85 hover:shadow-xl hover:shadow-black/10 ${
+          isFeatured ? "sm:p-6" : ""
+        }`}
+      >
+        {isFeatured ? (
+          <div className="grid gap-6 md:grid-cols-2">
+            <CardVisual project={project} category={category} featuredLabel={messages.featured} isHovered={isHovered} />
+            <div className="flex flex-col justify-center gap-4 p-2">
+              <div className="flex flex-wrap items-center gap-2">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="border border-accent/20 bg-accent-soft px-2.5 py-1 text-xs font-semibold text-accent"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <h3 className="font-display text-2xl font-bold text-foreground sm:text-3xl">{project.title}</h3>
+              <p className="text-pretty text-sm leading-relaxed text-muted sm:text-base">
+                {copy?.description}
+              </p>
 
-              {project.url ? (
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover-slash-draw inline-flex items-center gap-1.5 text-sm font-semibold text-accent"
+              {/* Metrics strip */}
+              <div className="flex items-center gap-3 border-t border-border pt-3">
+                <PerfDot score={perfScore} />
+                <span className="text-[10px] text-muted font-mono">Lighthouse</span>
+              </div>
+
+              <div className="pt-2 flex items-center justify-between gap-4">
+                <button
+                  type="button"
+                  onClick={() => onSelect(project)}
+                  className="hover-slash-draw inline-flex items-center gap-1 text-sm font-semibold text-foreground cursor-pointer"
                 >
-                  {messages.live}
-                  <ArrowUpRightIcon className="h-4 w-4" />
-                </a>
-              ) : null}
+                  {locale === "ru" ? "Детали проекта" : "Case Study"}
+                  <span className="text-xs">→</span>
+                </button>
+
+                {project.url ? (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/live inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-secondary px-4 py-2 text-xs font-bold text-accent-foreground shadow-[0_4px_20px_rgba(37,99,235,0.25)] transition-all duration-300 hover:shadow-[0_8px_30px_rgba(37,99,235,0.4)] hover:scale-[1.02] active:scale-[0.98]"
+                  >
+                    {messages.live}
+                    <ArrowUpRightIcon className="h-3.5 w-3.5 transition-transform group-hover/live:translate-x-0.5 group-hover/live:-translate-y-0.5" />
+                  </a>
+                ) : null}
+              </div>
             </div>
           </div>
-        </div>
-      ) : (
-        <>
-          <CardVisual project={project} category={category} />
-          <div className="flex flex-1 flex-col gap-3 p-3 pt-5">
-            <h3 className="font-display text-lg font-bold text-foreground">{project.title}</h3>
-            <p className="flex-1 text-pretty text-sm leading-relaxed text-muted">
-              {copy.description}
-            </p>
-            <div className="flex flex-wrap gap-1.5">
-              {project.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="border border-accent/15 bg-accent-soft px-2 py-0.5 text-[11px] font-semibold text-accent"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <div className="pt-2 flex items-center justify-between gap-4 mt-auto">
-              <button
-                type="button"
-                onClick={() => onSelect(project)}
-                className="hover-slash-draw inline-flex items-center gap-1 text-sm font-semibold text-foreground cursor-pointer"
-              >
-                {locale === "ru" ? "Детали проекта" : "Case Study"}
-                <span className="text-xs">→</span>
-              </button>
+        ) : (
+          <>
+            <CardVisual project={project} category={category} isHovered={isHovered} />
+            <div className="flex flex-1 flex-col gap-3 p-3 pt-5">
+              <h3 className="font-display text-lg font-bold text-foreground">{project.title}</h3>
+              <p className="flex-1 text-pretty text-sm leading-relaxed text-muted">
+                {copy?.description}
+              </p>
 
-              {project.url ? (
-                <a
-                  href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover-slash-draw inline-flex items-center gap-1.5 text-sm font-semibold text-accent"
+              <div className="flex flex-wrap gap-1.5">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="border border-accent/15 bg-accent-soft px-2 py-0.5 text-[11px] font-semibold text-accent"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              {/* Metrics strip */}
+              <div className="flex items-center gap-3 border-t border-border pt-2">
+                <PerfDot score={perfScore} />
+                <span className="text-[10px] text-muted font-mono">Lighthouse</span>
+              </div>
+
+              <div className="pt-2 flex items-center justify-between gap-4 mt-auto">
+                <button
+                  type="button"
+                  onClick={() => onSelect(project)}
+                  className="hover-slash-draw inline-flex items-center gap-1 text-sm font-semibold text-foreground cursor-pointer"
                 >
-                  {messages.live}
-                  <ArrowUpRightIcon className="h-4 w-4" />
-                </a>
-              ) : null}
+                  {locale === "ru" ? "Детали проекта" : "Case Study"}
+                  <span className="text-xs">→</span>
+                </button>
+
+                {project.url ? (
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group/live inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-secondary px-3.5 py-1.5 text-[11px] font-bold text-accent-foreground shadow-[0_4px_16px_rgba(37,99,235,0.2)] transition-all duration-300 hover:shadow-[0_6px_24px_rgba(37,99,235,0.35)] hover:scale-[1.02] active:scale-[0.98]"
+                  >
+                    {messages.live}
+                    <ArrowUpRightIcon className="h-3 w-3 transition-transform group-hover/live:translate-x-0.5 group-hover/live:-translate-y-0.5" />
+                  </a>
+                ) : null}
+              </div>
             </div>
-          </div>
-        </>
-      )}
-    </GlowCard>
+          </>
+        )}
+      </GlowCard>
+    </div>
   );
 }
 
@@ -233,8 +316,13 @@ export default function Projects({ projects, locale }: { projects: ProjectsMessa
         ))}
       </div>
 
+      {/* Projects count */}
+      <p className="mt-4 text-xs font-mono text-muted">
+        {filteredProjects.length} {locale === "ru" ? "проектов" : "projects"}
+      </p>
+
       {/* Projects Grid/List */}
-      <div className="mt-8 flex flex-col gap-5">
+      <div className="mt-4 flex flex-col gap-5">
         {featured ? (
           <FadeIn key={featured.id}>
             <div className="transition-transform duration-300 hover:-translate-y-0.5">
@@ -244,7 +332,7 @@ export default function Projects({ projects, locale }: { projects: ProjectsMessa
         ) : null}
         
         {rest.length > 0 ? (
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {rest.map((project, i) => (
               <FadeIn key={project.id} delay={0.05 + i * 0.05}>
                 <div className="transition-transform duration-300 hover:-translate-y-0.5">
