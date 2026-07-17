@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import type { Messages } from "@/i18n/dictionaries";
 import { Section, SectionHeading } from "./ui/Section";
 import FadeIn from "./ui/FadeIn";

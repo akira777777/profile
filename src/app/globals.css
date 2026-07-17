@@ -223,50 +223,98 @@
   transform: skewX(-20deg) scaleX(1);
 }
 
-/* Clean Modern IDE console styling */
+/* Immersive Retro CRT terminal styling */
+@keyframes crt-flicker {
+  0% { opacity: 0.975; }
+  50% { opacity: 1; }
+  100% { opacity: 0.985; }
+}
+
 .crt-screen {
   position: relative;
   overflow: hidden;
+  transition: all 0.3s ease;
 }
 
-/* scanlines overlay - disabled for strict professional style */
+/* scanlines overlay - only visible when active */
 .crt-screen::before {
   content: "";
-  display: none;
+  display: block;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.28) 50%
+  );
+  background-size: 100% 4px;
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
-/* No flicker for modern console */
-.crt-active {
-  background-color: #05070a !important; /* Slightly darker VS Code black on active */
+.crt-screen::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(
+    circle at center,
+    transparent 50%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  z-index: 21;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
-/* Keep selectors for compatibility with E2E tests, but style them as clean modern IDE syntax highlighting */
-.crt-active .text-slate-300 {
-  color: #e2e8f0 !important;
+.crt-active .crt-screen {
+  background-color: #030712 !important;
+  animation: crt-flicker 0.15s infinite;
 }
 
-.crt-active .text-slate-100 {
-  color: #f8fafc !important;
+.crt-active .crt-screen::before {
+  opacity: 0.85;
+}
+
+.crt-active .crt-screen::after {
+  opacity: 1;
+}
+
+/* Phosphor text shadow glow effect in active CRT mode */
+.crt-active .text-slate-300,
+.crt-active .text-slate-100,
+.crt-active .text-blue-400,
+.crt-active .text-slate-400,
+.crt-active .text-indigo-400,
+.crt-active .text-rose-400,
+.crt-active input {
+  color: #38bdf8 !important; /* Cyan phosphor default text */
+  text-shadow: 0 0 4px rgba(56, 189, 248, 0.8), 0 0 10px rgba(56, 189, 248, 0.4);
 }
 
 .crt-active .text-blue-400 {
-  color: #60a5fa !important;
-}
-
-.crt-active .text-slate-400 {
-  color: #94a3b8 !important;
-}
-
-.crt-active .text-indigo-400 {
-  color: #818cf8 !important;
+  color: #0ea5e9 !important; /* brighter blue for prefix */
+  text-shadow: 0 0 5px rgba(14, 165, 233, 0.9), 0 0 12px rgba(14, 165, 233, 0.5);
 }
 
 .crt-active .text-rose-400 {
-  color: #f87171 !important;
+  color: #f43f5e !important; /* red-pink for errors */
+  text-shadow: 0 0 5px rgba(244, 63, 94, 0.9), 0 0 12px rgba(244, 63, 94, 0.5);
+}
+
+.crt-active .text-indigo-400 {
+  color: #818cf8 !important; /* indigo for system output */
+  text-shadow: 0 0 5px rgba(129, 140, 248, 0.9), 0 0 12px rgba(129, 140, 248, 0.5);
+}
+
+.crt-active input::placeholder {
+  color: rgba(56, 189, 248, 0.2) !important;
 }
 
 .crt-active input {
-  color: #f8fafc !important;
+  color: #38bdf8 !important;
 }
 
 
@@ -286,4 +334,64 @@
     opacity: 1;
     transform: none;
   }
+}
+
+/* Print CSS optimization for CV */
+@media print {
+  header, footer, nav, button, .no-print {
+    display: none !important;
+  }
+  body {
+    background-image: none !important;
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  main {
+    padding-top: 0 !important;
+  }
+  .print\:p-0 {
+    padding: 0 !important;
+  }
+  .print\:shadow-none {
+    box-shadow: none !important;
+  }
+  .print\:break-inside-avoid {
+    break-inside: avoid !important;
+  }
+}
+
+/* Antigravity floating effect activation */
+@keyframes float-drift-1 {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-16px) rotate(0.4deg) translateX(4px); }
+  100% { transform: translateY(-32px) rotate(-0.3deg) translateX(-4px); }
+}
+
+@keyframes float-drift-2 {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-24px) rotate(-0.6deg) translateX(-6px); }
+  100% { transform: translateY(-40px) rotate(0.5deg) translateX(6px); }
+}
+
+body.antigravity-active section {
+  animation: float-drift-1 12s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+body.antigravity-active section:nth-child(even) {
+  animation-name: float-drift-2;
+  animation-duration: 15s;
+  animation-delay: 1.5s;
+}
+
+body.antigravity-active section:nth-child(3n) {
+  animation-duration: 18s;
+  animation-delay: 3s;
+}
+
+body.antigravity-active {
+  background-attachment: fixed;
+  overflow-x: hidden;
 }

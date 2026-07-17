@@ -41,6 +41,11 @@ export default function Terminal({ messages, locale }: TerminalProps) {
     "crt",
     "theme",
     "language",
+    "cv",
+    "resume",
+    "links",
+    "social",
+    "antigravity",
   ];
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -110,6 +115,9 @@ export default function Terminal({ messages, locale }: TerminalProps) {
         newLines.push({ text: "theme      - " + t.themeToggle, type: "info" });
         newLines.push({ text: "language   - " + t.languageSwitch, type: "info" });
         newLines.push({ text: "crt        - " + t.crtToggle, type: "info" });
+        newLines.push({ text: "cv         - " + t.cvToggle, type: "info" });
+        newLines.push({ text: "links      - " + t.linksToggle, type: "info" });
+        newLines.push({ text: "antigravity - " + t.antigravityToggle, type: "info" });
         break;
 
       case "about":
@@ -201,6 +209,41 @@ export default function Terminal({ messages, locale }: TerminalProps) {
           type: "system",
         });
         break;
+
+      case "cv":
+      case "resume": {
+        newLines.push({ text: `=== CV / RESUME ===`, type: "info" });
+        newLines.push({ text: `${messages.hero.name} — ${messages.hero.role}`, type: "output" });
+        newLines.push({ text: `Location: ${messages.hero.location}`, type: "output" });
+        newLines.push({ text: t.cvTrigger, type: "system" });
+        
+        // Trigger file download
+        const link = document.createElement("a");
+        link.href = "/cv.pdf";
+        link.download = `${messages.hero.name.replace(/\s+/g, "_")}_CV.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        break;
+      }
+
+      case "links":
+      case "social":
+        newLines.push({ text: t.socialLinksTitle, type: "info" });
+        newLines.push({ text: `Telegram: ${site.telegramUrl}`, type: "output" });
+        if (site.githubUrl) {
+          newLines.push({ text: `GitHub: ${site.githubUrl}`, type: "output" });
+        }
+        break;
+
+      case "antigravity": {
+        const isActive = document.body.classList.toggle("antigravity-active");
+        newLines.push({
+          text: isActive ? t.antigravityOn : t.antigravityOff,
+          type: "system",
+        });
+        break;
+      }
 
       default:
         newLines.push({ text: t.notFound, type: "error" });

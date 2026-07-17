@@ -282,10 +282,17 @@ export const en: Messages = {
     crtEnabled: "ENABLED",
     crtDisabled: "DISABLED",
     languageRedirect: "Redirecting to Russian version...",
+    cvTrigger: "Triggering PDF CV download...",
+    antigravityOn: "🚀 Antigravity mode activated! Cruising at zero-G.",
+    antigravityOff: "🌍 Antigravity mode deactivated. Back to earth gravity.",
+    socialLinksTitle: "=== SOCIAL LINKS ===",
+    cvToggle: "download resume in PDF format",
+    linksToggle: "show social links and contact channels",
+    antigravityToggle: "toggle gravity floating effect on the page",
     commands: {
       help: {
         desc: "Show available commands",
-        output: "Available commands: help, about, skills, projects, education, contact, clear"
+        output: "Available commands: help, about, skills, projects, education, contact, clear, theme, language, cv, links, antigravity"
       },
       about: {
         desc: "Show details about me"

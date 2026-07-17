@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat, JetBrains_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import "../globals.css";
 import { locales, defaultLocale, isLocale, type Locale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/dictionaries";
@@ -121,8 +122,9 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
       className={`${inter.variable} ${montserrat.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <head>
-        <script
-          suppressHydrationWarning
+        <Script
+          id="theme-script"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{ __html: themeScript }}
         />
       </head>

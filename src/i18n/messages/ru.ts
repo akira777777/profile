@@ -280,10 +280,17 @@ export const ru = {
     crtEnabled: "ВКЛЮЧЕН",
     crtDisabled: "ВЫКЛЮЧЕН",
     languageRedirect: "Перенаправление на английскую версию...",
+    cvTrigger: "Запуск скачивания резюме PDF...",
+    antigravityOn: "🚀 Режим антигравитации активирован! Свободное парение.",
+    antigravityOff: "🌍 Режим антигравитации отключен. Возвращение на Землю.",
+    socialLinksTitle: "=== КОНТАКТЫ И ССЫЛКИ ===",
+    cvToggle: "скачать резюме в формате PDF",
+    linksToggle: "показать социальные сети и контакты",
+    antigravityToggle: "включить/выключить режим невесомости на сайте",
     commands: {
       help: {
         desc: "Показать доступные команды",
-        output: "Доступные команды: help, about, skills, projects, education, contact, clear"
+        output: "Доступные команды: help, about, skills, projects, education, contact, clear, theme, language, cv, links, antigravity"
       },
       about: {
         desc: "Рассказать обо мне"
